@@ -226,7 +226,7 @@ function renderLikeDislike(step) {
     <div class="step">
       <h1 class="step-title">${step.title}</h1>
       <div class="like-dislike-photo">
-        ${renderPlaceholder(step.img, { w: 560, h: 300 })}
+        ${renderPlaceholder(step.img, { w: 560, h: 300, natural: true })}
         <div class="ld-caption">${step.caption}</div>
       </div>
       <div class="like-dislike-row">
@@ -314,7 +314,7 @@ function renderNumberInput(step) {
 /* ---------------- TRANSITION (text only, may include a chart) ---------------- */
 function renderTransition(step) {
   const chartHtml = step.chartType === "stress" ? chartStress() : (step.chartType === "calm" ? chartCalm() : "");
-  const imgHtml = step.img ? `<div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360 })}</div>` : "";
+  const imgHtml = step.img ? `<div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360, natural: true })}</div>` : "";
   app.innerHTML = `
     <div class="step">
       ${imgHtml}
@@ -331,7 +331,7 @@ function renderTransition(step) {
 function renderTransitionImage(step) {
   app.innerHTML = `
     <div class="step">
-      <div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360 })}</div>
+      <div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360, natural: true })}</div>
       <h1 class="step-title">${step.title}</h1>
       <div class="transition-body" style="text-align:center;">${step.body}</div>
       <button class="continue-btn" id="continue-btn">Continue</button>
@@ -381,7 +381,7 @@ function renderPrediction(step) {
 function renderBeforeAfterQuote(step) {
   app.innerHTML = `
     <div class="step">
-      <div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360 })}</div>
+      <div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360, natural: true })}</div>
       <h1 class="step-title">&ldquo;${step.quote}&rdquo;</h1>
       <p class="step-subtitle">${step.body}</p>
       <button class="continue-btn" id="continue-btn">Continue</button>

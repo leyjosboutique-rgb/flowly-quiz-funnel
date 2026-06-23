@@ -77,9 +77,12 @@ function renderPlaceholder(id, opts = {}) {
   const w = opts.w || ph.w;
   const h = opts.h || ph.h;
   if (REAL_IMAGES[id]) {
+    if (opts.natural) {
+      return `<img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; max-width:${w}px; height:auto; display:block; border-radius:10px;">`;
+    }
     return `
-      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden; background:var(--cream-dark);">
-        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:contain; display:block;">
+      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden;">
+        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:top center; display:block;">
       </div>`;
   }
   return `
