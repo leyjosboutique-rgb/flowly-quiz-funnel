@@ -51,6 +51,7 @@ const PLACEHOLDERS = {
   "IMG-Q21-hero": { w: 560, h: 300, label: "Foto grande: Tai Chi respiración consciente" },
   "IMG-Q22-hero": { w: 560, h: 300, label: "Foto grande: Tai Chi equilibrio/balance" },
   "IMG-Q23-hero": { w: 560, h: 300, label: "Foto grande: Tai Chi fuerza constante" },
+  "IMG-fascia": { w: 560, h: 360, label: "Ilustración de fascia + mujer en pose de yoga" },
 };
 
 /* Real images already uploaded — id -> filename in assets/images/ */
@@ -69,6 +70,7 @@ const REAL_IMAGES = {
   "IMG-06d": "IMG-06d.jpg",
   "IMG-12": "IMG-12.jpg",
   "IMG-Q18-outside": "IMG-Q18-outside.jpg",
+  "IMG-fascia": "IMG-fascia.jpg",
 };
 
 function renderPlaceholder(id, opts = {}) {

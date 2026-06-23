@@ -44,6 +44,7 @@ const STEPS = [
     ] },
 
   { id: "t2", type: "transition", section: "My Profile",
+    img: "IMG-fascia",
     title: "Why fascia tension causes most movement pain in women 50+",
     body: "Underneath your muscles is a web of connective tissue called <b>fascia</b>. As it tightens with age and inactivity, it restricts movement and creates the stiffness most women mistake for &ldquo;just getting older.&rdquo;<br><br>Tai Chi Walking's rotational movement is specifically designed to release fascial tension &mdash; something linear walking, running, or static stretching rarely reaches.",
     source: "Fascia research, International Fascia Research Congress" },
