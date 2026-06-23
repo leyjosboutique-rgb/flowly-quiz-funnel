@@ -52,11 +52,35 @@ const PLACEHOLDERS = {
   "IMG-Q23-hero": { w: 560, h: 300, label: "Foto grande: Tai Chi fuerza constante" },
 };
 
+/* Real images already uploaded — id -> filename in assets/images/ */
+const REAL_IMAGES = {
+  "IMG-01": "IMG-01.jpg",
+  "IMG-02": "IMG-02.jpg",
+  "IMG-03": "IMG-03.jpg",
+  "IMG-04": "IMG-04.jpg",
+  "IMG-05a": "IMG-05a.jpg",
+  "IMG-05b": "IMG-05b.jpg",
+  "IMG-05c": "IMG-05c.jpg",
+  "IMG-05d": "IMG-05d.jpg",
+  "IMG-06a": "IMG-06a.jpg",
+  "IMG-06b": "IMG-06b.jpg",
+  "IMG-06c": "IMG-06c.jpg",
+  "IMG-06d": "IMG-06d.jpg",
+  "IMG-12": "IMG-12.jpg",
+  "IMG-Q18-outside": "IMG-Q18-outside.jpg",
+};
+
 function renderPlaceholder(id, opts = {}) {
   const ph = PLACEHOLDERS[id];
   if (!ph) return `<div class="img-placeholder" style="height:120px;">missing: ${id}</div>`;
   const w = opts.w || ph.w;
   const h = opts.h || ph.h;
+  if (REAL_IMAGES[id]) {
+    return `
+      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden;">
+        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; display:block;">
+      </div>`;
+  }
   return `
     <div class="img-placeholder" style="aspect-ratio:${w}/${h}; max-width:${w}px; height:auto;">
       <div class="ph-icon">&#128247;</div>
