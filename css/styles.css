@@ -450,20 +450,19 @@ body {
   border-radius: var(--radius); box-shadow: var(--shadow);
   position: relative; display: flex; align-items: center; justify-content: center; gap: 4px;
 }
-.footstep {
-  font-size: 28px; display: inline-block; opacity: 0;
+.footstep-svg {
+  display: inline-block; opacity: 0;
   animation: stepIn 2.4s ease-in-out infinite;
-  filter: hue-rotate(70deg) saturate(0.7);
 }
-.fs-1 { --ty: 10px; animation-delay: 0s; }
-.fs-2 { --ty: -8px; animation-delay: 0.5s; }
-.fs-3 { --ty: 10px; animation-delay: 1s; }
-.fs-4 { --ty: -8px; animation-delay: 1.5s; }
+.fs-1 { --ty: 10px; --rot: -18deg; animation-delay: 0s; }
+.fs-2 { --ty: -8px; --rot: 18deg; animation-delay: 0.5s; }
+.fs-3 { --ty: 10px; --rot: -18deg; animation-delay: 1s; }
+.fs-4 { --ty: -8px; --rot: 18deg; animation-delay: 1.5s; }
 @keyframes stepIn {
-  0% { opacity: 0; transform: scale(0.6) translateY(var(--ty)); }
-  15% { opacity: 1; transform: scale(1.05) translateY(var(--ty)); }
-  70% { opacity: 1; transform: scale(1) translateY(var(--ty)); }
-  100% { opacity: 0.15; transform: scale(0.95) translateY(var(--ty)); }
+  0% { opacity: 0; transform: scale(0.6) translateY(var(--ty)) rotate(var(--rot)); }
+  15% { opacity: 1; transform: scale(1.1) translateY(var(--ty)) rotate(var(--rot)); }
+  70% { opacity: 1; transform: scale(1) translateY(var(--ty)) rotate(var(--rot)); }
+  100% { opacity: 0.12; transform: scale(0.92) translateY(var(--ty)) rotate(var(--rot)); }
 }
 
 /* Wide, bold loading bar with percentage inside */

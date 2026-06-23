@@ -336,10 +336,10 @@ function renderLoadingSingle(step) {
   app.innerHTML = `
     <div class="step" style="text-align:center;">
       <div class="walking-shoes-wrap">
-        <span class="footstep fs-1">&#128094;</span>
-        <span class="footstep fs-2">&#128095;</span>
-        <span class="footstep fs-3">&#128094;</span>
-        <span class="footstep fs-4">&#128095;</span>
+        <svg class="footstep-svg fs-1" viewBox="0 0 24 24" width="26" height="26"><path d="M12 2c-2 0-3 2-3 4.5S10 11 10 13c0 2.5-1.5 4-1.5 6.5C8.5 21.5 10 22 12 22s3.5-.5 3.5-2.5c0-2.5-1.5-4-1.5-6.5 0-2 1-4 1-6.5S14 2 12 2z" fill="#243d30"/></svg>
+        <svg class="footstep-svg fs-2" viewBox="0 0 24 24" width="26" height="26"><path d="M12 2c-2 0-3 2-3 4.5S10 11 10 13c0 2.5-1.5 4-1.5 6.5C8.5 21.5 10 22 12 22s3.5-.5 3.5-2.5c0-2.5-1.5-4-1.5-6.5 0-2 1-4 1-6.5S14 2 12 2z" fill="#b8923f"/></svg>
+        <svg class="footstep-svg fs-3" viewBox="0 0 24 24" width="26" height="26"><path d="M12 2c-2 0-3 2-3 4.5S10 11 10 13c0 2.5-1.5 4-1.5 6.5C8.5 21.5 10 22 12 22s3.5-.5 3.5-2.5c0-2.5-1.5-4-1.5-6.5 0-2 1-4 1-6.5S14 2 12 2z" fill="#243d30"/></svg>
+        <svg class="footstep-svg fs-4" viewBox="0 0 24 24" width="26" height="26"><path d="M12 2c-2 0-3 2-3 4.5S10 11 10 13c0 2.5-1.5 4-1.5 6.5C8.5 21.5 10 22 12 22s3.5-.5 3.5-2.5c0-2.5-1.5-4-1.5-6.5 0-2 1-4 1-6.5S14 2 12 2z" fill="#b8923f"/></svg>
       </div>
       <p style="font-size:15px; font-weight:600; margin-bottom:24px;">${step.text}<br><span style="font-size:11px;font-weight:400;color:var(--text-muted);font-style:italic;">Source: ${step.source}</span></p>
       <div class="wide-progress-track"><div class="wide-progress-fill" id="loader-fill" style="width:6%;">0%</div></div>
