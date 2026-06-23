@@ -201,6 +201,7 @@ const STEPS = [
     ] },
 
   { id: "t6", type: "transition", section: "Health & Safety",
+    img: "IMG-t6",
     title: "The myth of 10,000 steps",
     body: "Surprisingly, the 10,000-steps-per-day rule came from a 1960s pedometer company's marketing, not science. Just 15 minutes of Tai Chi Walking can lift your metabolism and support weight loss." },
 
