@@ -414,10 +414,10 @@ function renderLoadingMulti(step) {
       <div id="testimonial-slot"></div>
     </div>`;
 
-  // realistic, non-instant pacing: each bar takes 1.6-2.4s with live % ticking
+  // realistic, non-instant pacing: each bar takes ~2.6-3.65s with live % ticking
   let totalDelay = 0;
   step.items.forEach((_, i) => {
-    const duration = 1800 + i * 250;
+    const duration = 2600 + i * 350;
     setTimeout(() => animateBar(i, duration), totalDelay);
     totalDelay += duration * 0.85;
   });
@@ -454,19 +454,35 @@ function renderLoadingMulti(step) {
     });
   }, 500);
 
-  // testimonial card appears mid-loading, stays through completion
-  setTimeout(() => {
-    const t = step.testimonial;
-    document.getElementById("testimonial-slot").innerHTML = `
-      <div class="testimonial-card">
+  // testimonial card appears mid-loading, then rotates through the list
+  let testimonialInterval;
+  const testimonials = step.testimonials || (step.testimonial ? [step.testimonial] : []);
+  let tIndex = 0;
+  function renderTestimonial(idx, fadeIn) {
+    const t = testimonials[idx];
+    const slot = document.getElementById("testimonial-slot");
+    if (!slot || !t) return;
+    slot.innerHTML = `
+      <div class="testimonial-card" style="opacity:${fadeIn ? 0 : 1}; transition:opacity .35s ease;">
         <div class="stars">${"&#9733;".repeat(t.stars)}</div>
         <p style="font-style:italic; font-size:14px;">&ldquo;${t.quote}&rdquo;</p>
         <p style="font-size:12px; color:var(--text-muted); margin:0;">${t.name}</p>
       </div>`;
+    if (fadeIn) requestAnimationFrame(() => { const c = slot.querySelector(".testimonial-card"); if (c) c.style.opacity = "1"; });
+  }
+  setTimeout(() => {
+    renderTestimonial(tIndex, false);
+    if (testimonials.length > 1) {
+      testimonialInterval = setInterval(() => {
+        tIndex = (tIndex + 1) % testimonials.length;
+        renderTestimonial(tIndex, true);
+      }, 2200);
+    }
   }, 1200);
 
   // completion: confetti + headline swap
   setTimeout(() => {
+    clearInterval(testimonialInterval);
     document.getElementById("loading-headline").innerHTML = step.completeTitle;
     fireConfetti();
     setTimeout(next, 1600);

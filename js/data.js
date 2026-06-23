@@ -403,7 +403,11 @@ const STEPS = [
     sideQuestion: { title: "Quick one while we finish up:", question: "How would you describe your energy by mid-afternoon?",
       options: [{ v: "low", l: "Usually low" }, { v: "ok", l: "Okay, but fades" }, { v: "good", l: "Pretty good" }] },
     socialProof: "Trusted by over 163,432 clients",
-    testimonial: { stars: 5, quote: "Sin gimnasio, sin dietas extremas. Solo pequeños cambios cada día. 4,5 kg menos y estoy orgullosa.", name: "Emily Davis" },
+    testimonials: [
+      { stars: 5, quote: "Sin gimnasio, sin dietas extremas. Solo pequeños cambios cada día. 4,5 kg menos y estoy orgullosa.", name: "Emily Davis" },
+      { stars: 5, quote: "Nunca pensé que algo tan suave pudiera funcionar tan bien. Duermo mejor y tengo más energía.", name: "Patricia G." },
+      { stars: 5, quote: "A mis 58 años por fin encontré algo que mis rodillas toleran. Llevo 3 semanas y ya veo cambios.", name: "Linda M." },
+    ],
     completeTitle: "&iexcl;Enhorabuena, tu plan est&aacute; completo!" },
 
   { id: "email", type: "email-capture", section: null,
