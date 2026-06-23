@@ -71,6 +71,11 @@ const REAL_IMAGES = {
   "IMG-12": "IMG-12.jpg",
   "IMG-Q18-outside": "IMG-Q18-outside.jpg",
   "IMG-fascia": "IMG-fascia.jpg",
+  "IMG-Q5-legs": "IMG-Q5-legs.jpg",
+  "IMG-Q5-belly": "IMG-Q5-belly.jpg",
+  "IMG-Q5-arms": "IMG-Q5-arms.jpg",
+  "IMG-Q5-butt": "IMG-Q5-butt.jpg",
+  "IMG-Q5-face": "IMG-Q5-face.jpg",
 };
 
 function renderPlaceholder(id, opts = {}) {
@@ -82,9 +87,10 @@ function renderPlaceholder(id, opts = {}) {
     if (opts.natural) {
       return `<img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; max-width:${w}px; height:auto; display:block; border-radius:10px;">`;
     }
+    const zoom = opts.zoom || 1.25;
     return `
       <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden;">
-        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:top center; display:block;">
+        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:top center; display:block; transform:scale(${zoom}); transform-origin:top center;">
       </div>`;
   }
   return `
