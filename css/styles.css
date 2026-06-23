@@ -1,19 +1,22 @@
 :root {
-  --sage-dark: #4a7c59;
-  --sage: #6b9c7a;
-  --sage-light: #e8f0e9;
-  --cream: #f7f5ef;
-  --cream-dark: #f1ede2;
-  --text-dark: #1f2d22;
-  --text-muted: #6b7a70;
-  --pink: #d63b6e;
-  --pink-light: #fde8ee;
-  --red-urgency: #e0334d;
-  --green-ok: #3aa66b;
-  --border: #e2e2da;
+  --sage-dark: #243d30;       /* deep forest green, replaces flat mint — primary CTAs/text accents */
+  --sage: #4f7a63;            /* richer mid-green */
+  --sage-light: #e9efe6;
+  --gold: #b8923f;            /* premium metallic accent — badges, highlights, chart accents */
+  --gold-light: #f3e8d0;
+  --cream: #faf7f0;           /* warmer ivory instead of flat off-white */
+  --cream-dark: #f0ead9;
+  --text-dark: #161f1a;       /* near-black, deeper than before */
+  --text-muted: #6e7a72;
+  --pink: #b8456b;            /* deepened, less "candy" pink */
+  --pink-light: #f7e6eb;
+  --red-urgency: #c23a4a;
+  --green-ok: #2f6b48;
+  --border: #e1ddd0;
   --white: #ffffff;
-  --radius: 14px;
-  --shadow: 0 2px 10px rgba(0,0,0,0.06);
+  --radius: 16px;
+  --shadow: 0 4px 18px rgba(22,31,26,0.07);
+  --shadow-lg: 0 10px 30px rgba(22,31,26,0.10);
   --max-width: 600px;
 }
 
@@ -24,11 +27,14 @@ body {
   font-family: "Plus Jakarta Sans", -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background: var(--cream);
   color: var(--text-dark);
-  line-height: 1.5;
+  line-height: 1.55;
+  letter-spacing: 0.1px;
 }
 
 .step-title, .goal-headline, .loading-title {
   font-family: "Fraunces", Georgia, serif;
+  letter-spacing: -0.4px;
+  line-height: 1.25;
 }
 
 #app {
@@ -188,18 +194,22 @@ body {
 .continue-btn {
   display: block;
   width: 100%;
-  padding: 17px;
+  padding: 18px;
   border: none;
   border-radius: 12px;
   background: var(--sage-dark);
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: opacity .15s;
+  box-shadow: var(--shadow-lg);
+  transition: opacity .15s, transform .15s;
 }
-.continue-btn:disabled { opacity: .45; cursor: not-allowed; }
+.continue-btn:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
 .continue-btn.pink { background: var(--pink); }
+.continue-btn:active:not(:disabled) { transform: scale(0.98); }
 
 /* ---------- TRANSITION SCREENS ---------- */
 .transition-image {
@@ -281,9 +291,10 @@ body {
 .price-option.selected .radio::after { content: ''; position: absolute; inset: 3px; background: var(--sage-dark); border-radius: 50%; }
 .price-most-popular {
   position: absolute; top: -1px; left: -1px; right: -1px;
-  background: #d97a3c; color: white; font-size: 11px; font-weight: 700;
-  padding: 5px; text-align: center; border-radius: 12px 12px 0 0;
+  background: var(--gold); color: white; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.5px; padding: 6px; text-align: center; border-radius: 12px 12px 0 0;
 }
+.price-option.has-badge { border-color: var(--gold); }
 .price-option.has-badge { padding-top: 30px; margin-top: 18px; }
 .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 13px; margin-right: 6px; }
 .price-new { font-weight: 700; }
@@ -360,10 +371,10 @@ body {
 
 /* ================= NEW: FLOWLY BRAND + FIDELITY CORRECTIONS ================= */
 
-/* Bigger, flashier gift banner (first screen) */
+/* Bigger, flashier gift banner (first screen) — premium gold/cream, not candy pink */
 .gift-banner-big {
-  background: linear-gradient(135deg, #ffd9e8, #fde8ee);
-  border: 1.5px solid #f7b8d0;
+  background: linear-gradient(135deg, var(--gold-light), var(--cream));
+  border: 1.5px solid var(--gold);
   border-radius: 16px;
   padding: 16px 18px;
   display: flex;
@@ -371,6 +382,7 @@ body {
   gap: 12px;
   font-size: 16px;
   font-weight: 700;
+  color: var(--text-dark);
   margin-bottom: 22px;
   box-shadow: 0 4px 14px rgba(214, 59, 110, 0.15);
 }

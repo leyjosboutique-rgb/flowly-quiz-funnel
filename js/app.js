@@ -477,7 +477,7 @@ function renderLoadingMulti(step) {
 function fireConfetti() {
   const wrap = document.getElementById("confetti-canvas-wrap");
   wrap.style.display = "block";
-  const colors = ["#3aa66b", "#d63b6e", "#f5b400", "#4f8ff0", "#6b9c7a"];
+  const colors = ["#243d30", "#b8923f", "#b8456b", "#f3e8d0", "#4f7a63"];
   for (let i = 0; i < 80; i++) {
     const piece = document.createElement("div");
     piece.className = "confetti-piece";
