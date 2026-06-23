@@ -331,15 +331,26 @@ function renderTransitionImage(step) {
   document.getElementById("continue-btn").addEventListener("click", next);
 }
 
+/* Clean footprint icon: oval pad + 4 toes, built from basic shapes (no hand-drawn path) */
+function footprintSvg(cssClass, color) {
+  return `<svg class="footstep-svg ${cssClass}" viewBox="0 0 24 34" width="24" height="32">
+    <ellipse cx="12" cy="22" rx="7.5" ry="11" fill="${color}"/>
+    <circle cx="5.5" cy="8" r="2.3" fill="${color}"/>
+    <circle cx="9.5" cy="4" r="2.5" fill="${color}"/>
+    <circle cx="14.5" cy="3.5" r="2.6" fill="${color}"/>
+    <circle cx="18.5" cy="6.5" r="2" fill="${color}"/>
+  </svg>`;
+}
+
 /* ---------------- LOADING SINGLE (animated shoes + wide bar) ---------------- */
 function renderLoadingSingle(step) {
   app.innerHTML = `
     <div class="step" style="text-align:center;">
       <div class="walking-shoes-wrap">
-        <svg class="footstep-svg fs-1" viewBox="0 0 24 24" width="26" height="26"><path d="M12 2c-2 0-3 2-3 4.5S10 11 10 13c0 2.5-1.5 4-1.5 6.5C8.5 21.5 10 22 12 22s3.5-.5 3.5-2.5c0-2.5-1.5-4-1.5-6.5 0-2 1-4 1-6.5S14 2 12 2z" fill="#243d30"/></svg>
-        <svg class="footstep-svg fs-2" viewBox="0 0 24 24" width="26" height="26"><path d="M12 2c-2 0-3 2-3 4.5S10 11 10 13c0 2.5-1.5 4-1.5 6.5C8.5 21.5 10 22 12 22s3.5-.5 3.5-2.5c0-2.5-1.5-4-1.5-6.5 0-2 1-4 1-6.5S14 2 12 2z" fill="#b8923f"/></svg>
-        <svg class="footstep-svg fs-3" viewBox="0 0 24 24" width="26" height="26"><path d="M12 2c-2 0-3 2-3 4.5S10 11 10 13c0 2.5-1.5 4-1.5 6.5C8.5 21.5 10 22 12 22s3.5-.5 3.5-2.5c0-2.5-1.5-4-1.5-6.5 0-2 1-4 1-6.5S14 2 12 2z" fill="#243d30"/></svg>
-        <svg class="footstep-svg fs-4" viewBox="0 0 24 24" width="26" height="26"><path d="M12 2c-2 0-3 2-3 4.5S10 11 10 13c0 2.5-1.5 4-1.5 6.5C8.5 21.5 10 22 12 22s3.5-.5 3.5-2.5c0-2.5-1.5-4-1.5-6.5 0-2 1-4 1-6.5S14 2 12 2z" fill="#b8923f"/></svg>
+        ${footprintSvg("fs-1", "#243d30")}
+        ${footprintSvg("fs-2", "#b8923f")}
+        ${footprintSvg("fs-3", "#243d30")}
+        ${footprintSvg("fs-4", "#b8923f")}
       </div>
       <p style="font-size:15px; font-weight:600; margin-bottom:24px;">${step.text}<br><span style="font-size:11px;font-weight:400;color:var(--text-muted);font-style:italic;">Source: ${step.source}</span></p>
       <div class="wide-progress-track"><div class="wide-progress-fill" id="loader-fill" style="width:6%;">0%</div></div>
@@ -347,12 +358,12 @@ function renderLoadingSingle(step) {
   let pct = 0;
   const fill = document.getElementById("loader-fill");
   const iv = setInterval(() => {
-    pct += 4;
+    pct += 2;
     const shown = Math.min(pct, 100);
     fill.style.width = shown + "%";
     fill.textContent = shown + "%";
     if (pct >= 100) { clearInterval(iv); setTimeout(next, 600); }
-  }, 70);
+  }, 110);
 }
 
 /* ---------------- PREDICTION CHART (Prediction #1 / #2) ---------------- */
