@@ -81,6 +81,19 @@ const REAL_IMAGES = {
   "IMG-Q5-face": "IMG-Q5-face.jpg",
 };
 
+/* Per-image zoom/position overrides for the cover-crop mode — tuned per
+   source photo to crop out baked-in black mattes or excess backdrop
+   without cutting off hands/heads. */
+const ZOOM_OVERRIDES = {
+  "IMG-01": 1.0, "IMG-02": 1.0, "IMG-03": 1.0, "IMG-04": 1.0,
+  "IMG-Q5-legs": 2.2, "IMG-Q5-belly": 2.2, "IMG-Q5-arms": 2.2,
+  "IMG-Q5-butt": 2.2, "IMG-Q5-face": 2.2,
+};
+const POSITION_OVERRIDES = {
+  "IMG-Q5-legs": "center", "IMG-Q5-belly": "center", "IMG-Q5-arms": "center",
+  "IMG-Q5-butt": "center", "IMG-Q5-face": "center",
+};
+
 function renderPlaceholder(id, opts = {}) {
   const ph = PLACEHOLDERS[id];
   if (!ph) return `<div class="img-placeholder" style="height:120px;">missing: ${id}</div>`;
@@ -90,10 +103,11 @@ function renderPlaceholder(id, opts = {}) {
     if (opts.natural) {
       return `<img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; max-width:${w}px; height:auto; display:block; border-radius:10px;">`;
     }
-    const zoom = opts.zoom || 1.25;
+    const zoom = opts.zoom || ZOOM_OVERRIDES[id] || 1.25;
+    const position = opts.position || POSITION_OVERRIDES[id] || "top center";
     return `
-      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden;">
-        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:top center; display:block; transform:scale(${zoom}); transform-origin:top center;">
+      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden; background:#ffffff;">
+        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:${position}; display:block; transform:scale(${zoom}); transform-origin:${position};">
       </div>`;
   }
   return `
