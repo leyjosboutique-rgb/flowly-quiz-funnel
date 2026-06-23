@@ -29,6 +29,7 @@ const STEPS = [
     options: [{ v: "yes", l: "Yes" }, { v: "no", l: "No" }] },
 
   { id: "t1", type: "transition", section: "My Profile",
+    img: "IMG-12",
     title: "Tai Chi Walking is not &ldquo;just walking&rdquo;",
     body: "Regular walking moves in a straight line. <b>Tai Chi Walking</b> adds slow rotational, spiral movement through the hips and spine &mdash; the same movement pattern Dr. Sarah Mitchell identified as key to releasing deep tension most workouts never touch.<br><br>&#10003; Combines walking with Tai Chi's rotational mechanics<br>&#10003; Joint-friendly &amp; adapted for 55s<br>&#10003; Just 20&ndash;30 mins a day",
     source: "Dr. Sarah Mitchell, Movement &amp; Mobility Specialist" },
@@ -332,7 +333,7 @@ const STEPS = [
 
   // ---------------- SECTION: ALMOST THERE ----------------
   { id: "t11", type: "transition-image", section: "Almost there",
-    img: "IMG-12",
+    img: "IMG-12b",
     title: "Almost done!",
     body: "You're moments away from discovering your personalized path to looking and feeling your best.<br><br>Let's finish up by exploring what keeps you going, so we know how to better support you!" },
 

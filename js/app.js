@@ -314,8 +314,10 @@ function renderNumberInput(step) {
 /* ---------------- TRANSITION (text only, may include a chart) ---------------- */
 function renderTransition(step) {
   const chartHtml = step.chartType === "stress" ? chartStress() : (step.chartType === "calm" ? chartCalm() : "");
+  const imgHtml = step.img ? `<div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360 })}</div>` : "";
   app.innerHTML = `
     <div class="step">
+      ${imgHtml}
       ${chartHtml}
       <h1 class="step-title">${step.title}</h1>
       <div class="transition-body">${step.body}</div>
