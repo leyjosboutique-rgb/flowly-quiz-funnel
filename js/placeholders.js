@@ -79,6 +79,9 @@ const REAL_IMAGES = {
   "IMG-Q5-arms": "IMG-Q5-arms.jpg",
   "IMG-Q5-butt": "IMG-Q5-butt.jpg",
   "IMG-Q5-face": "IMG-Q5-face.jpg",
+  "IMG-Q18-home": "IMG-Q18-home.jpg",
+  "IMG-Q18-gym": "IMG-Q18-gym.jpg",
+  "IMG-Q18-none": "IMG-Q18-none.jpg",
 };
 
 /* Per-image zoom/position overrides for the cover-crop mode — tuned per
