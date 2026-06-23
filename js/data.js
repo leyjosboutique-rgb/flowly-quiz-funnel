@@ -189,6 +189,7 @@ const STEPS = [
     ] },
 
   { id: "t5", type: "transition", section: "Health & Safety",
+    img: "IMG-t5",
     title: "Discover the benefits of indoor walking",
     body: "Tai Chi Walking makes your home a calming space for practice. It builds strength, balance, and focus, so you can move freely, even on quieter days." },
 
