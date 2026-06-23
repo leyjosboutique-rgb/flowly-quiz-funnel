@@ -12,7 +12,6 @@ const STEPS = [
     banner: "&#127873; Take the quiz - get your <b>printable guide</b>!",
     title: "TAI CHI WALKING FOR WEIGHT LOSS",
     subtitle: "BASED ON YOUR <b>AGE</b>",
-    authorityBadge: { name: "Dr. Sarah Mitchell", credential: "Movement &amp; Mobility Specialist", quote: "The method I developed after 15 years studying why women 50+ stop losing weight." },
     cards: [
       { value: "40-49", label: "Age: 40-49", img: "IMG-01" },
       { value: "50-59", label: "Age: 50-59", img: "IMG-02" },
@@ -31,8 +30,7 @@ const STEPS = [
   { id: "t1", type: "transition", section: "My Profile",
     img: "IMG-12",
     title: "Tai Chi Walking is not &ldquo;just walking&rdquo;",
-    body: "Regular walking moves in a straight line. <b>Tai Chi Walking</b> adds slow rotational, spiral movement through the hips and spine &mdash; the same movement pattern Dr. Sarah Mitchell identified as key to releasing deep tension most workouts never touch.<br><br>&#10003; Combines walking with Tai Chi's rotational mechanics<br>&#10003; Joint-friendly &amp; adapted for 55s<br>&#10003; Just 20&ndash;30 mins a day",
-    source: "Dr. Sarah Mitchell, Movement &amp; Mobility Specialist" },
+    body: "Regular walking moves in a straight line. <b>Tai Chi Walking</b> adds slow rotational, spiral movement through the hips and spine &mdash; the movement pattern shown to release deep tension most workouts never touch.<br><br>&#10003; Combines walking with Tai Chi's rotational mechanics<br>&#10003; Joint-friendly &amp; adapted for 55s<br>&#10003; Just 20&ndash;30 mins a day" },
 
   { id: "q2", type: "multi", section: "My Profile", progress: 0.10,
     title: "What are your main focus areas?",
@@ -141,8 +139,7 @@ const STEPS = [
 
   { id: "t3", type: "transition", section: "Activity",
     title: "Tai Chi Walking: as effective as high-impact workouts",
-    body: "Slow movement can make a difference. By releasing fascial tension instead of just burning calories, Mindful Tai Chi Walking helps you feel healthier, lose weight, and supports longevity &mdash; without the joint impact of running or HIIT.",
-    source: "Dr. Sarah Mitchell, Movement &amp; Mobility Specialist" },
+    body: "Slow movement can make a difference. By releasing fascial tension instead of just burning calories, Mindful Tai Chi Walking helps you feel healthier, lose weight, and supports longevity &mdash; without the joint impact of running or HIIT." },
 
   { id: "q13", type: "single", binary: true, section: "Activity", progress: 0.52,
     title: "I get out of breath from simply walking or climbing stairs",

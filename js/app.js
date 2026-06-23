@@ -114,14 +114,6 @@ function renderAgeSelect(step) {
           </div>`).join("")}
       </div>
       <p style="text-align:center;"><a href="#" id="catchall-link" style="color:var(--text-dark); font-weight:700; text-decoration:none;">${step.catchAll} &rsaquo;</a></p>
-      ${step.authorityBadge ? `
-      <div class="authority-badge">
-        <div class="authority-avatar">&#129658;</div>
-        <div>
-          <p class="authority-name">${step.authorityBadge.name} <span class="authority-credential">&middot; ${step.authorityBadge.credential}</span></p>
-          <p class="authority-quote">&ldquo;${step.authorityBadge.quote}&rdquo;</p>
-        </div>
-      </div>` : ""}
       <p class="fine-print">${step.legal}</p>
     </div>`;
   app.querySelectorAll(".photo-option").forEach(el => {
@@ -343,7 +335,12 @@ function renderTransitionImage(step) {
 function renderLoadingSingle(step) {
   app.innerHTML = `
     <div class="step" style="text-align:center;">
-      <div class="walking-shoes-wrap"><span class="walking-shoes">&#129450;</span></div>
+      <div class="walking-shoes-wrap">
+        <span class="footstep fs-1">&#128094;</span>
+        <span class="footstep fs-2">&#128095;</span>
+        <span class="footstep fs-3">&#128094;</span>
+        <span class="footstep fs-4">&#128095;</span>
+      </div>
       <p style="font-size:15px; font-weight:600; margin-bottom:24px;">${step.text}<br><span style="font-size:11px;font-weight:400;color:var(--text-muted);font-style:italic;">Source: ${step.source}</span></p>
       <div class="wide-progress-track"><div class="wide-progress-fill" id="loader-fill" style="width:6%;">0%</div></div>
     </div>`;

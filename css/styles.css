@@ -444,10 +444,27 @@ body {
 .ld-option .ld-emoji { font-size: 26px; display: block; margin-bottom: 6px; }
 .ld-option .ld-label { font-size: 13px; font-weight: 600; }
 
-/* Animated walking shoes (loading1) */
-.walking-shoes-wrap { width: 140px; height: 140px; margin: 0 auto 18px; background: var(--white); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
-.walking-shoes { font-size: 52px; display: inline-block; animation: walk 0.9s ease-in-out infinite; }
-@keyframes walk { 0%,100% { transform: translateX(-6px) rotate(-4deg); } 50% { transform: translateX(6px) rotate(4deg); } }
+/* Animated walking footsteps (loading1) — 4 prints fade/scale in sequence, zigzag layout */
+.walking-shoes-wrap {
+  width: 160px; height: 100px; margin: 0 auto 18px; background: var(--white);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  position: relative; display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.footstep {
+  font-size: 28px; display: inline-block; opacity: 0;
+  animation: stepIn 2.4s ease-in-out infinite;
+  filter: hue-rotate(70deg) saturate(0.7);
+}
+.fs-1 { --ty: 10px; animation-delay: 0s; }
+.fs-2 { --ty: -8px; animation-delay: 0.5s; }
+.fs-3 { --ty: 10px; animation-delay: 1s; }
+.fs-4 { --ty: -8px; animation-delay: 1.5s; }
+@keyframes stepIn {
+  0% { opacity: 0; transform: scale(0.6) translateY(var(--ty)); }
+  15% { opacity: 1; transform: scale(1.05) translateY(var(--ty)); }
+  70% { opacity: 1; transform: scale(1) translateY(var(--ty)); }
+  100% { opacity: 0.15; transform: scale(0.95) translateY(var(--ty)); }
+}
 
 /* Wide, bold loading bar with percentage inside */
 .wide-progress-track { background: var(--border); border-radius: 30px; height: 44px; overflow: hidden; position: relative; }
