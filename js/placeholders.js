@@ -77,8 +77,8 @@ function renderPlaceholder(id, opts = {}) {
   const h = opts.h || ph.h;
   if (REAL_IMAGES[id]) {
     return `
-      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden;">
-        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; display:block;">
+      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden; background:var(--cream-dark);">
+        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:contain; display:block;">
       </div>`;
   }
   return `
