@@ -138,6 +138,7 @@ const STEPS = [
     ] },
 
   { id: "t3", type: "transition", section: "Activity",
+    img: "IMG-t3",
     title: "Tai Chi Walking: as effective as high-impact workouts",
     body: "Slow movement can make a difference. By releasing fascial tension instead of just burning calories, Mindful Tai Chi Walking helps you feel healthier, lose weight, and supports longevity &mdash; without the joint impact of running or HIIT." },
 
