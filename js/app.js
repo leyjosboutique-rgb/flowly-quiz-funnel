@@ -109,7 +109,7 @@ function renderAgeSelect(step) {
       <div class="photo-grid">
         ${step.cards.map(c => `
           <div class="photo-option" data-v="${c.value}">
-            ${renderPlaceholder(c.img)}
+            ${renderPlaceholder(c.img, { natural: true })}
             <div class="ph-label">${c.label}</div>
           </div>`).join("")}
       </div>
