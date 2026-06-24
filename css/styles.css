@@ -476,17 +476,44 @@ body {
 }
 
 /* Chart components (charts.js) */
-.chart-card { background: white; border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow); margin-bottom: 14px; }
+.chart-card { background: white; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); margin-bottom: 14px; }
 .chart-svg-wrap { position: relative; }
-.chart-top-label { font-size: 13px; color: var(--text-muted); margin-bottom: 2px; }
-.chart-bubble {
-  position: absolute; background: #1f2d22; color: white; font-size: 11px; font-weight: 700;
-  padding: 6px 10px; border-radius: 9px; text-align: center; transform: translate(-50%, -110%); white-space: nowrap;
+
+.chart-header-row { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 4px; }
+.chart-top-label { display: flex; flex-direction: column; gap: 0; }
+.chart-top-caption { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.chart-top-value { font-size: 22px; font-weight: 800; color: var(--text-dark); letter-spacing: -0.01em; }
+.chart-stat-badge {
+  display: flex; flex-direction: column; align-items: flex-end; line-height: 1.1;
+  background: var(--sage-light); border-radius: 12px; padding: 6px 12px;
 }
-.chart-bubble::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #1f2d22; }
+.chart-stat-num { font-size: 18px; font-weight: 800; color: var(--sage-dark); }
+.chart-stat-label { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+@keyframes pulseRing {
+  0% { r: 6.5; opacity: 0.55; }
+  70% { r: 13; opacity: 0; }
+  100% { r: 13; opacity: 0; }
+}
+.chart-pulse-ring { animation: pulseRing 2s ease-out infinite; transform-origin: center; }
+
+.chart-callout {
+  position: absolute; transform: translate(-100%, -130%);
+  background: white; border: 1.5px solid var(--gold); color: var(--text-dark);
+  font-size: 12px; padding: 6px 11px; border-radius: 10px; text-align: center;
+  white-space: nowrap; box-shadow: 0 4px 12px rgba(22,31,26,0.10);
+  display: flex; align-items: baseline; gap: 5px;
+}
+.chart-callout-label { font-weight: 600; color: var(--text-muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.03em; }
+.chart-callout-value { font-weight: 800; color: var(--sage-dark); font-size: 13px; }
+
 .chart-pill { position: absolute; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 16px; white-space: nowrap; }
-.chart-rocket-label { position: absolute; font-size: 12px; font-weight: 700; color: #3a6e4a; white-space: nowrap; }
-.chart-axis-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+
+.chart-legend { display: flex; gap: 16px; margin-bottom: 10px; }
+.chart-legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--text-dark); }
+.chart-legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+.chart-axis-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 8px; }
 
 /* Confetti */
 #confetti-canvas-wrap { position: fixed; inset: 0; pointer-events: none; z-index: 500; overflow: hidden; display: none; }
