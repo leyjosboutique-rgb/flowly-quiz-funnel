@@ -103,7 +103,7 @@ function renderUnknown(step) { app.innerHTML = `<p>Unknown step: ${step.type}</p
 function renderAgeSelect(step) {
   app.innerHTML = `
     <div class="step">
-      <div class="gift-banner-big"><span class="gift-emoji">&#127873;</span><span>${step.banner.replace("&#127873; ", "")}</span></div>
+      <div class="gift-banner-big">${giftBoxSvg()}<span>${step.banner.replace("&#127873; ", "")}</span></div>
       <h1 class="step-title">${step.title}</h1>
       <p class="step-subtitle">${step.subtitle}</p>
       <div class="photo-grid">
@@ -331,27 +331,50 @@ function renderTransitionImage(step) {
   document.getElementById("continue-btn").addEventListener("click", next);
 }
 
-/* Clean footprint icon: oval pad + 4 toes, built from basic shapes (no hand-drawn path) */
-function footprintSvg(cssClass, color) {
-  return `<svg class="footstep-svg ${cssClass}" viewBox="0 0 24 34" width="24" height="32">
-    <ellipse cx="12" cy="22" rx="7.5" ry="11" fill="${color}"/>
-    <circle cx="5.5" cy="8" r="2.3" fill="${color}"/>
-    <circle cx="9.5" cy="4" r="2.5" fill="${color}"/>
-    <circle cx="14.5" cy="3.5" r="2.6" fill="${color}"/>
-    <circle cx="18.5" cy="6.5" r="2" fill="${color}"/>
-  </svg>`;
+/* Animated gift box with bursting confetti — first-screen reciprocity hook */
+function giftBoxSvg() {
+  return `
+    <span class="gift-box-wrap">
+      <svg class="gift-box-svg" viewBox="0 0 48 48" width="40" height="40">
+        <path d="M24 17 C18 7, 8 9, 13 17 Z" fill="#b8456b"/>
+        <path d="M24 17 C30 7, 40 9, 35 17 Z" fill="#b8456b"/>
+        <rect x="6" y="16" width="36" height="9" rx="2" fill="#b8923f"/>
+        <rect x="8" y="24" width="32" height="19" rx="3" fill="#243d30"/>
+        <rect x="20.5" y="16" width="7" height="27" fill="#faf7f0"/>
+      </svg>
+      <span class="confetti-burst c1" style="color:#b8923f;">&#10022;</span>
+      <span class="confetti-burst c2" style="color:#b8456b;">&#9733;</span>
+      <span class="confetti-burst c3" style="color:#4f7a63;">&#10038;</span>
+      <span class="confetti-burst c4" style="color:#c23a4a;">&#9670;</span>
+      <span class="confetti-burst c5" style="color:#b8923f;">&#9733;</span>
+    </span>`;
+}
+
+/* Stick figure climbing a staircase — animated progress metaphor (loading1) */
+function stairClimberSvg() {
+  return `
+    <svg viewBox="0 0 140 100" width="140" height="100">
+      <rect x="0" y="80" width="26" height="20" rx="1" fill="#e9efe6"/>
+      <rect x="26" y="64" width="24" height="36" rx="1" fill="#e9efe6"/>
+      <rect x="50" y="48" width="24" height="52" rx="1" fill="#e9efe6"/>
+      <rect x="74" y="32" width="24" height="68" rx="1" fill="#e9efe6"/>
+      <rect x="98" y="16" width="26" height="84" rx="1" fill="#e9efe6"/>
+      <g class="climber">
+        <circle cx="0" cy="-30" r="6.5" fill="#243d30"/>
+        <line x1="0" y1="-23.5" x2="0" y2="-9" stroke="#243d30" stroke-width="3" stroke-linecap="round"/>
+        <line x1="0" y1="-19" x2="-8" y2="-13" stroke="#243d30" stroke-width="3" stroke-linecap="round"/>
+        <line x1="0" y1="-19" x2="9" y2="-24" stroke="#b8923f" stroke-width="3" stroke-linecap="round"/>
+        <line x1="0" y1="-9" x2="-7" y2="2" stroke="#243d30" stroke-width="3" stroke-linecap="round"/>
+        <line x1="0" y1="-9" x2="7" y2="0" stroke="#243d30" stroke-width="3" stroke-linecap="round"/>
+      </g>
+    </svg>`;
 }
 
 /* ---------------- LOADING SINGLE (animated shoes + wide bar) ---------------- */
 function renderLoadingSingle(step) {
   app.innerHTML = `
     <div class="step" style="text-align:center;">
-      <div class="walking-shoes-wrap">
-        ${footprintSvg("fs-1", "#243d30")}
-        ${footprintSvg("fs-2", "#b8923f")}
-        ${footprintSvg("fs-3", "#243d30")}
-        ${footprintSvg("fs-4", "#b8923f")}
-      </div>
+      <div class="walking-shoes-wrap">${stairClimberSvg()}</div>
       <p style="font-size:15px; font-weight:600; margin-bottom:24px;">${step.text}<br><span style="font-size:11px;font-weight:400;color:var(--text-muted);font-style:italic;">Source: ${step.source}</span></p>
       <div class="wide-progress-track"><div class="wide-progress-fill" id="loader-fill" style="width:6%;">0%</div></div>
     </div>`;
@@ -597,6 +620,15 @@ function renderLoadingRedirect() {
   setTimeout(next, 900);
 }
 
+/* Map the user's actual Q3 (current body) / Q4 (dream body) answers to the
+   matching real photos, so the checkout Before/After reflects THEIR choices. */
+function beforeAfterImg(which) {
+  const q3Map = { thin: "IMG-05a", mid: "IMG-05b", plump: "IMG-05c", plus: "IMG-05d" };
+  const q4Map = { slim: "IMG-06a", toned: "IMG-06b", curvy: "IMG-06c", smaller: "IMG-06d" };
+  if (which === "before") return q3Map[state.answers.q3] || "IMG-15-before";
+  return q4Map[state.answers.q4] || "IMG-15-after";
+}
+
 /* ---------------- CHECKOUT ---------------- */
 let checkoutTimerInterval;
 function renderCheckout() {
@@ -611,18 +643,19 @@ function renderCheckout() {
 
   app.innerHTML = `
     <div class="step">
+      <div style="text-align:center;"><span class="irresistible-badge">&#128293; Limited-time offer</span></div>
       <h1 class="step-title">Your personalized Tai Chi walking workout plan is ready</h1>
       <div class="before-after-row">
         <div class="ba-col">
           <span class="ba-tag before">BEFORE</span>
-          ${renderPlaceholder("IMG-15-before")}
+          ${renderPlaceholder(beforeAfterImg("before"), { w: 260, h: 320 })}
           <div class="ba-stat-label">Body fat</div><div class="ba-stat-value">High</div>
           <div class="ba-bar low"></div>
           <div class="ba-stat-label">Energy levels</div><div class="ba-stat-value">Low</div>
         </div>
         <div class="ba-col">
           <span class="ba-tag after">AFTER</span>
-          ${renderPlaceholder("IMG-15-after")}
+          ${renderPlaceholder(beforeAfterImg("after"), { w: 260, h: 320 })}
           <div class="ba-stat-label">Body fat</div><div class="ba-stat-value">Low</div>
           <div class="ba-bar high"></div>
           <div class="ba-stat-label">Energy levels</div><div class="ba-stat-value">High</div>
