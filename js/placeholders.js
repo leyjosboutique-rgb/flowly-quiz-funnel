@@ -90,6 +90,8 @@ const REAL_IMAGES = {
   "IMG-13": "IMG-13.jpg",
   "IMG-14": "IMG-14.jpg",
   "IMG-t10": "IMG-t10.jpg",
+  "IMG-16-before": "IMG-16-before.jpg",
+  "IMG-16-after": "IMG-16-after.jpg",
   "IMG-Q18-outside": "IMG-Q18-outside.jpg",
   "IMG-fascia": "IMG-fascia.jpg",
   "IMG-Q5-legs": "IMG-Q5-legs.jpg",
