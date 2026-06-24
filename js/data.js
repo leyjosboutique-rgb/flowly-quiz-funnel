@@ -298,6 +298,7 @@ const STEPS = [
     ] },
 
   { id: "t10", type: "transition", section: "Lifestyle",
+    img: "IMG-t10",
     title: "Support your metabolism for lasting weight loss",
     body: "You'll also get a personalized nutrition plan that supports your energy, health, and long-term progress &mdash; <b>without strict diets or food restrictions.</b>" },
 
