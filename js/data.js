@@ -277,6 +277,7 @@ const STEPS = [
     ] },
 
   { id: "t9", type: "transition", section: "Lifestyle",
+    img: "IMG-t9",
     title: "Walking can improve sleep quality by up to 25%",
     body: "Regular walking helps you fall asleep faster and get deeper, more restorative sleep &mdash; so you wake up refreshed and ready for the day.",
     source: "Sport Sciences for Health" },
