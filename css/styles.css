@@ -433,8 +433,8 @@ body {
 
 /* Bigger, flashier gift banner (first screen) — premium gold/cream, not candy pink */
 .gift-banner-big {
-  background: linear-gradient(135deg, var(--gold-light), var(--cream));
-  border: 1.5px solid var(--gold);
+  background: linear-gradient(135deg, #b8456b, #d4738f 50%, #b8923f);
+  border: none;
   border-radius: 16px;
   padding: 16px 18px;
   display: flex;
@@ -442,18 +442,18 @@ body {
   gap: 12px;
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-dark);
+  color: white;
   animation: bannerGlow 2.2s ease-in-out infinite;
   position: relative;
   overflow: visible;
   margin-bottom: 22px;
-  box-shadow: 0 4px 14px rgba(214, 59, 110, 0.15);
+  box-shadow: 0 6px 20px rgba(184, 69, 107, 0.35);
 }
 @keyframes bannerGlow {
   0%, 100% { box-shadow: 0 4px 14px rgba(214, 59, 110, 0.15), 0 0 0 0 rgba(184,146,63,0.35); }
   50% { box-shadow: 0 4px 14px rgba(214, 59, 110, 0.15), 0 0 0 6px rgba(184,146,63,0); }
 }
-.banner-highlight { color: var(--pink); text-decoration: underline; text-decoration-style: wavy; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+.banner-highlight { color: #fff3c4; text-decoration: underline; text-decoration-style: wavy; text-decoration-color: #fff3c4; text-underline-offset: 3px; }
 
 .gift-box-wrap { position: relative; width: 40px; height: 40px; flex-shrink: 0; display: inline-block; }
 .gift-box-svg { display: block; animation: giftWiggle 1.8s ease-in-out infinite; transform-origin: 50% 90%; }
