@@ -110,7 +110,7 @@ function renderAgeSelect(step) {
       <div class="photo-grid">
         ${step.cards.map(c => `
           <div class="photo-option avatar-style" data-v="${c.value}">
-            ${renderPlaceholder(c.img, { shape: "arch", zoom: 1.0, position: "center top" })}
+            ${renderPlaceholder(c.img, { shape: "arch", zoom: 1.0, position: "center top", w: 300, h: 300 })}
             <div class="ph-label">${c.label}</div>
           </div>`).join("")}
       </div>
