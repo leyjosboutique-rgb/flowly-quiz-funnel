@@ -130,8 +130,10 @@ function renderPlaceholder(id, opts = {}) {
     }
     const zoom = opts.zoom || ZOOM_OVERRIDES[id] || 1.25;
     const position = opts.position || POSITION_OVERRIDES[id] || "top center";
+    const radius = opts.shape === "arch" ? "50% 50% 8px 8px" : "10px";
+    const bg = opts.shape === "arch" ? "var(--sage-light, #e9efe6)" : "#ffffff";
     return `
-      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden; background:#ffffff;">
+      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:${radius}; overflow:hidden; background:${bg};">
         <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:${position}; display:block; transform:scale(${zoom}); transform-origin:${position};">
       </div>`;
   }

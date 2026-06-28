@@ -152,9 +152,9 @@ body {
   cursor: pointer;
   font-size: 15px;
   font-weight: 600;
-  transition: border-color .15s, background .15s;
+  transition: border-color .15s, background .15s, box-shadow .15s, transform .15s;
 }
-.option-card:hover { border-color: var(--sage); }
+.option-card:hover { border-color: var(--sage); background: var(--sage-light); box-shadow: 0 2px 8px rgba(36,61,48,0.10); transform: translateY(-1px); }
 .option-card.selected { border-color: var(--sage-dark); background: var(--sage-light); }
 .option-emoji { font-size: 20px; flex-shrink: 0; }
 .option-check {
@@ -171,9 +171,25 @@ body {
 
 /* photo grid options (Q3/Q4) */
 .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
-.photo-option { cursor: pointer; text-align: center; border: 2px solid transparent; border-radius: 12px; padding: 6px; }
+.photo-option { cursor: pointer; text-align: center; border: 2px solid transparent; border-radius: 12px; padding: 6px; transition: border-color .15s, transform .15s; }
+.photo-option:hover { border-color: var(--sage); transform: translateY(-2px); }
 .photo-option.selected { border-color: var(--sage-dark); background: var(--sage-light); }
 .photo-option .ph-label { margin-top: 6px; font-size: 13px; font-weight: 600; }
+.photo-option.avatar-style .ph-label {
+  background: white; border-radius: 20px; padding: 7px 14px;
+  margin: -16px auto 0; width: fit-content; box-shadow: var(--shadow);
+  display: flex; align-items: center; gap: 4px; position: relative; z-index: 2;
+}
+.photo-option.avatar-style .ph-label::after { content: '\203A'; color: var(--sage-dark); font-weight: 800; }
+
+/* Circular "arch" avatar frame (Digesti-style age/body cards) */
+.photo-option.avatar-style .img-frame,
+.photo-option.avatar-style img {
+  border-radius: 50% 50% 8px 8px;
+  background: var(--sage-light);
+}
+.photo-option.avatar-style { border-radius: 50% 50% 10px 10px; }
+.photo-option.avatar-style:hover { border-color: var(--sage); box-shadow: 0 0 0 2px var(--sage-light); }
 
 .inline-safety-note {
   background: var(--sage-light);
@@ -423,6 +439,7 @@ body {
   0%, 100% { box-shadow: 0 4px 14px rgba(214, 59, 110, 0.15), 0 0 0 0 rgba(184,146,63,0.35); }
   50% { box-shadow: 0 4px 14px rgba(214, 59, 110, 0.15), 0 0 0 6px rgba(184,146,63,0); }
 }
+.banner-highlight { color: var(--pink); text-decoration: underline; text-decoration-style: wavy; text-decoration-color: var(--gold); text-underline-offset: 3px; }
 
 .gift-box-wrap { position: relative; width: 40px; height: 40px; flex-shrink: 0; display: inline-block; }
 .gift-box-svg { display: block; animation: giftWiggle 1.8s ease-in-out infinite; transform-origin: 50% 90%; }

@@ -9,7 +9,7 @@ const STEPS = [
   // ---------------- AGE / FIRST SCREEN ----------------
   {
     id: "age", type: "age-select", section: null,
-    banner: "&#127873; Take the quiz - get your <b>printable guide</b>!",
+    banner: "&#127873; Take the quiz - get your <span class=\"banner-highlight\">printable guide</span>!",
     title: "TAI CHI WALKING FOR WEIGHT LOSS",
     subtitle: "BASED ON YOUR <b>AGE</b>",
     cards: [
