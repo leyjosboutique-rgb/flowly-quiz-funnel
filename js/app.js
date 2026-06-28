@@ -648,8 +648,8 @@ function renderGoals(step) {
   const unit = state.unitWeight === "kg" ? "kg" : "lb";
   app.innerHTML = `
     <div class="step">
-      <h1 class="goal-headline">${name}, reach your goal of <span class="accent">${state.goalWeight}${unit}</span> by ${fmtDate(30)}</h1>
-      <p class="step-subtitle">And build a body you feel good living in</p>
+      <h1 class="goal-headline">${name}, reach your goal of <span class="accent">${state.goalWeight}${unit} by</span> ${fmtDate(30)}</h1>
+      <p class="step-subtitle" style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:400; color:var(--text-muted); font-size:14px;">And build a body you feel good living in</p>
       ${chartGoals(state.currentWeight, state.goalWeight, unit, "Now", fmtDate(30))}
       <div class="feature-box">
         <div class="feature-line">&#127939; Slim down and tone up with gentle but effective workouts</div>

@@ -99,14 +99,18 @@ function chartGoals(currentWeight, goalWeight, unit, axisStart, axisEnd) {
       <div class="chart-svg-wrap">
         <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none">
           ${CHART_DEFS}
-          <path d="M 15,28 C 90,18 180,15 305,28" fill="none" stroke="#b8923f" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.5"/>
-          <path d="M 15,30 C 80,55 150,85 220,100 C 260,108 285,112 305,113 L 305,130 L 15,130 Z" fill="url(#areaFade)"/>
+          <line x1="15" y1="20" x2="305" y2="20" stroke="#ece7d8" stroke-width="1"/>
+          <line x1="15" y1="50" x2="305" y2="50" stroke="#ece7d8" stroke-width="1"/>
+          <line x1="15" y1="80" x2="305" y2="80" stroke="#ece7d8" stroke-width="1"/>
+          <line x1="15" y1="110" x2="305" y2="110" stroke="#ece7d8" stroke-width="1"/>
+          <path d="M 15,28 C 90,18 180,15 305,28" fill="none" stroke="#d6537a" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.6"/>
+          <path d="M 15,30 C 80,55 150,85 220,100 C 260,108 285,112 305,113" fill="none" stroke="#4f7a63" stroke-width="14" stroke-linecap="round" opacity="0.22"/>
           <path d="M 15,30 C 80,55 150,85 220,100 C 260,108 285,112 305,113" fill="none" stroke="#243d30" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow)"/>
           <circle cx="15" cy="30" r="4" fill="#161f1a"/>
           <circle cx="305" cy="113" r="5.5" fill="#161f1a"/>
         </svg>
-        <div class="chart-bubble" style="left:4%; top:6%;">Ahora ${currentWeight}${unit}</div>
-        <div class="chart-bubble" style="left:64%; top:54%;">Objetivo: ${goalWeight}${unit}</div>
+        <div class="chart-bubble" style="left:4%; top:6%;">Now ${currentWeight}${unit}</div>
+        <div class="chart-bubble" style="left:64%; top:54%;">Goal: ${goalWeight}${unit}</div>
       </div>
       <div class="chart-axis-labels"><span>${axisStart}</span><span>${axisEnd}</span></div>
     </div>`;
