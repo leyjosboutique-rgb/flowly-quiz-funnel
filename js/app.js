@@ -249,17 +249,39 @@ function renderNumberInput(step) {
       <div class="input-row">
         <input type="number" class="text-input" id="num-input" placeholder="${step.placeholder}">
       </div>
+      <p class="input-range-error hidden" id="range-error"></p>
       <div id="feedback-slot"></div>
       <button class="continue-btn" id="continue-btn" disabled>Continue</button>
     </div>`;
   const input = document.getElementById("num-input");
   const btn = document.getElementById("continue-btn");
+  const rangeError = document.getElementById("range-error");
   let currentUnit = step.units[0];
+
+  function currentRange() {
+    return (step.ranges && step.ranges[currentUnit]) || null;
+  }
+  function applyRangeAttrs() {
+    const r = currentRange();
+    if (r) { input.min = r[0]; input.max = r[1]; } else { input.removeAttribute("min"); input.removeAttribute("max"); }
+  }
+  function validateRange(val) {
+    const r = currentRange();
+    if (!r || isNaN(val)) { rangeError.classList.add("hidden"); return true; }
+    if (val < r[0] || val > r[1]) {
+      rangeError.textContent = `Please enter a value between ${r[0]} and ${r[1]} ${currentUnit}.`;
+      rangeError.classList.remove("hidden");
+      return false;
+    }
+    rangeError.classList.add("hidden");
+    return true;
+  }
 
   function updateFeedback() {
     const val = parseFloat(input.value);
     const slot = document.getElementById("feedback-slot");
-    if (!val || isNaN(val)) { slot.innerHTML = ""; return; }
+    const inRange = validateRange(val);
+    if (!val || isNaN(val) || !inRange) { slot.innerHTML = ""; return; }
     if (step.bmiBox) {
       const kg = currentUnit === "kg" ? val : val * 0.4536;
       const heightM = state.heightCm / 100 || 1.63;
@@ -287,15 +309,24 @@ function renderNumberInput(step) {
     }
   }
 
-  input.addEventListener("input", () => { btn.disabled = input.value.trim() === ""; updateFeedback(); });
+  applyRangeAttrs();
+  input.addEventListener("input", () => {
+    const val = parseFloat(input.value);
+    btn.disabled = input.value.trim() === "" || !validateRange(val);
+    updateFeedback();
+  });
   app.querySelectorAll(".unit-btn").forEach(b => b.addEventListener("click", () => {
     app.querySelectorAll(".unit-btn").forEach(x => x.classList.remove("active"));
     b.classList.add("active");
     currentUnit = b.dataset.u;
+    applyRangeAttrs();
+    const val = parseFloat(input.value);
+    btn.disabled = input.value.trim() === "" || !validateRange(val);
     updateFeedback();
   }));
   btn.addEventListener("click", () => {
     const val = parseFloat(input.value);
+    if (!validateRange(val)) return;
     setAnswer(step.id, val);
     if (step.id === "q6") state.heightCm = currentUnit === "cm" ? val : Math.round(val * 30.48);
     if (step.id === "q7") state.currentWeight = Math.round(currentUnit === "kg" ? val : val * 0.4536);

@@ -77,18 +77,21 @@ const STEPS = [
 
   { id: "q6", type: "number-input", section: "My Profile", progress: 0.30,
     title: "What's your height?",
-    units: ["ft", "cm"], placeholder: "e.g. 5'4\" or 163 cm" },
+    units: ["ft", "cm"], placeholder: "e.g. 5'4\" or 163 cm",
+    ranges: { ft: [3, 7.5], cm: [100, 230] } },
 
   { id: "q7", type: "number-input", section: "My Profile", progress: 0.33,
     title: "What's your current weight?",
     bmiBox: true,
-    units: ["lb", "kg"], placeholder: "e.g. 176 lb or 80 kg" },
+    units: ["lb", "kg"], placeholder: "e.g. 176 lb or 80 kg",
+    ranges: { lb: [60, 550], kg: [27, 250] } },
 
   { id: "q8", type: "number-input", section: "My Profile", progress: 0.36,
     title: "What's your goal weight?",
     subtitle: "An estimate will do &ndash; you can easily change this later.",
     realisticGoalBox: true,
-    units: ["lb", "kg"], placeholder: "e.g. 150 lb or 68 kg" },
+    units: ["lb", "kg"], placeholder: "e.g. 150 lb or 68 kg",
+    ranges: { lb: [60, 550], kg: [27, 250] } },
 
   { id: "loading1", type: "loading-single", section: "My Profile",
     text: "Losing just 5% of your weight can improve your health &mdash; and reduce your risk of many different health conditions",
