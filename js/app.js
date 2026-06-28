@@ -355,11 +355,11 @@ function giftBoxSvg() {
   return `
     <span class="gift-box-wrap">
       <svg class="gift-box-svg" viewBox="0 0 48 48" width="40" height="40">
-        <path d="M24 17 C18 7, 8 9, 13 17 Z" fill="#b8456b"/>
-        <path d="M24 17 C30 7, 40 9, 35 17 Z" fill="#b8456b"/>
-        <rect x="6" y="16" width="36" height="9" rx="2" fill="#b8923f"/>
-        <rect x="8" y="24" width="32" height="19" rx="3" fill="#fdf4e3"/>
-        <rect x="20.5" y="16" width="7" height="27" fill="#faf7f0"/>
+        <path d="M24 17 C18 7, 8 9, 13 17 Z" fill="#ffcc33"/>
+        <path d="M24 17 C30 7, 40 9, 35 17 Z" fill="#ffcc33"/>
+        <rect x="6" y="16" width="36" height="9" rx="2" fill="#ffcc33"/>
+        <rect x="8" y="24" width="32" height="19" rx="3" fill="#e63950"/>
+        <rect x="20.5" y="16" width="7" height="27" fill="#ffcc33"/>
       </svg>
       <span class="confetti-burst c1" style="color:#b8923f;">&#10022;</span>
       <span class="confetti-burst c2" style="color:#b8456b;">&#9733;</span>
