@@ -358,7 +358,7 @@ function giftBoxSvg() {
         <path d="M24 17 C18 7, 8 9, 13 17 Z" fill="#b8456b"/>
         <path d="M24 17 C30 7, 40 9, 35 17 Z" fill="#b8456b"/>
         <rect x="6" y="16" width="36" height="9" rx="2" fill="#b8923f"/>
-        <rect x="8" y="24" width="32" height="19" rx="3" fill="#243d30"/>
+        <rect x="8" y="24" width="32" height="19" rx="3" fill="#fdf4e3"/>
         <rect x="20.5" y="16" width="7" height="27" fill="#faf7f0"/>
       </svg>
       <span class="confetti-burst c1" style="color:#b8923f;">&#10022;</span>
