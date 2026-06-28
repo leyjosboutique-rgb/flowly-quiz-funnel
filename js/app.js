@@ -483,9 +483,9 @@ function renderEligibility(step) {
   app.innerHTML = `
     <div class="step">
       <h1 class="step-title" style="color:var(--sage-dark); text-align:left; font-size:22px;">${step.title}</h1>
-      <p class="step-subtitle" style="text-align:left;">${step.body}</p>
+      <p class="step-subtitle" style="text-align:left; font-family:'Plus Jakarta Sans',sans-serif; font-weight:400; font-size:14px; color:var(--text-muted);">${step.body}</p>
       ${chartEligibility()}
-      <p style="font-size:13px; display:flex; gap:10px; align-items:flex-start;"><span style="font-size:20px;">&#128241;</span>${interpolate(step.note)}</p>
+      <p style="font-size:13px; display:flex; gap:10px; align-items:flex-start;"><span class="chart-stat-box-icon" style="font-size:16px;">&#128241;</span>${interpolate(step.note)}</p>
       <button class="continue-btn" id="continue-btn">Continue</button>
     </div>`;
   document.getElementById("continue-btn").addEventListener("click", next);

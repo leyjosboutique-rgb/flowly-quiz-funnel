@@ -623,6 +623,13 @@ body {
 .chart-callout-green { background: var(--sage-light); border-color: var(--sage); }
 .chart-callout-green .chart-callout-label { color: var(--sage-dark); }
 
+/* Plain leader-line label (no box) — matches competitor's "First results" style */
+.chart-callout-plain {
+  position: absolute; transform: translate(-50%, -100%);
+  font-size: 12.5px; color: var(--text-dark); white-space: nowrap;
+}
+.chart-callout-plain b { font-weight: 800; }
+
 /* Dark personalized bubbles (Goals page chart — "Ahora X" / "Objetivo: X") */
 .chart-bubble {
   position: absolute; transform: translate(-50%, -130%);

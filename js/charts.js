@@ -133,10 +133,11 @@ function chartEligibility() {
           <path d="M 10,25 C 60,28 90,45 110,55" fill="none" stroke="#d97a3c" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow2)"/>
           <path d="M 110,55 C 160,78 220,100 310,112" fill="none" stroke="#2f6b48" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow2)"/>
           <line x1="110" y1="55" x2="110" y2="140" stroke="#fff" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+          <line x1="110" y1="55" x2="150" y2="26" stroke="#d97a3c" stroke-width="1.5"/>
           <circle cx="110" cy="55" r="5" fill="#faf7f0" stroke="#d97a3c" stroke-width="3"/>
         </svg>
-        <div class="chart-callout" style="left:34%; top:37%; transform: translate(-50%, -150%);">
-          <span class="chart-callout-label">&#128640; First results</span>
+        <div class="chart-callout-plain" style="left:47%; top:17%;">
+          <span>&#128640; <b>First results</b></span>
         </div>
       </div>
       <div class="chart-axis-labels" style="justify-content:space-between;"><span>1 week</span><span>4 weeks</span><span>12 weeks</span></div>
