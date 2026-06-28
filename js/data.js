@@ -176,8 +176,8 @@ const STEPS = [
     subtitle: "Rest assured this information is for your safety.",
     options: [{ v: "yes", l: "Yes" }, { v: "no", l: "No" }, { v: "prefer_not", l: "Prefer not to answer" }],
     bottomSheet: {
-      title: "Priorizando su salud y seguridad",
-      body: "Adapte cualquier elemento de su plan a sus necesidades. Le recomendamos que consulte con su médico o fisioterapeuta antes de realizar cualquier cambio en su estilo de vida que pueda afectar su bienestar físico o su salud en general."
+      title: "Prioritizing your health and safety",
+      body: "We'll tailor every part of your plan to your needs. We recommend checking with your doctor or physical therapist before making any lifestyle change that could affect your physical wellbeing or overall health."
     } },
 
   { id: "t4", type: "transition", section: "Health & Safety",
@@ -209,20 +209,20 @@ const STEPS = [
     body: "Surprisingly, the 10,000-steps-per-day rule came from a 1960s pedometer company's marketing, not science. Just 15 minutes of Tai Chi Walking can lift your metabolism and support weight loss." },
 
   { id: "q20", type: "like-dislike", section: "Health & Safety", progress: 0.74,
-    img: "IMG-Q20-hero", caption: "Estiramientos y movilidad",
-    title: "¿Te gusta o no te gusta?" },
+    img: "IMG-Q20-hero", caption: "Stretching and mobility",
+    title: "Do you like it or not?" },
 
   { id: "q21", type: "like-dislike", section: "Health & Safety", progress: 0.76,
-    img: "IMG-Q21-hero", caption: "Respiración consciente",
-    title: "¿Te gusta o no te gusta?" },
+    img: "IMG-Q21-hero", caption: "Mindful breathing",
+    title: "Do you like it or not?" },
 
   { id: "q22", type: "like-dislike", section: "Health & Safety", progress: 0.78,
-    img: "IMG-Q22-hero", caption: "Equilibrio",
-    title: "¿Te gusta o no te gusta?" },
+    img: "IMG-Q22-hero", caption: "Balance",
+    title: "Do you like it or not?" },
 
   { id: "q23", type: "like-dislike", section: "Health & Safety", progress: 0.80,
-    img: "IMG-Q23-hero", caption: "Paso de fuerza constante",
-    title: "¿Te gusta o no te gusta?" },
+    img: "IMG-Q23-hero", caption: "Steady strength step",
+    title: "Do you like it or not?" },
 
   { id: "prediction2", type: "prediction", section: "Health & Safety", chartType: "prediction", short: true,
     title: "You'll achieve your dream body even sooner than expected!",
@@ -409,11 +409,11 @@ const STEPS = [
       options: [{ v: "low", l: "Usually low" }, { v: "ok", l: "Okay, but fades" }, { v: "good", l: "Pretty good" }] },
     socialProof: "Trusted by over 163,432 clients",
     testimonials: [
-      { stars: 5, quote: "Sin gimnasio, sin dietas extremas. Solo pequeños cambios cada día. 4,5 kg menos y estoy orgullosa.", name: "Emily Davis" },
-      { stars: 5, quote: "Nunca pensé que algo tan suave pudiera funcionar tan bien. Duermo mejor y tengo más energía.", name: "Patricia G." },
-      { stars: 5, quote: "A mis 58 años por fin encontré algo que mis rodillas toleran. Llevo 3 semanas y ya veo cambios.", name: "Linda M." },
+      { stars: 5, quote: "No gym, no extreme diets. Just small changes every day. Down 10lbs and I'm proud of myself.", name: "Emily Davis" },
+      { stars: 5, quote: "I never thought something so gentle could work so well. I sleep better and have more energy.", name: "Patricia G." },
+      { stars: 5, quote: "At 58, I finally found something my knees can handle. 3 weeks in and I'm already seeing changes.", name: "Linda M." },
     ],
-    completeTitle: "&iexcl;Enhorabuena, tu plan est&aacute; completo!" },
+    completeTitle: "Congrats, your plan is complete!" },
 
   { id: "email", type: "email-capture", section: null,
     title: "Enter your email to get your personal Tai Chi Walking plan",

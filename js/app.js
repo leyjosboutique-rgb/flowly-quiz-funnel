@@ -189,7 +189,7 @@ function showBottomSheet(content) {
     <div class="sheet-card">
       <h3>${content.title}</h3>
       <p>${content.body}</p>
-      <button class="continue-btn" id="sheet-continue-btn">Continuar</button>
+      <button class="continue-btn" id="sheet-continue-btn">Continue</button>
     </div>`;
   document.body.appendChild(overlay);
   document.getElementById("sheet-continue-btn").addEventListener("click", () => { overlay.remove(); next(); });
@@ -223,9 +223,9 @@ function renderLikeDislike(step) {
         <div class="ld-caption">${step.caption}</div>
       </div>
       <div class="like-dislike-row">
-        <div class="ld-option" data-v="dislike"><span class="ld-emoji">&#128078;</span><span class="ld-label">Aversi&oacute;n</span></div>
+        <div class="ld-option" data-v="dislike"><span class="ld-emoji">&#128078;</span><span class="ld-label">Dislike</span></div>
         <div class="ld-option" data-v="neutral"><span class="ld-emoji">&#129300;</span><span class="ld-label">Neutral</span></div>
-        <div class="ld-option" data-v="like"><span class="ld-emoji">&#128077;</span><span class="ld-label">Como</span></div>
+        <div class="ld-option" data-v="like"><span class="ld-emoji">&#128077;</span><span class="ld-label">Like</span></div>
       </div>
     </div>`;
   app.querySelectorAll(".ld-option").forEach(el => {
@@ -286,14 +286,14 @@ function renderNumberInput(step) {
       const kg = currentUnit === "kg" ? val : val * 0.4536;
       const heightM = state.heightCm / 100 || 1.63;
       const bmi = (kg / (heightM * heightM)).toFixed(1);
-      let cat = "peso normal";
-      if (bmi >= 30) cat = "obesidad"; else if (bmi >= 25) cat = "sobrepeso"; else if (bmi < 18.5) cat = "bajo peso";
+      let cat = "normal weight";
+      if (bmi >= 30) cat = "obese"; else if (bmi >= 25) cat = "overweight"; else if (bmi < 18.5) cat = "underweight";
       slot.innerHTML = `
         <div class="feedback-box">
           <div class="fb-icon">&#129518;</div>
           <div>
-            <p class="fb-title">Tu IMC es de ${bmi}, lo que se considera ${cat}.</p>
-            <p class="fb-body">Te queda trabajo por delante, pero es genial que estés dando el primer paso. Usaremos tu IMC para crear un programa de pérdida de peso personalizado.</p>
+            <p class="fb-title">Your BMI is ${bmi}, which is considered ${cat}.</p>
+            <p class="fb-body">You've got some work ahead, but it's great that you're taking the first step. We'll use your BMI to build a personalized weight-loss program.</p>
           </div>
         </div>`;
     } else if (step.realisticGoalBox) {
@@ -301,9 +301,9 @@ function renderNumberInput(step) {
         <div class="feedback-box">
           <div class="fb-icon">&#128202;</div>
           <div>
-            <p class="fb-title">&iexcl;Objetivo realista!</p>
-            <p class="fb-body">Los estudios han demostrado que perder un 5% o más del peso corporal puede reducir significativamente el riesgo de sufrir ataques cardíacos, niveles altos de azúcar en sangre e hipertensión arterial.</p>
-            <p class="fb-source">Fuente: Asociaci&oacute;n Americana del Coraz&oacute;n (AHA)</p>
+            <p class="fb-title">Realistic goal!</p>
+            <p class="fb-body">Studies show that losing 5% or more of your body weight can significantly reduce the risk of heart attacks, high blood sugar, and high blood pressure.</p>
+            <p class="fb-source">Source: American Heart Association (AHA)</p>
           </div>
         </div>`;
     }
@@ -884,39 +884,39 @@ function stopCheckoutTimer() {
 function renderUpsell() {
   app.innerHTML = `
     <div class="step" style="position:relative;">
-      <span class="skip-link" id="skip-link">SALTAR &rsaquo;</span>
+      <span class="skip-link" id="skip-link">SKIP &rsaquo;</span>
       <div class="upsell-steps">
-        <span class="upsell-step-dot done">&#10003;</span><span>Completar configuraci&oacute;n</span>
+        <span class="upsell-step-dot done">&#10003;</span><span>Complete setup</span>
         <span style="width:30px;height:2px;background:var(--border);"></span>
-        <span class="upsell-step-dot">2</span><span class="upsell-line-active">A&ntilde;adir oferta</span>
+        <span class="upsell-step-dot">2</span><span class="upsell-line-active">Add offer</span>
         <span style="width:30px;height:2px;background:var(--border);"></span>
-        <span class="upsell-step-dot" style="background:var(--border);color:var(--text-muted);">3</span><span>Obtener el plan</span>
+        <span class="upsell-step-dot" style="background:var(--border);color:var(--text-muted);">3</span><span>Get your plan</span>
       </div>
-      <h1 class="step-title">Alcanza tu objetivo m&aacute;s r&aacute;pido: A&ntilde;ade estas gu&iacute;as para acelerar tus resultados &#128154;</h1>
+      <h1 class="step-title">Reach your goal faster: add these guides to speed up your results &#128154;</h1>
       <div class="upsell-box">
-        <div class="upsell-item"><span class="icon-circle">&#9989;</span> Obt&eacute;n tu plan personal</div>
-        <div class="upsell-item"><span class="icon-circle">&#128293;</span> <b>Plan quema grasa</b></div>
-        <div class="upsell-item"><span class="icon-circle">&#128202;</span> Informe de liberaci&oacute;n de estr&eacute;s de cuerpo completo</div>
-        <div class="upsell-item"><span class="icon-circle">&#127858;</span> Plan nutricional semanal</div>
-        <div class="upsell-item"><span class="icon-circle">&#127856;</span> Postres dulces y saludables</div>
+        <div class="upsell-item"><span class="icon-circle">&#9989;</span> Get your personal plan</div>
+        <div class="upsell-item"><span class="icon-circle">&#128293;</span> <b>Fat-burn plan</b></div>
+        <div class="upsell-item"><span class="icon-circle">&#128202;</span> Full-body stress relief report</div>
+        <div class="upsell-item"><span class="icon-circle">&#127858;</span> Weekly nutrition plan</div>
+        <div class="upsell-item"><span class="icon-circle">&#127856;</span> Sweet & healthy desserts</div>
       </div>
       <div class="upsell-price-row">
-        <div><b>Oferta especial</b><br><span style="font-size:12px;color:var(--text-muted);">Suscripci&oacute;n recurrente</span></div>
+        <div><b>Special offer</b><br><span style="font-size:12px;color:var(--text-muted);">Recurring subscription</span></div>
         <div style="text-align:right;">
           <span style="background:var(--red-urgency);color:white;border-radius:8px;padding:2px 8px;font-size:11px;font-weight:700;" id="upsell-discount-badge">-56%</span>
           <span style="text-decoration:line-through;color:var(--text-muted);font-size:13px;">$2.82</span>
-          <span style="font-weight:700;font-size:18px;" id="upsell-price">$1.25/d&iacute;a</span>
+          <span style="font-weight:700;font-size:18px;" id="upsell-price">$1.25/day</span>
         </div>
       </div>
-      <button class="continue-btn pink" id="upsell-cta">Empezar la transformaci&oacute;n &#10024;</button>
-      <p class="fine-print" id="upsell-fine-print">Al hacer clic en "Empezar la transformaci&oacute;n", inicias una oferta introductoria de 4 semanas a $1.25/d&iacute;a ($35.00 en total); despu&eacute;s se renueva autom&aacute;ticamente a $79.00 cada 4 semanas salvo que cancele al menos 24 horas antes de que finalice. Cancela cuando quieras en tu cuenta.</p>
-      <p class="decline-link" id="decline-link">Continuar sin gu&iacute;as esenciales</p>
+      <button class="continue-btn pink" id="upsell-cta">Start my transformation &#10024;</button>
+      <p class="fine-print" id="upsell-fine-print">By clicking "Start my transformation," you start a 4-week introductory offer at $1.25/day ($35.00 total); it then automatically renews at $79.00 every 4 weeks unless you cancel at least 24 hours before it ends. Cancel anytime in your account.</p>
+      <p class="decline-link" id="decline-link">Continue without essential guides</p>
       <ul class="upsell-bullets">
-        <li>Apoya tu objetivo con pautas que puedes hacer en cualquier lugar y momento</li>
-        <li>Dise&ntilde;ado en colaboraci&oacute;n con expertos m&eacute;dicos y de fitness</li>
-        <li>Puedes conservar tus gu&iacute;as esenciales incluso si decides que Flowly no es para ti</li>
+        <li>Support your goal with guidance you can follow anywhere, anytime</li>
+        <li>Designed in collaboration with medical and fitness experts</li>
+        <li>You keep your essential guides even if you decide Flowly isn't for you</li>
       </ul>
-      <p style="text-align:center;text-decoration:underline;font-size:13px;">Pol&iacute;tica de reembolso</p>
+      <p style="text-align:center;text-decoration:underline;font-size:13px;">Refund policy</p>
     </div>`;
 
   document.getElementById("upsell-cta").addEventListener("click", () => next());
@@ -929,20 +929,20 @@ function showDownsellModal() {
   overlay.className = "modal-overlay";
   overlay.innerHTML = `
     <div class="modal-card">
-      <span class="skip-link" id="modal-skip" style="position:absolute;">SALTAR &rsaquo;</span>
+      <span class="skip-link" id="modal-skip" style="position:absolute;">SKIP &rsaquo;</span>
       <div class="modal-badge">&#127873;</div>
-      <h2 style="margin:0 0 12px;">&iexcl;70% de descuento extra aplicado!</h2>
-      <p style="font-size:14px;color:var(--text-dark);margin-bottom:20px;">Con este <b>70% adicional</b>, extiende tu camino hacia una salud duradera. Aprovecha esta oferta &uacute;nica para mantener tu progreso.</p>
-      <button class="continue-btn pink" id="claim-btn">Reclamar ahora</button>
+      <h2 style="margin:0 0 12px;">Extra 70% discount applied!</h2>
+      <p style="font-size:14px;color:var(--text-dark);margin-bottom:20px;">With this <b>extra 70%</b>, extend your path toward lasting health. Take advantage of this one-time offer to keep up your progress.</p>
+      <button class="continue-btn pink" id="claim-btn">Claim now</button>
     </div>`;
   document.body.appendChild(overlay);
   document.getElementById("modal-skip").addEventListener("click", () => { overlay.remove(); next(); });
   document.getElementById("claim-btn").addEventListener("click", () => {
     overlay.remove();
     document.getElementById("upsell-discount-badge").textContent = "-70%";
-    document.getElementById("upsell-price").textContent = "$0.86/día";
+    document.getElementById("upsell-price").textContent = "$0.86/day";
     document.getElementById("upsell-fine-print").textContent =
-      'Al hacer clic en "Empezar la transformación", inicias una oferta introductoria de 4 semanas a $0.86/día ($24.00 en total); después se renueva automáticamente a $79.00 cada 4 semanas salvo que cancele al menos 24 horas antes de que finalice.';
+      'By clicking "Start my transformation," you start a 4-week introductory offer at $0.86/day ($24.00 total); it then automatically renews at $79.00 every 4 weeks unless you cancel at least 24 hours before it ends.';
   });
 }
 
@@ -950,26 +950,26 @@ function showDownsellModal() {
 function renderThankYou() {
   app.innerHTML = `
     <div class="step">
-      <h1 class="step-title" style="color:var(--sage-dark);">&#9989; &iexcl;Bienvenido a Flowly!</h1>
+      <h1 class="step-title" style="color:var(--sage-dark);">&#9989; Welcome to Flowly!</h1>
       <div class="testimonial-card">
-        <p>Gracias por unirte &mdash; estamos emocionados de tenerte en este camino hacia la salud y la confianza en ti mismo. Tu plan personalizado est&aacute; listo.</p>
-        <button class="continue-btn" style="margin:16px 0;">&#128077; Haz clic aqu&iacute; para acceder a tu informe</button>
-        <p><b>Qu&eacute; incluye tu plan:</b></p>
+        <p>Thanks for joining &mdash; we're excited to have you on this journey toward better health and confidence. Your personalized plan is ready.</p>
+        <button class="continue-btn" style="margin:16px 0;">&#128077; Click here to access your report</button>
+        <p><b>What your plan includes:</b></p>
         <ul>
-          <li>&#9989; Planes de comidas personalizados con casi 1000 recetas</li>
-          <li>&#9989; Planes de fitness todo en uno: yoga, Pilates, movilidad y fuerza</li>
-          <li>&#9989; Kit completo de bienestar: peso, calor&iacute;as, agua y pasos</li>
-          <li>&#9989; Desaf&iacute;os de salud y contenido de la Academia</li>
+          <li>&#9989; Personalized meal plans with nearly 1000 recipes</li>
+          <li>&#9989; All-in-one fitness plans: yoga, Pilates, mobility and strength</li>
+          <li>&#9989; Complete wellness kit: weight, calories, water and steps</li>
+          <li>&#9989; Health challenges and Academy content</li>
         </ul>
         <div class="checkout-summary">
-          <p style="margin:0 0 6px;font-weight:700;">Detalles del plan</p>
-          <div class="checkout-summary-row"><span>Tu plan</span><span>4-week trial</span></div>
-          <div class="checkout-summary-row"><span>Importe cobrado</span><span>$12.78</span></div>
-          <div class="checkout-summary-row"><span>Pr&oacute;xima facturaci&oacute;n</span><span>$49.95 en 28 d&iacute;as</span></div>
+          <p style="margin:0 0 6px;font-weight:700;">Plan details</p>
+          <div class="checkout-summary-row"><span>Your plan</span><span>4-week trial</span></div>
+          <div class="checkout-summary-row"><span>Amount charged</span><span>$12.78</span></div>
+          <div class="checkout-summary-row"><span>Next billing</span><span>$49.95 in 28 days</span></div>
         </div>
       </div>
-      <p style="text-align:center;font-size:12px;color:var(--text-muted);">&mdash; Fin de la simulaci&oacute;n del funnel &mdash;</p>
-      <button class="continue-btn" id="restart-btn">Reiniciar demo</button>
+      <p style="text-align:center;font-size:12px;color:var(--text-muted);">&mdash; End of funnel simulation &mdash;</p>
+      <button class="continue-btn" id="restart-btn">Restart demo</button>
     </div>`;
   document.getElementById("restart-btn").addEventListener("click", () => {
     state.index = 0; state.answers = {}; render();
