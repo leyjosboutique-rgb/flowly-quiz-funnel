@@ -144,6 +144,11 @@ body {
   margin: 0 0 10px;
   letter-spacing: 0.3px;
 }
+.pred-small-title { font-size: 16px; font-weight: 600; color: var(--text-dark); margin: 4px 0 10px; }
+.pred-predict-label { font-size: 13px; color: var(--text-muted); margin: 0 0 2px; }
+.pred-result-line { font-family: "Fraunces", Georgia, serif; font-size: 28px; font-weight: 800; color: var(--text-dark); margin: 0 0 16px; line-height: 1.2; }
+.pred-result-line b { color: var(--sage-dark); }
+
 .title-divider {
   width: 46px; height: 3px; margin: 10px auto 22px;
   background: var(--gold); border-radius: 2px;
@@ -622,6 +627,11 @@ body {
 .chart-callout-value { font-weight: 800; color: var(--sage-dark); font-size: 13px; }
 .chart-callout-green { background: var(--sage-light); border-color: var(--sage); }
 .chart-callout-green .chart-callout-label { color: var(--sage-dark); }
+.chart-callout-arrow { transform: translate(-100%, -100%); margin-top: -10px; }
+.chart-callout-arrow::after {
+  content: ''; position: absolute; bottom: -6px; right: 14px;
+  border: 6px solid transparent; border-top-color: var(--sage);
+}
 
 /* Plain leader-line label (no box) — matches competitor's "First results" style */
 .chart-callout-plain {

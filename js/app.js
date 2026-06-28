@@ -443,9 +443,9 @@ function renderLoadingSingle(step) {
 function renderPrediction(step) {
   const fromLabel = `${state.currentWeight}${state.unitWeight === "kg" ? "kg" : "lb"}`;
   const toLabel = `${state.goalWeight}${state.unitWeight === "kg" ? "kg" : "lb"}`;
-  const chart = chartPrediction(fromLabel, toLabel, "Now", step.short ? fmtDate(30) : fmtDate(90), step.note, step.source);
+  const chart = chartPrediction(fromLabel, toLabel, "Now", step.short ? fmtDate(30) : fmtDate(90), step.note, step.source, step.simple);
   const headline = step.subtitleDynamic
-    ? `<h1 class="step-title">${step.title}</h1><p class="step-subtitle" style="font-size:16px;font-weight:600;color:var(--text-dark);">${interpolate(step.subtitleDynamic)}</p>`
+    ? `<p class="pred-small-title">${step.title}</p><p class="pred-predict-label">${step.predictLabel || ""}</p><h1 class="pred-result-line">${interpolate(step.subtitleDynamic)}</h1>`
     : `<h1 class="step-title">${interpolate(step.title)}</h1>`;
   app.innerHTML = `
     <div class="step">

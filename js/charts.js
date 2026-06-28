@@ -49,31 +49,36 @@ function walkerBadge(cx, cy) {
 // A) PREDICTION CHART — matches competitor reference: no area fill, walker
 // badge sits a bit into the curve (not at x=0), "Reduce risk (Xkg)" headline
 // inside the card, light-green Goal callout, explanatory stat box below.
-function chartPrediction(startLabel, goalLabel, axisStart, axisEnd, note, source) {
+function chartPrediction(startLabel, goalLabel, axisStart, axisEnd, note, source, simple) {
   const startNum = parseNum(startLabel), goalNum = parseNum(goalLabel), unit = parseUnit(goalLabel) || parseUnit(startLabel);
   const toGo = (startNum != null && goalNum != null) ? Math.abs(Math.round((startNum - goalNum) * 10) / 10) : null;
   const pct = (startNum && toGo != null) ? Math.round((toGo / startNum) * 100) : null;
+  const gridlines = simple
+    ? [75, 140, 205, 270].map(x => `<line x1="${x}" y1="15" x2="${x}" y2="140" stroke="#e1ddd0" stroke-width="1"/>`).join("")
+    : "";
   return `
     <div class="chart-card">
       <div class="chart-top-row">
         <div class="chart-top-label"><span class="chart-top-value">${startLabel}</span></div>
-        ${toGo != null ? `<div class="chart-risk-headline">Decrease risk (${toGo}${unit})</div>` : ""}
+        ${(!simple && toGo != null) ? `<div class="chart-risk-headline">Decrease risk (${toGo}${unit})</div>` : ""}
       </div>
       <div class="chart-svg-wrap">
         <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none">
           ${CHART_DEFS}
+          ${gridlines}
           <path d="M 15,30 C 70,35 90,70 150,90 C 200,108 240,118 305,122" fill="none" stroke="#5fae74" stroke-width="4" stroke-linecap="round" filter="url(#lineShadow)"/>
-          <circle cx="15" cy="30" r="4" fill="#3a9a55"/>
-          ${walkerBadge(75, 47)}
+          <circle cx="15" cy="30" r="${simple ? 6 : 4}" fill="#3a9a55"/>
+          ${simple ? "" : walkerBadge(75, 47)}
           <circle cx="305" cy="122" r="6" fill="#3a9a55"/>
         </svg>
-        <div class="chart-callout chart-callout-green" style="left:95%; top:65%;">
+        <div class="chart-callout chart-callout-green${simple ? " chart-callout-arrow" : ""}" style="left:95%; top:65%;">
           <span class="chart-callout-label">Goal</span>
           <span class="chart-callout-value">${goalLabel}</span>
         </div>
       </div>
       <div class="chart-axis-labels"><span>${axisStart}</span><span>${axisEnd}</span></div>
-      ${toGo != null ? `
+      ${simple ? (source ? `<p class="chart-stat-box-source" style="margin-top:10px;">${source}</p>` : "") : ""}
+      ${(!simple && toGo != null) ? `
       <div class="chart-stat-box">
         <span class="chart-stat-box-icon">&#129518;</span>
         <div>

@@ -225,9 +225,10 @@ const STEPS = [
     img: "IMG-Q23-hero", caption: "Steady strength step",
     title: "Do you like it or not?" },
 
-  { id: "prediction2", type: "prediction", section: "Health & Safety", chartType: "prediction", short: true,
+  { id: "prediction2", type: "prediction", section: "Health & Safety", chartType: "prediction", short: true, simple: true,
     title: "You'll achieve your dream body even sooner than expected!",
-    subtitleDynamic: "We predict you'll be {{goalWeight}} by {{date30}}",
+    predictLabel: "We predict you'll be..",
+    subtitleDynamic: "{{goalWeight}} by {{date30}}",
     note: "Next, tell us more about your lifestyle so we can help you hit your goal even more effectively.",
     source: "*Based on Flowly members with similar goal" },
 
