@@ -149,42 +149,66 @@ function chartEligibility() {
     </div>`;
 }
 
-// D) STRESS CHART — two clean diverging lines, personalized legend framing
+// D) STRESS CHART — cortisol rising (danger) vs serotonin falling, with
+// shaded danger zone + quantified change badges so the problem reads
+// instantly instead of just two abstract lines.
 function chartStress() {
   return `
     <div class="chart-card">
       <div class="chart-legend">
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#243d30;"></span>Your cortisol</span>
-        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#b8923f;"></span>Your serotonin</span>
+        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#c23a4a;"></span>Your cortisol</span>
+        <span class="chart-legend-item"><span class="chart-legend-dot" style="background:#3a6fa8;"></span>Your serotonin</span>
       </div>
       <div class="chart-svg-wrap">
         <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none">
           ${CHART_DEFS}
+          <defs>
+            <linearGradient id="dangerFade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c23a4a" stop-opacity="0.16"/>
+              <stop offset="100%" stop-color="#c23a4a" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M 220,0 L 320,0 L 320,150 L 220,150 Z" fill="url(#dangerFade)"/>
           <line x1="20" y1="135" x2="310" y2="135" stroke="#e1ddd0" stroke-width="1.5"/>
-          <path d="M 25,90 L 70,75 L 120,60 L 170,45 L 220,35 L 270,28 L 305,22" fill="none" stroke="#243d30" stroke-width="3" stroke-linecap="round" filter="url(#lineShadow)"/>
-          <path d="M 25,55 L 70,68 L 120,80 L 170,95 L 220,108 L 270,118 L 305,125" fill="none" stroke="#b8923f" stroke-width="3" stroke-linecap="round" filter="url(#lineShadow)"/>
-          <circle cx="305" cy="22" r="5" fill="#243d30" filter="url(#dotGlow)"/>
-          <circle cx="305" cy="125" r="5" fill="#b8923f" filter="url(#dotGlow)"/>
+          <path d="M 25,90 L 70,75 L 120,60 L 170,45 L 220,35 L 270,28 L 305,22" fill="none" stroke="#c23a4a" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow)"/>
+          <path d="M 25,55 L 70,68 L 120,80 L 170,95 L 220,108 L 270,118 L 305,125" fill="none" stroke="#3a6fa8" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow)"/>
+          <circle cx="305" cy="22" r="5.5" fill="#c23a4a" filter="url(#dotGlow)"/>
+          <circle cx="305" cy="125" r="5.5" fill="#3a6fa8" filter="url(#dotGlow)"/>
         </svg>
+        <div class="chart-callout" style="left:78%; top:2%; border-color:#c23a4a;">
+          <span class="chart-callout-value" style="color:#c23a4a;">&#9650; 65%</span>
+        </div>
+        <div class="chart-callout" style="left:78%; top:68%; border-color:#3a6fa8;">
+          <span class="chart-callout-value" style="color:#3a6fa8;">&#9660; 38%</span>
+        </div>
       </div>
       <div class="chart-axis-labels"><span>0min</span><span>5min</span><span>10min</span><span>15min</span><span>20min</span><span>25min</span></div>
     </div>`;
 }
 
-// E) CALM CHART — "Hoy" -> "Despu&eacute;s de 2 semanas", personalized pill labels + today marker
+// E) CALM CHART — matches competitor reference exactly: jagged dramatic
+// lines, glowing reaction emoji at each line's end, solid/outline label
+// boxes instead of soft pills.
 function chartCalm() {
   return `
     <div class="chart-card">
       <div class="chart-svg-wrap" style="height:170px;">
         <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none">
           ${CHART_DEFS}
-          <path d="M 15,40 C 60,30 90,55 130,60 C 170,65 190,95 230,85 C 260,78 280,55 305,40" fill="none" stroke="#c23a4a" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
-          <path d="M 15,40 C 70,55 140,80 200,95 C 240,104 270,112 305,118" fill="none" stroke="#243d30" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow)"/>
-          ${todayMarker(15, 40)}
+          <line x1="10" y1="20" x2="10" y2="135" stroke="#c9c4b4" stroke-width="1"/>
+          <line x1="10" y1="135" x2="305" y2="135" stroke="#c9c4b4" stroke-width="1"/>
+          <line x1="80" y1="20" x2="80" y2="135" stroke="#e1ddd0" stroke-width="1" stroke-dasharray="2,4"/>
+          <line x1="150" y1="20" x2="150" y2="135" stroke="#e1ddd0" stroke-width="1" stroke-dasharray="2,4"/>
+          <line x1="220" y1="20" x2="220" y2="135" stroke="#e1ddd0" stroke-width="1" stroke-dasharray="2,4"/>
+          <line x1="10" y1="78" x2="305" y2="78" stroke="#e1ddd0" stroke-width="1" stroke-dasharray="2,4"/>
+          <path d="M 15,25 L 70,38 L 125,32 L 180,62 L 225,42 L 300,22" fill="none" stroke="#e0473f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#lineShadow)"/>
+          <path d="M 15,28 L 70,52 L 125,75 L 180,98 L 235,118 L 300,130" fill="none" stroke="#5b62e0" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#lineShadow)"/>
         </svg>
-        <div class="chart-pill" style="left:38%; top:8%; background:#f7e6e8; color:#8a2e3b;">Sin Flowly</div>
-        <div class="chart-pill" style="left:30%; top:58%; background:#e9efe6; color:#243d30;">Con tu plan</div>
+        <div class="chart-label-box warn" style="left:42%; top:18%;">No activity</div>
+        <div class="chart-label-box solid" style="left:38%; top:63%;">Walking plan</div>
+        <div class="chart-emoji-badge warn" style="left:94%; top:8%;">&#128548;</div>
+        <div class="chart-emoji-badge calm" style="left:94%; top:80%;">&#128522;</div>
       </div>
-      <div class="chart-axis-labels"><span>Hoy</span><span>Despu&eacute;s de 2 semanas</span></div>
+      <div class="chart-axis-labels"><span>Today</span><span>After 2 weeks</span></div>
     </div>`;
 }
