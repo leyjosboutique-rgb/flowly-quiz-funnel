@@ -299,7 +299,7 @@ const STEPS = [
   { id: "q30", type: "single", section: "Lifestyle", progress: 0.91,
     title: "Generally, how many fruit and veggies do you eat a day?",
     options: [
-      { v: "little", l: "None or a little" }, { v: "fair", l: "A fair bit" }, { v: "rabbit", l: "I might be a rabbit" },
+      { v: "little", l: "None or a little", emoji: "🍟" }, { v: "fair", l: "A fair bit", emoji: "🥗" }, { v: "rabbit", l: "I might be a rabbit", emoji: "🐰" },
     ] },
 
   { id: "t10", type: "transition", section: "Lifestyle",
