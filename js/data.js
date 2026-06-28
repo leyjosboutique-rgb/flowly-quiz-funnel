@@ -181,6 +181,7 @@ const STEPS = [
     } },
 
   { id: "t4", type: "transition", section: "Health & Safety",
+    img: "IMG-t4",
     title: "A safer way to build balance and stability",
     body: "Gentle Tai Chi Walking strengthens your whole body while staying soft on your joints. A safe alternative to high-impact workouts, while being as effective." },
 
