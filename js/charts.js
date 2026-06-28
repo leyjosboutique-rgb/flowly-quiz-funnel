@@ -38,80 +38,103 @@ function todayMarker(cx, cy) {
     <circle cx="${cx}" cy="${cy}" r="6.5" fill="#faf7f0" stroke="#b8923f" stroke-width="3"/>`;
 }
 
-// A) PREDICTION CHART — pulsing "today" start, connected goal callout, prominent "to-go" stat
-function chartPrediction(startLabel, goalLabel, axisStart, axisEnd) {
+/* Static circular badge with a walking-person icon — sits mid-curve,
+   matching the competitor's exact "first results" walker marker. */
+function walkerBadge(cx, cy) {
+  return `
+    <circle cx="${cx}" cy="${cy}" r="12" fill="#dcefe1"/>
+    <text x="${cx}" y="${cy + 4.5}" font-size="13" text-anchor="middle">&#128694;</text>`;
+}
+
+// A) PREDICTION CHART — matches competitor reference: no area fill, walker
+// badge sits a bit into the curve (not at x=0), "Reduce risk (Xkg)" headline
+// inside the card, light-green Goal callout, explanatory stat box below.
+function chartPrediction(startLabel, goalLabel, axisStart, axisEnd, note, source) {
   const startNum = parseNum(startLabel), goalNum = parseNum(goalLabel), unit = parseUnit(goalLabel) || parseUnit(startLabel);
   const toGo = (startNum != null && goalNum != null) ? Math.abs(Math.round((startNum - goalNum) * 10) / 10) : null;
+  const pct = (startNum && toGo != null) ? Math.round((toGo / startNum) * 100) : null;
   return `
     <div class="chart-card">
-      <div class="chart-header-row">
-        <div class="chart-top-label">
-          <span class="chart-top-caption">Today</span>
-          <span class="chart-top-value">${startLabel.replace(/^Now\s*/i, '')}${unit && !/[a-zA-Z%]/.test(startLabel) ? unit : ''}</span>
-        </div>
-        ${toGo != null ? `<div class="chart-stat-badge"><span class="chart-stat-num">&minus;${toGo}${unit}</span><span class="chart-stat-label">to go</span></div>` : ""}
-      </div>
+      <div class="chart-top-label"><span class="chart-top-value">${startLabel}</span></div>
+      ${toGo != null ? `<div class="chart-risk-headline">Reduce risk (${toGo}${unit})</div>` : ""}
       <div class="chart-svg-wrap">
         <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none">
           ${CHART_DEFS}
-          <path d="M 15,30 C 70,35 90,70 150,90 C 200,108 240,118 305,122 L 305,135 L 15,135 Z" fill="url(#areaFade)"/>
-          <path d="M 15,30 C 70,35 90,70 150,90 C 200,108 240,118 305,122" fill="none" stroke="#243d30" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow)"/>
-          <line x1="305" y1="122" x2="305" y2="98" stroke="#b8923f" stroke-width="1.5" stroke-dasharray="2,3" opacity="0.7"/>
-          ${todayMarker(15, 30)}
-          <circle cx="305" cy="122" r="6" fill="#243d30" filter="url(#dotGlow)"/>
+          <path d="M 15,30 C 70,35 90,70 150,90 C 200,108 240,118 305,122" fill="none" stroke="#5fae74" stroke-width="4" stroke-linecap="round" filter="url(#lineShadow)"/>
+          <circle cx="15" cy="30" r="4" fill="#3a9a55"/>
+          ${walkerBadge(75, 47)}
+          <circle cx="305" cy="122" r="6" fill="#3a9a55"/>
         </svg>
-        <div class="chart-callout" style="left:95%; top:65%;">
+        <div class="chart-callout chart-callout-green" style="left:95%; top:65%;">
           <span class="chart-callout-label">Goal</span>
           <span class="chart-callout-value">${goalLabel}</span>
         </div>
       </div>
       <div class="chart-axis-labels"><span>${axisStart}</span><span>${axisEnd}</span></div>
+      ${toGo != null ? `
+      <div class="chart-stat-box">
+        <span class="chart-stat-box-icon">&#129518;</span>
+        <div>
+          <p class="chart-stat-box-title">You only have to lose ${toGo}${unit}</p>
+          <p class="chart-stat-box-body">${pct != null ? `That's about ${pct}% of your body weight. ` : ""}${note || ""}</p>
+          ${source ? `<p class="chart-stat-box-source">${source}</p>` : ""}
+        </div>
+      </div>` : ""}
     </div>`;
 }
 
-// B) GOALS PAGE CHART — pulsing "today" start + gold goal dot, dashed "stay the course" reference, to-go stat
+// B) GOALS PAGE CHART — light shaded band (kept, distinct from Prediction)
+// + pink dashed comparator + light-green Goal callout, matching reference.
 function chartGoals(currentWeight, goalWeight, unit, axisStart, axisEnd) {
   const toGo = Math.abs(Math.round((currentWeight - goalWeight) * 10) / 10);
   return `
     <div class="chart-card">
-      <div class="chart-header-row">
-        <div class="chart-top-label">
-          <span class="chart-top-caption">Today</span>
-          <span class="chart-top-value">${currentWeight}${unit}</span>
-        </div>
-        <div class="chart-stat-badge"><span class="chart-stat-num">&minus;${toGo}${unit}</span><span class="chart-stat-label">to go</span></div>
-      </div>
       <div class="chart-svg-wrap">
         <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none">
           ${CHART_DEFS}
           <path d="M 15,28 C 90,18 180,15 305,28" fill="none" stroke="#b8923f" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.5"/>
           <path d="M 15,30 C 80,55 150,85 220,100 C 260,108 285,112 305,113 L 305,130 L 15,130 Z" fill="url(#areaFade)"/>
           <path d="M 15,30 C 80,55 150,85 220,100 C 260,108 285,112 305,113" fill="none" stroke="#243d30" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow)"/>
-          <line x1="305" y1="113" x2="305" y2="90" stroke="#b8923f" stroke-width="1.5" stroke-dasharray="2,3" opacity="0.7"/>
-          ${todayMarker(15, 30)}
-          <circle cx="305" cy="113" r="6" fill="#b8923f" filter="url(#dotGlow)"/>
+          <circle cx="15" cy="30" r="4" fill="#161f1a"/>
+          <circle cx="305" cy="113" r="5.5" fill="#161f1a"/>
         </svg>
-        <div class="chart-callout" style="left:95%; top:58%;">
-          <span class="chart-callout-label">Goal</span>
-          <span class="chart-callout-value">${goalWeight}${unit}</span>
-        </div>
+        <div class="chart-bubble" style="left:4%; top:6%;">Ahora ${currentWeight}${unit}</div>
+        <div class="chart-bubble" style="left:64%; top:54%;">Objetivo: ${goalWeight}${unit}</div>
       </div>
       <div class="chart-axis-labels"><span>${axisStart}</span><span>${axisEnd}</span></div>
     </div>`;
 }
 
-// C) ELIGIBILITY CHART — single-tone curve, pulsing "first results" marker tied to the user's own timeline
+// C) ELIGIBILITY CHART — two-tone filled area (orange -> green), matching the
+// competitor's high-impact reference exactly: solid color blocks under the
+// curve, not just a stroke line.
 function chartEligibility() {
   return `
     <div class="chart-card">
       <div class="chart-svg-wrap" style="height:170px;">
         <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none">
-          ${CHART_DEFS}
-          <path d="M 10,25 C 60,28 90,45 110,55 C 160,78 220,100 310,112" fill="none" stroke="#243d30" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow)"/>
-          ${todayMarker(110, 55)}
+          <defs>
+            <linearGradient id="eligOrangeFade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#e8965a" stop-opacity="0.85"/>
+              <stop offset="100%" stop-color="#e8965a" stop-opacity="0.05"/>
+            </linearGradient>
+            <linearGradient id="eligGreenFade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3aa66b" stop-opacity="0.75"/>
+              <stop offset="100%" stop-color="#3aa66b" stop-opacity="0.05"/>
+            </linearGradient>
+            <filter id="lineShadow2" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#161f1a" flood-opacity="0.16"/>
+            </filter>
+          </defs>
+          <path d="M 10,25 C 60,28 90,45 110,55 L 110,140 L 10,140 Z" fill="url(#eligOrangeFade)"/>
+          <path d="M 110,55 C 160,78 220,100 310,112 L 310,140 L 110,140 Z" fill="url(#eligGreenFade)"/>
+          <path d="M 10,25 C 60,28 90,45 110,55" fill="none" stroke="#d97a3c" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow2)"/>
+          <path d="M 110,55 C 160,78 220,100 310,112" fill="none" stroke="#2f6b48" stroke-width="3.5" stroke-linecap="round" filter="url(#lineShadow2)"/>
+          <line x1="110" y1="55" x2="110" y2="140" stroke="#fff" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.7"/>
+          <circle cx="110" cy="55" r="5" fill="#faf7f0" stroke="#d97a3c" stroke-width="3"/>
         </svg>
         <div class="chart-callout" style="left:34%; top:37%; transform: translate(-50%, -150%);">
-          <span class="chart-callout-label">&#9889; Your first results</span>
+          <span class="chart-callout-label">&#128640; First results</span>
         </div>
       </div>
       <div class="chart-axis-labels" style="justify-content:space-between;"><span>1 week</span><span>4 weeks</span><span>12 weeks</span></div>

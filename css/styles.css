@@ -597,6 +597,26 @@ body {
 }
 .chart-callout-label { font-weight: 600; color: var(--text-muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.03em; }
 .chart-callout-value { font-weight: 800; color: var(--sage-dark); font-size: 13px; }
+.chart-callout-green { background: var(--sage-light); border-color: var(--sage); }
+.chart-callout-green .chart-callout-label { color: var(--sage-dark); }
+
+/* Dark personalized bubbles (Goals page chart — "Ahora X" / "Objetivo: X") */
+.chart-bubble {
+  position: absolute; transform: translate(-50%, -130%);
+  background: #161f1a; color: white; font-size: 11px; font-weight: 700;
+  padding: 6px 11px; border-radius: 9px; text-align: center; white-space: nowrap;
+}
+.chart-bubble::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #161f1a; }
+
+/* "Reduce risk (Xkg)" headline inside the Prediction chart card */
+.chart-risk-headline { text-align: center; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+
+/* Explanatory stat box below the Prediction chart (matches reference's note box) */
+.chart-stat-box { display: flex; gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.chart-stat-box-icon { width: 34px; height: 34px; border-radius: 50%; background: var(--sage-light); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.chart-stat-box-title { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
+.chart-stat-box-body { font-size: 12px; color: var(--text-dark); margin: 0; line-height: 1.5; }
+.chart-stat-box-source { font-size: 10px; color: var(--text-muted); font-style: italic; margin: 6px 0 0; }
 
 .chart-pill { position: absolute; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 16px; white-space: nowrap; }
 
