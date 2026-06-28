@@ -290,10 +290,10 @@ const STEPS = [
   { id: "q29", type: "multi", section: "Lifestyle", progress: 0.90,
     title: "Do you follow any particular dietary pattern?",
     options: [
-      { v: "no", l: "No" }, { v: "low_carb", l: "Low-carb" }, { v: "vegetarian", l: "Vegetarian" },
-      { v: "plant", l: "Fully plant-based" }, { v: "pescatarian", l: "Pescatarian" },
-      { v: "lactose_free", l: "Lactose-free" }, { v: "gluten_free", l: "Gluten-free" },
-      { v: "keto", l: "Keto" }, { v: "other", l: "Other" },
+      { v: "no", l: "No", emoji: "🚫" }, { v: "low_carb", l: "Low-carb", emoji: "🍞" }, { v: "vegetarian", l: "Vegetarian", emoji: "🥦" },
+      { v: "plant", l: "Fully plant-based", emoji: "🌱" }, { v: "pescatarian", l: "Pescatarian", emoji: "🐟" },
+      { v: "lactose_free", l: "Lactose-free", emoji: "🥛" }, { v: "gluten_free", l: "Gluten-free", emoji: "🌾" },
+      { v: "keto", l: "Keto", emoji: "🥑" }, { v: "other", l: "Other", emoji: "✨" },
     ] },
 
   { id: "q30", type: "single", section: "Lifestyle", progress: 0.91,
