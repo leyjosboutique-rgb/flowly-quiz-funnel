@@ -596,7 +596,7 @@ body {
 .chart-header-row { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 4px; }
 .chart-top-label { display: flex; flex-direction: column; gap: 0; }
 .chart-top-caption { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-.chart-top-value { font-size: 22px; font-weight: 800; color: var(--text-dark); letter-spacing: -0.01em; }
+.chart-top-value { font-size: 14px; font-weight: 600; color: var(--text-muted); letter-spacing: -0.01em; }
 .chart-stat-badge {
   display: flex; flex-direction: column; align-items: flex-end; line-height: 1.1;
   background: var(--sage-light); border-radius: 12px; padding: 6px 12px;
@@ -632,7 +632,9 @@ body {
 .chart-bubble::after { content: ''; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: #161f1a; }
 
 /* "Reduce risk (Xkg)" headline inside the Prediction chart card */
-.chart-risk-headline { text-align: center; font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+.chart-top-row { position: relative; min-height: 20px; margin-bottom: 10px; }
+.chart-top-row .chart-top-label { position: absolute; left: 0; top: 2px; }
+.chart-risk-headline { text-align: center; font-weight: 800; font-size: 15px; color: var(--text-dark); margin: 0; }
 
 /* Explanatory stat box below the Prediction chart (matches reference's note box) */
 .chart-stat-box { display: flex; gap: 12px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }

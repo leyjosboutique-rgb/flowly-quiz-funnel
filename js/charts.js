@@ -55,8 +55,10 @@ function chartPrediction(startLabel, goalLabel, axisStart, axisEnd, note, source
   const pct = (startNum && toGo != null) ? Math.round((toGo / startNum) * 100) : null;
   return `
     <div class="chart-card">
-      <div class="chart-top-label"><span class="chart-top-value">${startLabel}</span></div>
-      ${toGo != null ? `<div class="chart-risk-headline">Reduce risk (${toGo}${unit})</div>` : ""}
+      <div class="chart-top-row">
+        <div class="chart-top-label"><span class="chart-top-value">${startLabel}</span></div>
+        ${toGo != null ? `<div class="chart-risk-headline">Decrease risk (${toGo}${unit})</div>` : ""}
+      </div>
       <div class="chart-svg-wrap">
         <svg viewBox="0 0 320 150" width="100%" height="150" preserveAspectRatio="none">
           ${CHART_DEFS}
