@@ -306,10 +306,24 @@ function renderNumberInput(step) {
 /* ---------------- TRANSITION (text only, may include a chart) ---------------- */
 function renderTransition(step) {
   const chartHtml = step.chartType === "stress" ? chartStress() : (step.chartType === "calm" ? chartCalm() : "");
-  const imgHtml = step.img ? `<div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360, natural: true })}</div>` : "";
+  if (step.img) {
+    app.innerHTML = `
+      <div class="step">
+        <div class="transition-card">
+          <div class="transition-card-img">${renderPlaceholder(step.img, { w: 560, h: 360, natural: true, noRadius: true })}</div>
+          <div class="transition-card-body">
+            <h1 class="step-title">${step.title}</h1>
+            <div class="transition-body">${step.body}</div>
+            ${step.source ? `<p class="transition-source">Source: ${step.source}</p>` : ""}
+          </div>
+        </div>
+        <button class="continue-btn" id="continue-btn">Continue</button>
+      </div>`;
+    document.getElementById("continue-btn").addEventListener("click", next);
+    return;
+  }
   app.innerHTML = `
     <div class="step">
-      ${imgHtml}
       ${chartHtml}
       <h1 class="step-title">${step.title}</h1>
       <div class="transition-body">${step.body}</div>
@@ -323,9 +337,13 @@ function renderTransition(step) {
 function renderTransitionImage(step) {
   app.innerHTML = `
     <div class="step">
-      <div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360, natural: true })}</div>
-      <h1 class="step-title">${step.title}</h1>
-      <div class="transition-body" style="text-align:center;">${step.body}</div>
+      <div class="transition-card">
+        <div class="transition-card-img">${renderPlaceholder(step.img, { w: 560, h: 360, natural: true, noRadius: true })}</div>
+        <div class="transition-card-body" style="text-align:center;">
+          <h1 class="step-title" style="text-align:center;">${step.title}</h1>
+          <div class="transition-body" style="text-align:center;">${step.body}</div>
+        </div>
+      </div>
       <button class="continue-btn" id="continue-btn">Continue</button>
     </div>`;
   document.getElementById("continue-btn").addEventListener("click", next);
@@ -412,9 +430,13 @@ function renderPrediction(step) {
 function renderBeforeAfterQuote(step) {
   app.innerHTML = `
     <div class="step">
-      <div class="transition-image">${renderPlaceholder(step.img, { w: 560, h: 360, natural: true })}</div>
-      <h1 class="step-title">&ldquo;${step.quote}&rdquo;</h1>
-      <p class="step-subtitle">${step.body}</p>
+      <div class="transition-card">
+        <div class="transition-card-img">${renderPlaceholder(step.img, { w: 560, h: 360, natural: true, noRadius: true })}</div>
+        <div class="transition-card-body" style="text-align:center;">
+          <h1 class="step-title" style="text-align:center;">&ldquo;${step.quote}&rdquo;</h1>
+          <p class="step-subtitle">${step.body}</p>
+        </div>
+      </div>
       <button class="continue-btn" id="continue-btn">Continue</button>
     </div>`;
   document.getElementById("continue-btn").addEventListener("click", next);

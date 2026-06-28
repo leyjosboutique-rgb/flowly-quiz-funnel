@@ -261,6 +261,20 @@ body {
 .transition-body b { color: var(--sage-dark); }
 .transition-source { font-size: 11px; color: var(--text-muted); margin-top: -14px; margin-bottom: 18px; font-style: italic; }
 
+/* Unified image+text card (Digesti-style): photo flush to the top corners,
+   content sits directly below with no gap, all one continuous white card */
+.transition-card {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 22px;
+}
+.transition-card-img { display: block; line-height: 0; }
+.transition-card-body { padding: 20px 22px 4px; }
+.transition-card-body .step-title { text-align: left; margin-top: 0; }
+.transition-card-body .transition-body { margin-bottom: 14px; }
+
 /* ---------- LOADING SCREEN ---------- */
 .loading-title { font-size: 20px; font-weight: 700; margin-bottom: 24px; }
 .loading-item { margin-bottom: 16px; }

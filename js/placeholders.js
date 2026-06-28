@@ -126,7 +126,9 @@ function renderPlaceholder(id, opts = {}) {
   const h = opts.h || ph.h;
   if (REAL_IMAGES[id]) {
     if (opts.natural) {
-      return `<img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; max-width:${w}px; height:auto; display:block; border-radius:10px;">`;
+      const r = opts.noRadius ? "0" : "10px";
+      const mw = opts.noRadius ? "100%" : `${w}px`;
+      return `<img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; max-width:${mw}; height:auto; display:block; border-radius:${r};">`;
     }
     const zoom = opts.zoom || ZOOM_OVERRIDES[id] || 1.25;
     const position = opts.position || POSITION_OVERRIDES[id] || "top center";
@@ -137,8 +139,10 @@ function renderPlaceholder(id, opts = {}) {
         <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:${position}; display:block; transform:scale(${zoom}); transform-origin:${position};">
       </div>`;
   }
+  const phMw = opts.noRadius ? "100%" : `${w}px`;
+  const phRadius = opts.noRadius ? "0" : "10px";
   return `
-    <div class="img-placeholder" style="aspect-ratio:${w}/${h}; max-width:${w}px; height:auto;">
+    <div class="img-placeholder" style="aspect-ratio:${w}/${h}; max-width:${phMw}; height:auto; border-radius:${phRadius};">
       <div class="ph-icon">&#128247;</div>
       <div class="ph-id">${id}</div>
       <div>${ph.label}</div>
