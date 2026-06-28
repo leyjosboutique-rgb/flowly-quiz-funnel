@@ -106,6 +106,7 @@ function renderAgeSelect(step) {
       <div class="gift-banner-big">${giftBoxSvg()}<span>${step.banner.replace("&#127873; ", "")}</span></div>
       <h1 class="step-title">${step.title}</h1>
       <p class="step-subtitle">${step.subtitle}</p>
+      <div class="title-divider"></div>
       <div class="photo-grid">
         ${step.cards.map(c => `
           <div class="photo-option avatar-style" data-v="${c.value}">

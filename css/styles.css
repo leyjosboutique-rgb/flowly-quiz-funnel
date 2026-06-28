@@ -125,17 +125,28 @@ body {
 @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
 .step-title {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   text-align: center;
   margin: 4px 0 6px;
-  line-height: 1.3;
+  line-height: 1.28;
+  letter-spacing: 0.2px;
 }
+.step-title b, .step-title strong,
+.goal-headline b, .goal-headline strong,
+.step-subtitle b, .step-subtitle strong { color: var(--sage-dark); }
 .step-subtitle {
-  font-size: 14px;
-  color: var(--text-muted);
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-dark);
   text-align: center;
-  margin: 0 0 22px;
+  margin: 0 0 10px;
+  letter-spacing: 0.3px;
+}
+.title-divider {
+  width: 46px; height: 3px; margin: 10px auto 22px;
+  background: var(--gold); border-radius: 2px;
 }
 .step-image-wrap { margin-bottom: 18px; border-radius: var(--radius); overflow: hidden; }
 
@@ -150,7 +161,8 @@ body {
   border-radius: 12px;
   padding: 16px 18px;
   cursor: pointer;
-  font-size: 15px;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 16px;
   font-weight: 600;
   transition: border-color .15s, background .15s, box-shadow .15s, transform .15s;
 }
@@ -174,11 +186,15 @@ body {
 .photo-option { cursor: pointer; text-align: center; border: 2px solid transparent; border-radius: 12px; padding: 6px; transition: border-color .15s, transform .15s; }
 .photo-option:hover { border-color: var(--sage); transform: translateY(-2px); }
 .photo-option.selected { border-color: var(--sage-dark); background: var(--sage-light); }
-.photo-option .ph-label { margin-top: 6px; font-size: 13px; font-weight: 600; }
+.photo-option .ph-label {
+  margin-top: 6px; font-size: 15px; font-weight: 600;
+  font-family: "Fraunces", Georgia, serif; color: var(--text-dark);
+}
 .photo-option.avatar-style .ph-label {
-  background: white; border-radius: 20px; padding: 7px 14px;
+  background: white; border-radius: 20px; padding: 9px 16px;
   margin: -16px auto 0; width: fit-content; box-shadow: var(--shadow);
-  display: flex; align-items: center; gap: 4px; position: relative; z-index: 2;
+  display: flex; align-items: center; gap: 6px; position: relative; z-index: 2;
+  font-size: 18px; font-weight: 600;
 }
 .photo-option.avatar-style .ph-label::after { content: '\203A'; color: var(--sage-dark); font-weight: 800; }
 
