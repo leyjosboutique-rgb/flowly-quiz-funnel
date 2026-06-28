@@ -121,16 +121,22 @@ const POSITION_OVERRIDES = {
   "IMG-Q5-butt": "center", "IMG-Q5-face": "center",
 };
 
+/* Bump this on every deploy that changes an existing image file so the
+   cache-busting query param forces browsers/CDN to fetch the new bytes
+   instead of serving the stale cached version of the same filename. */
+const ASSET_VERSION = "20260628b";
+
 function renderPlaceholder(id, opts = {}) {
   const ph = PLACEHOLDERS[id];
   if (!ph) return `<div class="img-placeholder" style="height:120px;">missing: ${id}</div>`;
   const w = opts.w || ph.w;
   const h = opts.h || ph.h;
   if (REAL_IMAGES[id]) {
+    const src = `assets/images/${REAL_IMAGES[id]}?v=${ASSET_VERSION}`;
     if (opts.natural) {
       const r = opts.noRadius ? "0" : "10px";
       const mw = opts.noRadius ? "100%" : `${w}px`;
-      return `<img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; max-width:${mw}; height:auto; display:block; border-radius:${r};">`;
+      return `<img src="${src}" alt="${ph.label}" style="width:100%; max-width:${mw}; height:auto; display:block; border-radius:${r};">`;
     }
     const zoom = opts.zoom || ZOOM_OVERRIDES[id] || 1.25;
     const position = opts.position || POSITION_OVERRIDES[id] || "top center";
@@ -138,7 +144,7 @@ function renderPlaceholder(id, opts = {}) {
     const bg = opts.shape === "arch" ? "var(--sage-light, #e9efe6)" : "#ffffff";
     return `
       <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:${radius}; overflow:hidden; background:${bg};">
-        <img src="assets/images/${REAL_IMAGES[id]}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:${position}; display:block; transform:scale(${zoom}); transform-origin:${position};">
+        <img src="${src}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:${position}; display:block; transform:scale(${zoom}); transform-origin:${position};">
       </div>`;
   }
   const phMw = opts.noRadius ? "100%" : `${w}px`;
