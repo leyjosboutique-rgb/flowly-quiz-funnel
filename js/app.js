@@ -506,10 +506,11 @@ function renderLoadingMulti(step) {
       <div id="testimonial-slot"></div>
     </div>`;
 
-  // realistic, non-instant pacing: each bar takes ~2.6-3.65s with live % ticking
+  // slower, deliberate pacing so each step reads as real personalized
+  // analysis happening, not an instant fake bar: ~4.2-6s per item.
   let totalDelay = 0;
   step.items.forEach((_, i) => {
-    const duration = 2600 + i * 350;
+    const duration = 4200 + i * 600;
     setTimeout(() => animateBar(i, duration), totalDelay);
     totalDelay += duration * 0.85;
   });
@@ -575,7 +576,7 @@ function renderLoadingMulti(step) {
       testimonialInterval = setInterval(() => {
         tIndex = (tIndex + 1) % testimonials.length;
         renderTestimonial(tIndex, true);
-      }, 2200);
+      }, 3400);
     }
   }, 1200);
 
