@@ -549,7 +549,15 @@ function renderLoadingMulti(step) {
     document.querySelectorAll("#side-question .option-card").forEach(c => {
       c.addEventListener("click", () => {
         c.classList.add("selected");
-        setTimeout(() => stepEl.classList.remove("spotlight-active"), 500);
+        setTimeout(() => {
+          const sqEl = document.getElementById("side-question");
+          sqEl.style.transition = "opacity .35s ease, max-height .35s ease";
+          sqEl.style.opacity = "0";
+          sqEl.style.maxHeight = sqEl.offsetHeight + "px";
+          requestAnimationFrame(() => { sqEl.style.maxHeight = "0"; sqEl.style.marginTop = "0"; sqEl.style.overflow = "hidden"; });
+          stepEl.classList.remove("spotlight-active");
+          setTimeout(() => { sqEl.innerHTML = ""; }, 400);
+        }, 500);
       });
     });
   }, 500);
