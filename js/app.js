@@ -35,7 +35,7 @@ function fmtDateEs(daysFromNow) {
 function interpolate(str) {
   if (!str) return str;
   return str
-    .replace(/{{goalWeight}}/g, state.goalWeight + (state.unitWeight === "kg" ? "kg" : "lb"))
+    .replace(/{{goalWeight}}/g, `<b>${state.goalWeight}${state.unitWeight === "kg" ? "kg" : "lb"}</b>`)
     .replace(/{{currentWeight}}/g, state.currentWeight + (state.unitWeight === "kg" ? "kg" : "lb"))
     .replace(/{{date90}}/g, fmtDate(90))
     .replace(/{{date30}}/g, fmtDate(30));
@@ -441,7 +441,7 @@ function renderLoadingSingle(step) {
 
 /* ---------------- PREDICTION CHART (Prediction #1 / #2) ---------------- */
 function renderPrediction(step) {
-  const fromLabel = `Now ${state.currentWeight}${state.unitWeight === "kg" ? "kg" : "lb"}`;
+  const fromLabel = `${state.currentWeight}${state.unitWeight === "kg" ? "kg" : "lb"}`;
   const toLabel = `${state.goalWeight}${state.unitWeight === "kg" ? "kg" : "lb"}`;
   const chart = chartPrediction(fromLabel, toLabel, "Now", step.short ? fmtDate(30) : fmtDate(90), step.note, step.source);
   const headline = step.subtitleDynamic
