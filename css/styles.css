@@ -315,6 +315,23 @@ body {
 .mini-testimonial { background: white; border-radius: 12px; padding: 14px; font-size: 12px; flex: 1; box-shadow: var(--shadow); }
 .stars { color: #f5b400; margin-bottom: 4px; }
 
+/* Spotlight effect: while the side-question is up, dim everything else
+   on the loading screen so the question card reads like a focused modal,
+   matching the competitor's treatment. */
+.step.spotlight-active > .loading-title,
+.step.spotlight-active > .loading-item,
+.step.spotlight-active > .social-proof-line,
+.step.spotlight-active > #testimonial-slot {
+  opacity: 0.32; filter: grayscale(0.4); transition: opacity .35s ease, filter .35s ease;
+  pointer-events: none;
+}
+.spotlight-card {
+  position: relative; z-index: 5;
+  box-shadow: 0 14px 36px rgba(22,31,26,0.22);
+  transform: scale(1.02);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
 /* ---------- PREDICTION CHART ---------- */
 .prediction-chart-card { background: white; border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); margin-bottom: 18px; }
 .chart-svg-wrap { position: relative; }

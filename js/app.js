@@ -530,11 +530,15 @@ function renderLoadingMulti(step) {
     tick();
   }
 
-  // side micro-question appears early
+  // side micro-question appears early — spotlighted as a floating card,
+  // dimming the rest of the screen (loading bars + testimonial) like the
+  // competitor's modal-style focus treatment.
+  const stepEl = document.querySelector(".step");
   setTimeout(() => {
     const sq = step.sideQuestion;
+    stepEl.classList.add("spotlight-active");
     document.getElementById("side-question").innerHTML = `
-      <div class="feature-box" style="background:var(--sage-light);">
+      <div class="feature-box spotlight-card" style="background:var(--sage-light);">
         <p style="font-weight:700; margin-bottom:10px;">${sq.title}</p>
         <p style="font-size:14px; margin-bottom:10px;">${sq.question}</p>
         <div class="options-list" style="gap:8px;">
@@ -542,7 +546,10 @@ function renderLoadingMulti(step) {
         </div>
       </div>`;
     document.querySelectorAll("#side-question .option-card").forEach(c => {
-      c.addEventListener("click", () => { c.classList.add("selected"); });
+      c.addEventListener("click", () => {
+        c.classList.add("selected");
+        setTimeout(() => stepEl.classList.remove("spotlight-active"), 500);
+      });
     });
   }, 500);
 
