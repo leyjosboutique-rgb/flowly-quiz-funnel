@@ -131,7 +131,7 @@ const POSITION_OVERRIDES = {
 /* Bump this on every deploy that changes an existing image file so the
    cache-busting query param forces browsers/CDN to fetch the new bytes
    instead of serving the stale cached version of the same filename. */
-const ASSET_VERSION = "20260628e";
+const ASSET_VERSION = "20260628f";
 
 function renderPlaceholder(id, opts = {}) {
   const ph = PLACEHOLDERS[id];
@@ -140,6 +140,12 @@ function renderPlaceholder(id, opts = {}) {
   const h = opts.h || ph.h;
   if (REAL_IMAGES[id]) {
     const src = `assets/images/${REAL_IMAGES[id]}?v=${ASSET_VERSION}`;
+    if (opts.contain) {
+      return `
+        <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden; background:#fff; margin:0 auto; display:flex; align-items:center; justify-content:center;">
+          <img src="${src}" alt="${ph.label}" style="width:100%; height:100%; object-fit:contain; display:block;">
+        </div>`;
+    }
     if (opts.natural) {
       const r = opts.noRadius ? "0" : "10px";
       const mw = opts.noRadius ? "100%" : `${w}px`;

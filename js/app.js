@@ -792,16 +792,16 @@ function renderCheckout() {
       <h2 class="step-title">Success stories</h2>
       <div class="testimonial-card">
         <div class="before-after-row">
-          <div class="ba-col">${renderPlaceholder("IMG-16-before", { w: 140, h: 180, natural: true })}</div>
-          <div class="ba-col">${renderPlaceholder("IMG-16-after", { w: 140, h: 180, natural: true })}</div>
+          <div class="ba-col">${renderPlaceholder("IMG-16-before", { w: 140, h: 200, contain: true })}</div>
+          <div class="ba-col">${renderPlaceholder("IMG-16-after", { w: 140, h: 200, contain: true })}</div>
         </div>
         <div class="testimonial-name-row"><div><b>Martha S.</b><br><span style="font-size:12px;color:var(--text-muted);">Los Angeles, CA</span></div><div style="text-align:right;"><b>-40lbs</b><br><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div>
         <p style="font-size:13px;">I used to think weight loss was impossible after years of strict diets and tough workouts. Then I tried Tai Chi walking. When I focused on gentle, steady movement, the results came quickly. I didn't just lose weight (40 lbs). I also slept better, felt calmer, and noticed positive changes in my body.</p>
       </div>
       <div class="testimonial-card">
         <div class="before-after-row">
-          <div class="ba-col">${renderPlaceholder("IMG-17-before", { w: 140, h: 180, natural: true })}</div>
-          <div class="ba-col">${renderPlaceholder("IMG-17-after", { w: 140, h: 180, natural: true })}</div>
+          <div class="ba-col">${renderPlaceholder("IMG-17-before", { w: 140, h: 200, contain: true })}</div>
+          <div class="ba-col">${renderPlaceholder("IMG-17-after", { w: 140, h: 200, contain: true })}</div>
         </div>
         <div class="testimonial-name-row"><div><b>Suzy B.</b><br><span style="font-size:12px;color:var(--text-muted);">Seattle, WA</span></div><div style="text-align:right;"><b>-60lbs</b><br><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div>
         <p style="font-size:13px;">I've tried many weight-loss programs, but this one is different. It focuses on gentle, balanced movement. Even if you're a beginner or haven't moved in ages, it makes weight loss feel natural. This approach finally led to significant weight loss for me. My energy is higher, and my joints feel better too.</p>
