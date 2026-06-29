@@ -131,7 +131,7 @@ const POSITION_OVERRIDES = {
 /* Bump this on every deploy that changes an existing image file so the
    cache-busting query param forces browsers/CDN to fetch the new bytes
    instead of serving the stale cached version of the same filename. */
-const ASSET_VERSION = "20260628f";
+const ASSET_VERSION = "20260628g";
 
 function renderPlaceholder(id, opts = {}) {
   const ph = PLACEHOLDERS[id];
