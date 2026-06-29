@@ -143,7 +143,7 @@ function renderPlaceholder(id, opts = {}) {
     const radius = opts.shape === "arch" ? "50% 50% 8px 8px" : "10px";
     const bg = opts.shape === "arch" ? "var(--sage-light, #e9efe6)" : "#ffffff";
     return `
-      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:${radius}; overflow:hidden; background:${bg}; margin:0 auto;">
+      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:${radius}; overflow:hidden; background:${bg};${opts.noCenter ? "" : " margin:0 auto;"}">
         <img src="${src}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:${position}; display:block; transform:scale(${zoom}); transform-origin:${position};">
       </div>`;
   }
