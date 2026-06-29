@@ -757,13 +757,21 @@ function renderCheckout() {
 
       <div class="feature-box" style="background:#e8f0fc;">
         <h3 style="text-align:center;margin-top:0;">Your plan includes</h3>
-        <div class="feature-line">&#128221; Personalized Tai Chi walking workout plan</div>
-        <div class="feature-line">&#128340; 7-15 minute low-impact daily routines</div>
-        <div class="feature-line">&#129497; Beginner-friendly mobility and balance exercises</div>
-        <div class="feature-line">&#129534; Joint-friendly movement plan</div>
-        <div class="feature-line">&#128202; Progress tracking</div>
-        <div class="feature-line">&#128153; 24/7 Support group</div>
-        <div class="feature-line">&#127858; Simple nutrition guidance to support your results</div>
+        <div class="value-stack-row"><div class="feature-line">&#128221; Personalized Tai Chi walking workout plan</div><span class="value-stack-price">$49</span></div>
+        <div class="value-stack-row"><div class="feature-line">&#128340; 7-15 minute low-impact daily routines</div><span class="value-stack-price">$19</span></div>
+        <div class="value-stack-row"><div class="feature-line">&#129497; Beginner-friendly mobility and balance exercises</div><span class="value-stack-price">$15</span></div>
+        <div class="value-stack-row"><div class="feature-line">&#129534; Joint-friendly movement plan</div><span class="value-stack-price">$12</span></div>
+        <div class="value-stack-row"><div class="feature-line">&#128202; Progress tracking</div><span class="value-stack-price">$9</span></div>
+        <div class="value-stack-row bonus"><div class="feature-line">&#128153; <b>FREE BONUS</b> &mdash; 24/7 Support group</div><span class="value-stack-price">$29</span></div>
+        <div class="value-stack-row bonus"><div class="feature-line">&#127858; <b>FREE BONUS</b> &mdash; Nutrition guidance to support your results</div><span class="value-stack-price">$19</span></div>
+        <div class="value-stack-total-row">
+          <span>Total value</span>
+          <span class="value-stack-total-price">$152</span>
+        </div>
+        <div class="value-stack-today-row">
+          <span>Your price today</span>
+          <span class="value-stack-today-price" id="value-stack-today-price">Just $0.36/day</span>
+        </div>
       </div>
 
       <h2 class="step-title" style="font-size:20px;">Start feeling stronger, lighter, and more mobile in 4 weeks</h2>
@@ -787,8 +795,12 @@ function renderCheckout() {
           </div>`).join("")}
       </div>
       <p style="font-size:12px; display:flex; gap:8px; align-items:flex-start;">&#128202; People using the plan for <b>12 weeks</b> achieve <b>double the results</b> as for 4 weeks<br><span style="font-size:11px;color:var(--text-muted);">*According to a study by Flowly, 2024</span></p>
-      <p class="guarantee-link">30-DAY MONEY-BACK GUARANTEE</p>
       <button class="continue-btn pink" id="get-plan-btn">GET MY PLAN</button>
+      <div class="guarantee-badge-row">
+        <div class="guarantee-badge"><span class="guarantee-badge-icon">&#128176;</span><span>30-Day<br>Money-Back</span></div>
+        <div class="guarantee-badge-text">If you don't see results in 30 days, get a full refund &mdash; no questions asked.</div>
+      </div>
+      <p style="text-align:center; font-size:12px; color:var(--text-muted); margin:14px 0 0;">&#128101; Join <b>163,432+</b> women already on their plan</p>
 
       <div class="press-row">
         <span style="font-size:11px;color:var(--text-muted);width:100%;text-align:center;">TAI CHI WALKING FEATURED IN</span>
@@ -859,6 +871,9 @@ function renderCheckout() {
   function selectPlan(id) {
     state.selectedPlan = id;
     document.querySelectorAll(".price-option").forEach(el => el.classList.toggle("selected", el.dataset.id === id));
+    const plan = plans.find(p => p.id === id);
+    const stackPriceEl = document.getElementById("value-stack-today-price");
+    if (plan && stackPriceEl) stackPriceEl.textContent = `Just ${plan.perDay}/day`;
     updateCheckoutSummary();
   }
   function updateCheckoutSummary() {
