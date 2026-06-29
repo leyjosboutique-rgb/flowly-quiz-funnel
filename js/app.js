@@ -32,11 +32,21 @@ function fmtDateEs(daysFromNow) {
   return `${d.getDate()} De ${months[d.getMonth()]}`;
 }
 
+/* currentWeight/goalWeight are always stored normalized in kg — convert
+   back to the person's chosen display unit (lb/kg) here, once, so every
+   screen that shows weight stays consistent with their actual answer. */
+function displayWeight(kg) {
+  return state.unitWeight === "kg" ? kg : Math.round(kg / 0.4536);
+}
+function weightUnitLabel() {
+  return state.unitWeight === "kg" ? "kg" : "lb";
+}
+
 function interpolate(str) {
   if (!str) return str;
   return str
-    .replace(/{{goalWeight}}/g, `<b>${state.goalWeight}${state.unitWeight === "kg" ? "kg" : "lb"}</b>`)
-    .replace(/{{currentWeight}}/g, state.currentWeight + (state.unitWeight === "kg" ? "kg" : "lb"))
+    .replace(/{{goalWeight}}/g, `<b>${displayWeight(state.goalWeight)}${weightUnitLabel()}</b>`)
+    .replace(/{{currentWeight}}/g, displayWeight(state.currentWeight) + weightUnitLabel())
     .replace(/{{date90}}/g, fmtDate(90))
     .replace(/{{date30}}/g, fmtDate(30));
 }
@@ -329,8 +339,8 @@ function renderNumberInput(step) {
     if (!validateRange(val)) return;
     setAnswer(step.id, val);
     if (step.id === "q6") state.heightCm = currentUnit === "cm" ? val : Math.round(val * 30.48);
-    if (step.id === "q7") state.currentWeight = Math.round(currentUnit === "kg" ? val : val * 0.4536);
-    if (step.id === "q8") state.goalWeight = Math.round(currentUnit === "kg" ? val : val * 0.4536);
+    if (step.id === "q7") { state.currentWeight = Math.round(currentUnit === "kg" ? val : val * 0.4536); state.unitWeight = currentUnit; }
+    if (step.id === "q8") { state.goalWeight = Math.round(currentUnit === "kg" ? val : val * 0.4536); state.unitWeight = currentUnit; }
     next();
   });
 }
@@ -441,8 +451,8 @@ function renderLoadingSingle(step) {
 
 /* ---------------- PREDICTION CHART (Prediction #1 / #2) ---------------- */
 function renderPrediction(step) {
-  const fromLabel = `${state.currentWeight}${state.unitWeight === "kg" ? "kg" : "lb"}`;
-  const toLabel = `${state.goalWeight}${state.unitWeight === "kg" ? "kg" : "lb"}`;
+  const fromLabel = `${displayWeight(state.currentWeight)}${weightUnitLabel()}`;
+  const toLabel = `${displayWeight(state.goalWeight)}${weightUnitLabel()}`;
   const chart = chartPrediction(fromLabel, toLabel, "Now", step.short ? fmtDate(30) : fmtDate(90), step.note, step.source, step.simple);
   const headline = step.subtitleDynamic
     ? `<p class="pred-small-title">${step.title}</p><p class="pred-predict-label">${step.predictLabel || ""}</p><h1 class="pred-result-line">${interpolate(step.subtitleDynamic)}</h1>`
@@ -653,12 +663,14 @@ function renderNameCapture(step) {
 /* ---------------- GOALS PAGE (+ shaded/comparator chart) ---------------- */
 function renderGoals(step) {
   const name = state.name || "there";
-  const unit = state.unitWeight === "kg" ? "kg" : "lb";
+  const unit = weightUnitLabel();
+  const goalW = displayWeight(state.goalWeight);
+  const currentW = displayWeight(state.currentWeight);
   app.innerHTML = `
     <div class="step">
-      <h1 class="goal-headline">${name}, reach your goal of <span class="accent">${state.goalWeight}${unit} by</span> ${fmtDate(30)}</h1>
+      <h1 class="goal-headline">${name}, reach your goal of <span class="accent">${goalW}${unit} by</span> ${fmtDate(30)}</h1>
       <p class="step-subtitle" style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:400; color:var(--text-muted); font-size:14px;">And build a body you feel good living in</p>
-      ${chartGoals(state.currentWeight, state.goalWeight, unit, "Now", fmtDate(30))}
+      ${chartGoals(currentW, goalW, unit, "Now", fmtDate(30))}
       <div class="feature-box">
         <div class="feature-line">&#127939; Slim down and tone up with gentle but effective workouts</div>
         <div class="feature-line">&#127968; Fat-burning workouts, no equipment needed</div>
