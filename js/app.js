@@ -498,7 +498,7 @@ function renderEligibility(step) {
       <h1 class="step-title" style="color:var(--sage-dark); text-align:left; font-size:22px;">${step.title}</h1>
       <p class="step-subtitle" style="text-align:left; font-family:'Plus Jakarta Sans',sans-serif; font-weight:400; font-size:14px; color:var(--text-muted);">${step.body}</p>
       ${chartEligibility()}
-      <p style="font-size:13px; display:flex; gap:10px; align-items:flex-start;"><span class="chart-stat-box-icon" style="font-size:16px;">&#128241;</span>${interpolate(step.note)}</p>
+      <p style="font-size:13px; display:flex; gap:10px; align-items:flex-start;"><span class="chart-stat-box-icon" style="font-size:16px;">&#128241;</span><span>${interpolate(step.note)}</span></p>
       <button class="continue-btn" id="continue-btn">Continue</button>
     </div>`;
   document.getElementById("continue-btn").addEventListener("click", next);
@@ -762,8 +762,8 @@ function renderCheckout() {
         <div class="value-stack-row"><div class="feature-line">&#129497; Beginner-friendly mobility and balance exercises</div><span class="value-stack-price">$15</span></div>
         <div class="value-stack-row"><div class="feature-line">&#129534; Joint-friendly movement plan</div><span class="value-stack-price">$12</span></div>
         <div class="value-stack-row"><div class="feature-line">&#128202; Progress tracking</div><span class="value-stack-price">$9</span></div>
-        <div class="value-stack-row bonus"><div class="feature-line">&#128153; <b>FREE BONUS</b> &mdash; 24/7 Support group</div><span class="value-stack-price">$29</span></div>
-        <div class="value-stack-row bonus"><div class="feature-line">&#127858; <b>FREE BONUS</b> &mdash; Nutrition guidance to support your results</div><span class="value-stack-price">$19</span></div>
+        <div class="value-stack-row bonus"><div class="feature-line">&#128153; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; 24/7 Support group</div><span class="value-stack-price">$29</span></div>
+        <div class="value-stack-row bonus"><div class="feature-line">&#127858; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; Nutrition guidance to support your results</div><span class="value-stack-price">$19</span></div>
         <div class="value-stack-total-row">
           <span>Total value</span>
           <span class="value-stack-total-price">$152</span>
@@ -794,7 +794,7 @@ function renderCheckout() {
             </div>
           </div>`).join("")}
       </div>
-      <p style="font-size:12px; display:flex; gap:8px; align-items:flex-start;">&#128202; People using the plan for <b>12 weeks</b> achieve <b>double the results</b> as for 4 weeks<br><span style="font-size:11px;color:var(--text-muted);">*According to a study by Flowly, 2024</span></p>
+      <p style="font-size:12px; line-height:1.5;">&#128202; People using the plan for <b>12 weeks</b> achieve <b>double the results</b> as for 4 weeks<br><span style="font-size:11px;color:var(--text-muted);">*According to a study by Flowly, 2024</span></p>
       <button class="continue-btn pink" id="get-plan-btn">GET MY PLAN</button>
       <div class="guarantee-badge-row">
         <div class="guarantee-badge"><span class="guarantee-badge-icon">&#128176;</span><span>30-Day<br>Money-Back</span></div>

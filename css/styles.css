@@ -795,7 +795,7 @@ body {
   .ba-stat-label { font-size: 11px; }
   .ba-stat-value { font-size: 13px; }
 
-  .value-stack-row { flex-wrap: wrap; }
+  .value-stack-row { align-items: flex-start; }
   .value-stack-row .feature-line { font-size: 13px; }
   .value-stack-today-row { font-size: 14px; }
   .value-stack-today-row .value-stack-today-price { font-size: 16px; }
