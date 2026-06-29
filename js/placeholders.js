@@ -136,14 +136,14 @@ function renderPlaceholder(id, opts = {}) {
     if (opts.natural) {
       const r = opts.noRadius ? "0" : "10px";
       const mw = opts.noRadius ? "100%" : `${w}px`;
-      return `<img src="${src}" alt="${ph.label}" style="width:100%; max-width:${mw}; height:auto; display:block; border-radius:${r};">`;
+      return `<img src="${src}" alt="${ph.label}" style="width:100%; max-width:${mw}; height:auto; display:block; margin:0 auto; border-radius:${r};">`;
     }
     const zoom = opts.zoom || ZOOM_OVERRIDES[id] || 1.25;
     const position = opts.position || POSITION_OVERRIDES[id] || "top center";
     const radius = opts.shape === "arch" ? "50% 50% 8px 8px" : "10px";
     const bg = opts.shape === "arch" ? "var(--sage-light, #e9efe6)" : "#ffffff";
     return `
-      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:${radius}; overflow:hidden; background:${bg};">
+      <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:${radius}; overflow:hidden; background:${bg}; margin:0 auto;">
         <img src="${src}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:${position}; display:block; transform:scale(${zoom}); transform-origin:${position};">
       </div>`;
   }
