@@ -103,7 +103,7 @@ const STEPS = [
     source: "*Looking at Flowly members like you &mdash; American Heart Association" },
 
   { id: "ba1", type: "before-after-quote", section: "My Profile",
-    splitPhoto: true,
+    img: "IMG-07",
     quote: "A goal without a plan is just a wish.",
     body: "Women in their 55s may need an approach tailored to their unique needs." },
 
