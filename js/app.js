@@ -715,6 +715,13 @@ function beforeAfterImg(which) {
   return q4Map[state.answers.q4] || "IMG-15-after";
 }
 
+/* TODO: replace with the real Hotmart checkout URL for each plan. */
+const HOTMART_LINKS = {
+  "1week": "https://pay.hotmart.com/REPLACE-1WEEK",
+  "4week": "https://pay.hotmart.com/REPLACE-4WEEK",
+  "12week": "https://pay.hotmart.com/REPLACE-12WEEK",
+};
+
 function barSegments(filled) {
   return [1, 2, 3].map(i => `<span class="ba-bar-seg ${i <= filled ? (filled >= 3 ? "filled-high" : "filled-low") : ""}"></span>`).join("");
 }
@@ -726,24 +733,24 @@ function renderCheckout() {
   startCheckoutTimer();
 
   const plans = [
-    { id: "1week", label: "1-week plan", oldPrice: "$21.99", newPrice: "$5.19", perDay: "$0.74" },
-    { id: "4week", label: "4-week plan", oldPrice: "$49.95", newPrice: "$9.99", perDay: "$0.36", badge: true },
-    { id: "12week", label: "12-week plan", oldPrice: "$84.95", newPrice: "$19.99", perDay: "$0.24" },
+    { id: "1week", label: "1-week plan", oldPrice: "$21.99", newPrice: "$9.00", perDay: "$1.29" },
+    { id: "4week", label: "4-week plan", oldPrice: "$49.95", newPrice: "$15.00", perDay: "$0.54", badge: true },
+    { id: "12week", label: "12-week plan", oldPrice: "$84.95", newPrice: "$25.00", perDay: "$0.30" },
   ];
 
   app.innerHTML = `
     <div class="step">
-      <div style="text-align:center;"><span class="irresistible-badge">&#128293; Limited-time offer</span></div>
+      <div style="text-align:center;"><span class="irresistible-badge">&#128293; Limited-time offer &mdash; price goes up soon</span></div>
       <h1 class="step-title">Your personalized Tai Chi walking workout plan is ready</h1>
-      <div class="before-after-row">
-        <div class="ba-col">
+      <div class="before-after-row ba-emphasis-after">
+        <div class="ba-col ba-muted">
           <span class="ba-tag before">BEFORE</span>
           ${renderPlaceholder(beforeAfterImg("before"), { w: 220, h: 270, zoom: 1.0 })}
           <div class="ba-stat-label">Body fat</div><div class="ba-stat-value">High</div>
           <div class="ba-bar-row">${barSegments(1)}</div>
           <div class="ba-stat-label">Energy levels</div><div class="ba-stat-value">Low</div>
         </div>
-        <div class="ba-col">
+        <div class="ba-col ba-highlight">
           <span class="ba-tag after">AFTER</span>
           ${renderPlaceholder(beforeAfterImg("after"), { w: 220, h: 270, zoom: 1.0 })}
           <div class="ba-stat-label">Body fat</div><div class="ba-stat-value">Low</div>
@@ -767,7 +774,7 @@ function renderCheckout() {
         </div>
         <div class="value-stack-today-row">
           <span>Your price today</span>
-          <span class="value-stack-today-price" id="value-stack-today-price">Just $0.36/day</span>
+          <span class="value-stack-today-price" id="value-stack-today-price">Just $0.54/day</span>
         </div>
       </div>
 
@@ -802,7 +809,7 @@ function renderCheckout() {
       <div class="press-row">
         <span style="font-size:11px;color:var(--text-muted);width:100%;text-align:center;">TAI CHI WALKING FEATURED IN</span>
         <span class="press-logo">BUSINESS INSIDER</span><span class="press-logo">The New York Times</span>
-        <span class="press-logo">Women'sHealth</span><span class="press-logo">Men'sHealth</span><span class="press-logo">SHAPE</span>
+        <span class="press-logo">Women'sHealth</span><span class="press-logo">SHAPE</span>
       </div>
 
       <h2 class="step-title">Success stories</h2>
@@ -828,31 +835,16 @@ function renderCheckout() {
       ${renderReview("IMG-18b", "Sandra Jane", "No more stiff joints! With Flowly Tai Chi walking, I finally feel free. I believe I feel better than I did in my 20s. I know it sounds funny, but that's how I feel after losing those extra pounds!")}
       ${renderReview("IMG-18c", "AmeliaXC", "Tai Chi walking helped me lose 22lbs last month. I can't imagine stopping it. Not only did I lose weight, but my confidence is back. My friends say I've changed!")}
 
-      <h2 class="step-title">Get visible results in 4 weeks</h2>
+      <h2 class="step-title">Get visible results<br><span class="accent">in 4 weeks</span></h2>
       <div style="display:flex; justify-content:space-around; text-align:center; margin-bottom:20px;">
         <div><div style="font-size:22px;">&#9989;</div><div style="font-size:12px;color:var(--text-muted);">Perfect for</div><div style="font-weight:700;">Women Over 55</div></div>
-        <div><div style="font-size:22px;">&#127942;</div><div style="font-size:12px;color:var(--text-muted);">Goal</div><div style="font-weight:700;">Lose 8kg</div></div>
+        <div><div style="font-size:22px;">&#127919;</div><div style="font-size:12px;color:var(--text-muted);">Goal</div><div style="font-weight:700;">Lose 8kg</div></div>
       </div>
 
       <h2 class="step-title">Checkout</h2>
       <div class="checkout-summary" id="checkout-summary"></div>
-      <div class="pay-btn-row">
-        <button class="pay-btn pay-paypal">PayPal</button>
-      </div>
-      <p class="divider-text">OR PAY BY CREDIT CARD</p>
-      <div class="pay-btn-row">
-        <button class="pay-btn pay-gpay">Buy with G Pay</button>
-      </div>
-      <p style="font-size:13px;font-weight:600;margin-bottom:4px;">Name on card</p>
-      <input class="text-input" style="margin-bottom:12px;width:100%;" placeholder="Jane Doe">
-      <p style="font-size:13px;font-weight:600;margin-bottom:4px;">Card number</p>
-      <input class="text-input" style="margin-bottom:12px;width:100%;" placeholder="1234 1234 1234 1234">
-      <div style="display:flex;gap:10px;margin-bottom:14px;">
-        <div style="flex:1;"><p style="font-size:13px;font-weight:600;margin-bottom:4px;">Expiration</p><input class="text-input" style="width:100%;" placeholder="MM / YY"></div>
-        <div style="flex:1;"><p style="font-size:13px;font-weight:600;margin-bottom:4px;">CVC</p><input class="text-input" style="width:100%;" placeholder="CVC"></div>
-      </div>
-      <button class="continue-btn" id="submit-payment-btn">Submit secure payment &#128274;</button>
-      <p style="text-align:center;font-size:12px;margin:14px 0;">Guaranteed <b>safe checkout</b></p>
+      <button class="continue-btn pink" id="submit-payment-btn">Continue to secure checkout &#128274;</button>
+      <p style="text-align:center;font-size:12px;margin:14px 0;">Guaranteed <b>safe checkout</b> &mdash; powered by Hotmart</p>
       <div class="trust-row"><span>&#128274; No hidden fees</span><span>&#128274; Secure SSL-protected</span><span>&#128274; Cancel Anytime</span></div>
       <p class="fine-print" id="fine-print-billing"></p>
       <div class="guarantee-box">
@@ -875,15 +867,16 @@ function renderCheckout() {
   }
   function updateCheckoutSummary() {
     const map = {
-      "1week": { plan: "1 week plan", old: 21.99, price: 5.19, fee: 1.50, renew: 21.99 },
-      "4week": { plan: "4 weeks plan", old: 49.95, price: 9.99, fee: 2.79, renew: 49.95 },
-      "12week": { plan: "12 weeks plan", old: 84.95, price: 19.99, fee: 3.90, renew: 84.95 },
+      "1week": { plan: "1 week plan", old: 21.99, price: 9.00, fee: 1.50, renew: 29.90 },
+      "4week": { plan: "4 weeks plan", old: 49.95, price: 15.00, fee: 2.79, renew: 29.90 },
+      "12week": { plan: "12 weeks plan", old: 84.95, price: 25.00, fee: 3.90, renew: 29.90 },
     };
     const p = map[state.selectedPlan];
     const total = (p.price + p.fee).toFixed(2);
+    const discountPct = Math.round((1 - p.price / p.old) * 100);
     document.getElementById("checkout-summary").innerHTML = `
       <div class="checkout-summary-row"><span>${p.plan}</span><span style="text-decoration:line-through;color:var(--text-muted);">$${p.old.toFixed(2)}</span></div>
-      <div class="checkout-summary-row discount"><span>Discount (-80%)</span><span>-$${(p.old - p.price).toFixed(2)}</span></div>
+      <div class="checkout-summary-row discount"><span>Discount (-${discountPct}%)</span><span>-$${(p.old - p.price).toFixed(2)}</span></div>
       <div class="checkout-summary-row"><span>Service fee</span><span>$${p.fee.toFixed(2)}</span></div>
       <div class="checkout-summary-row total"><span>Total</span><span>$${total}</span></div>`;
     document.getElementById("fine-print-billing").textContent =
@@ -892,18 +885,22 @@ function renderCheckout() {
   document.querySelectorAll(".price-option").forEach(el => el.addEventListener("click", () => selectPlan(el.dataset.id)));
   updateCheckoutSummary();
   document.getElementById("get-plan-btn").addEventListener("click", () => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }));
-  document.getElementById("submit-payment-btn").addEventListener("click", () => { stopCheckoutTimer(); next(); });
+  document.getElementById("submit-payment-btn").addEventListener("click", () => {
+    stopCheckoutTimer();
+    const url = HOTMART_LINKS[state.selectedPlan];
+    if (url) { window.location.href = url; } else { next(); }
+  });
 }
 
 function renderReview(imgId, name, text) {
   return `
-    <div class="review-card">
-      <div class="review-header">
-        ${renderPlaceholder(imgId, { w: 44, h: 44 })}
+    <div class="review-card review-card-row">
+      <div class="review-avatar-col">${renderPlaceholder(imgId, { w: 48, h: 48 })}</div>
+      <div class="review-body-col">
         <div class="name">${name}</div>
-        <div style="margin-left:auto;" class="review-stars-badge">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p style="font-size:14px; line-height:1.5; margin:4px 0 0;">${text}</p>
       </div>
-      <p style="font-size:14px; line-height:1.5;margin:0;">${text}</p>
+      <div class="review-stars-col"><span class="review-stars-badge">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
     </div>`;
 }
 

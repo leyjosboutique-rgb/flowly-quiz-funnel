@@ -268,11 +268,11 @@ body {
   transition: opacity .15s, transform .15s;
 }
 .continue-btn:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
-.continue-btn.pink { background: linear-gradient(135deg, var(--pink), #c95580); animation: ctaPulse 1.8s ease-in-out infinite; }
+.continue-btn.pink { background: linear-gradient(135deg, #e0473f, #ff7a3c); animation: ctaPulse 1.6s ease-in-out infinite; }
 .continue-btn:active:not(:disabled) { transform: scale(0.98); }
 @keyframes ctaPulse {
-  0%, 100% { box-shadow: var(--shadow-lg), 0 0 0 0 rgba(184,69,107,0.5); }
-  50% { box-shadow: var(--shadow-lg), 0 0 0 10px rgba(184,69,107,0); }
+  0%, 100% { box-shadow: var(--shadow-lg), 0 0 0 0 rgba(224,71,63,0.55); }
+  50% { box-shadow: var(--shadow-lg), 0 0 0 12px rgba(224,71,63,0); }
 }
 
 /* "Irresistible offer" badge — checkout */
@@ -357,8 +357,15 @@ body {
 .ba-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; color: white; margin-bottom: 8px; }
 .ba-tag.before { background: #243027; }
 .ba-tag.after { background: #e0743c; }
-.ba-stat-label { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
-.ba-stat-value { font-size: 14px; font-weight: 700; }
+.ba-stat-label { font-size: 12px; color: var(--text-muted); margin-top: 8px; font-weight: 600; }
+.ba-stat-value { font-size: 16px; font-weight: 800; }
+
+/* Competitor-style emphasis: mute the BEFORE photo, spotlight the AFTER photo */
+.ba-emphasis-after .ba-muted img { filter: grayscale(0.25) opacity(0.8); }
+.ba-emphasis-after .ba-muted .ba-stat-value { color: var(--text-muted); }
+.ba-emphasis-after .ba-highlight { position: relative; }
+.ba-emphasis-after .ba-highlight img { box-shadow: 0 0 0 3px var(--sage), var(--shadow-lg); }
+.ba-emphasis-after .ba-highlight .ba-stat-value { color: var(--green-ok); }
 .ba-bar-row { display: flex; gap: 4px; margin-top: 4px; }
 .ba-bar-seg { flex: 1; height: 5px; border-radius: 3px; background: var(--border); }
 .ba-bar-seg.filled-low { background: var(--red-urgency); }
@@ -377,6 +384,7 @@ body {
 /* ---------- GOALS PAGE ---------- */
 .goal-headline { font-size: 26px; font-weight: 700; text-align: center; margin-bottom: 6px; }
 .goal-headline .accent { color: var(--sage-dark); }
+.step-title .accent { color: var(--green-ok); }
 
 /* ---------- CHECKOUT ---------- */
 .checkout-timer-bar {
@@ -456,6 +464,11 @@ body {
 .review-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
 .review-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .review-header .name { font-weight: 700; }
+.review-card-row { display: flex; align-items: flex-start; gap: 12px; }
+.review-avatar-col { flex-shrink: 0; }
+.review-body-col { flex: 1; min-width: 0; }
+.review-body-col .name { font-weight: 700; }
+.review-stars-col { flex-shrink: 0; }
 .review-stars-badge {
   background: #00b67a; color: white; border-radius: 4px; padding: 3px 6px;
   font-size: 12px; letter-spacing: 1px; line-height: 1;
