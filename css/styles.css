@@ -79,9 +79,7 @@ body {
   margin-bottom: 6px;
 }
 .progress-bar {
-  display: flex;
-  gap: 6px;
-  max-width: 200px;
+  max-width: 220px;
   margin: 0 auto 8px;
 }
 .progress-bar-track {
@@ -92,6 +90,13 @@ body {
   overflow: hidden;
 }
 .progress-bar-track.filled { background: var(--sage); }
+.progress-bar-track-continuous {
+  height: 5px; border-radius: 3px; background: var(--border); overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%; width: 0%; border-radius: 3px;
+  background: var(--sage); transition: width .4s ease;
+}
 .hidden { display: none !important; }
 
 /* ---------- STICKY TIMER (urgency-charged) ---------- */

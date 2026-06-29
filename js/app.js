@@ -66,9 +66,7 @@ function updateHeader(step) {
     progressLabel.classList.remove("hidden");
     progressBar.classList.remove("hidden");
     progressLabel.textContent = step.section;
-    const tracks = progressBar.querySelectorAll(".progress-bar-track");
-    const filled = Math.round(step.progress * tracks.length);
-    tracks.forEach((t, i) => t.classList.toggle("filled", i < filled));
+    document.getElementById("progress-bar-fill").style.width = Math.round(step.progress * 100) + "%";
   } else {
     progressLabel.classList.add("hidden");
     progressBar.classList.add("hidden");
