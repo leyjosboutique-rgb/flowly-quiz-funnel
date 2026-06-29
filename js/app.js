@@ -718,6 +718,10 @@ function beforeAfterImg(which) {
   return q4Map[state.answers.q4] || "IMG-15-after";
 }
 
+function barSegments(filled) {
+  return [1, 2, 3].map(i => `<span class="ba-bar-seg ${i <= filled ? (filled >= 3 ? "filled-high" : "filled-low") : ""}"></span>`).join("");
+}
+
 /* ---------------- CHECKOUT ---------------- */
 let checkoutTimerInterval;
 function renderCheckout() {
@@ -739,19 +743,19 @@ function renderCheckout() {
           <span class="ba-tag before">BEFORE</span>
           ${renderPlaceholder(beforeAfterImg("before"), { w: 220, h: 270, zoom: 1.0 })}
           <div class="ba-stat-label">Body fat</div><div class="ba-stat-value">High</div>
-          <div class="ba-bar low"></div>
+          <div class="ba-bar-row">${barSegments(1)}</div>
           <div class="ba-stat-label">Energy levels</div><div class="ba-stat-value">Low</div>
         </div>
         <div class="ba-col">
           <span class="ba-tag after">AFTER</span>
           ${renderPlaceholder(beforeAfterImg("after"), { w: 220, h: 270, zoom: 1.0 })}
           <div class="ba-stat-label">Body fat</div><div class="ba-stat-value">Low</div>
-          <div class="ba-bar high"></div>
+          <div class="ba-bar-row">${barSegments(3)}</div>
           <div class="ba-stat-label">Energy levels</div><div class="ba-stat-value">High</div>
         </div>
       </div>
 
-      <div class="feature-box" style="background:var(--sage-light);">
+      <div class="feature-box" style="background:#e8f0fc;">
         <h3 style="text-align:center;margin-top:0;">Your plan includes</h3>
         <div class="feature-line">&#128221; Personalized Tai Chi walking workout plan</div>
         <div class="feature-line">&#128340; 7-15 minute low-impact daily routines</div>
@@ -795,16 +799,16 @@ function renderCheckout() {
       <h2 class="step-title">Success stories</h2>
       <div class="testimonial-card">
         <div class="before-after-row">
-          <div class="ba-col">${renderPlaceholder("IMG-16-before", { w: 140, h: 200, zoom: 1.0, position: "top center" })}</div>
-          <div class="ba-col">${renderPlaceholder("IMG-16-after", { w: 140, h: 200, zoom: 1.0, position: "top center" })}</div>
+          <div class="ba-col ba-photo-tagged">${renderPlaceholder("IMG-16-before", { w: 140, h: 200, zoom: 1.0, position: "top center" })}<span class="ba-photo-tag before">before</span></div>
+          <div class="ba-col ba-photo-tagged">${renderPlaceholder("IMG-16-after", { w: 140, h: 200, zoom: 1.0, position: "top center" })}<span class="ba-photo-tag after">AFTER</span></div>
         </div>
         <div class="testimonial-name-row"><div><b>Martha S.</b><br><span style="font-size:12px;color:var(--text-muted);">Los Angeles, CA</span></div><div style="text-align:right;"><b>-40lbs</b><br><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div>
         <p style="font-size:13px;">I used to think weight loss was impossible after years of strict diets and tough workouts. Then I tried Tai Chi walking. When I focused on gentle, steady movement, the results came quickly. I didn't just lose weight (40 lbs). I also slept better, felt calmer, and noticed positive changes in my body.</p>
       </div>
       <div class="testimonial-card">
         <div class="before-after-row">
-          <div class="ba-col">${renderPlaceholder("IMG-17-before", { w: 140, h: 200, contain: true })}</div>
-          <div class="ba-col">${renderPlaceholder("IMG-17-after", { w: 140, h: 200, contain: true })}</div>
+          <div class="ba-col ba-photo-tagged">${renderPlaceholder("IMG-17-before", { w: 140, h: 200, contain: true })}<span class="ba-photo-tag before">before</span></div>
+          <div class="ba-col ba-photo-tagged">${renderPlaceholder("IMG-17-after", { w: 140, h: 200, contain: true })}<span class="ba-photo-tag after">AFTER</span></div>
         </div>
         <div class="testimonial-name-row"><div><b>Suzy B.</b><br><span style="font-size:12px;color:var(--text-muted);">Seattle, WA</span></div><div style="text-align:right;"><b>-60lbs</b><br><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div>
         <p style="font-size:13px;">I've tried many weight-loss programs, but this one is different. It focuses on gentle, balanced movement. Even if you're a beginner or haven't moved in ages, it makes weight loss feel natural. This approach finally led to significant weight loss for me. My energy is higher, and my joints feel better too.</p>
@@ -885,7 +889,7 @@ function renderReview(imgId, name, text) {
       <div class="review-header">
         ${renderPlaceholder(imgId, { w: 44, h: 44 })}
         <div class="name">${name}</div>
-        <div style="margin-left:auto;" class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div style="margin-left:auto;" class="review-stars-badge">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       </div>
       <p style="font-size:13px;margin:0;">${text}</p>
     </div>`;

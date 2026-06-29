@@ -347,12 +347,23 @@ body {
 .ba-col { flex: 1; text-align: center; }
 .ba-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; color: white; margin-bottom: 8px; }
 .ba-tag.before { background: #243027; }
-.ba-tag.after { background: var(--pink); }
+.ba-tag.after { background: #e0743c; }
 .ba-stat-label { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
 .ba-stat-value { font-size: 14px; font-weight: 700; }
-.ba-bar { height: 4px; border-radius: 2px; margin-top: 4px; }
-.ba-bar.low { background: linear-gradient(90deg, var(--red-urgency), var(--red-urgency)); width: 30%; }
-.ba-bar.high { background: linear-gradient(90deg, var(--green-ok), var(--green-ok)); width: 100%; }
+.ba-bar-row { display: flex; gap: 4px; margin-top: 4px; }
+.ba-bar-seg { flex: 1; height: 5px; border-radius: 3px; background: var(--border); }
+.ba-bar-seg.filled-low { background: var(--red-urgency); }
+.ba-bar-seg.filled-high { background: var(--green-ok); }
+
+/* Overlay before/after tags directly on success-story photos (competitor style) */
+.ba-photo-tagged { position: relative; }
+.ba-photo-tag {
+  position: absolute; bottom: 8px; left: 8px;
+  padding: 3px 11px; border-radius: 14px; font-size: 11px; font-weight: 700; color: white;
+  text-transform: lowercase;
+}
+.ba-photo-tag.before { background: #161f1a; }
+.ba-photo-tag.after { background: #e0743c; right: 8px; left: auto; text-transform: uppercase; }
 
 /* ---------- GOALS PAGE ---------- */
 .goal-headline { font-size: 26px; font-weight: 700; text-align: center; margin-bottom: 6px; }
@@ -411,6 +422,10 @@ body {
 .review-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
 .review-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .review-header .name { font-weight: 700; }
+.review-stars-badge {
+  background: #00b67a; color: white; border-radius: 4px; padding: 3px 6px;
+  font-size: 12px; letter-spacing: 1px; line-height: 1;
+}
 
 /* checkout form */
 .checkout-summary { background: var(--cream-dark); border-radius: 12px; padding: 16px 18px; margin-bottom: 18px; }
