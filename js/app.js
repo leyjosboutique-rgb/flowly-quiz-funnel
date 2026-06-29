@@ -688,8 +688,7 @@ function renderMilestone(step) {
   const days = step.week * 7;
   const dateStr = fmtDate(days);
   app.innerHTML = `
-    <div class="milestone-screen">
-      <div></div>
+    <div class="milestone-screen milestone-screen-centered">
       <div class="milestone-text ${step.bold ? "bold" : ""}">By <span class="accent">${dateStr}</span>, ${step.suffix}</div>
     </div>`;
   setTimeout(next, 1800);
