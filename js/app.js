@@ -792,8 +792,8 @@ function renderCheckout() {
       <h2 class="step-title">Success stories</h2>
       <div class="testimonial-card">
         <div class="before-after-row">
-          <div class="ba-col">${renderPlaceholder("IMG-16-before", { w: 140, h: 200, contain: true })}</div>
-          <div class="ba-col">${renderPlaceholder("IMG-16-after", { w: 140, h: 200, contain: true })}</div>
+          <div class="ba-col">${renderPlaceholder("IMG-16-before", { w: 140, h: 200, zoom: 1.0, position: "top center" })}</div>
+          <div class="ba-col">${renderPlaceholder("IMG-16-after", { w: 140, h: 200, zoom: 1.0, position: "top center" })}</div>
         </div>
         <div class="testimonial-name-row"><div><b>Martha S.</b><br><span style="font-size:12px;color:var(--text-muted);">Los Angeles, CA</span></div><div style="text-align:right;"><b>-40lbs</b><br><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div>
         <p style="font-size:13px;">I used to think weight loss was impossible after years of strict diets and tough workouts. Then I tried Tai Chi walking. When I focused on gentle, steady movement, the results came quickly. I didn't just lose weight (40 lbs). I also slept better, felt calmer, and noticed positive changes in my body.</p>
