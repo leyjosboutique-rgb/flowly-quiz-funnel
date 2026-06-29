@@ -768,3 +768,61 @@ body {
 .authority-name { font-weight: 700; font-size: 13px; margin: 0 0 4px; }
 .authority-credential { font-weight: 400; color: var(--text-muted); }
 .authority-quote { font-size: 12px; font-style: italic; color: var(--text-dark); margin: 0; }
+
+/* ================= MOBILE OPTIMIZATION ================= */
+
+/* Bigger, more comfortable tap targets everywhere on touch devices */
+@media (hover: none) {
+  .unit-btn { padding: 10px 18px; }
+  .option-card { min-height: 44px; }
+  .photo-option.avatar-style .ph-label { padding: 11px 16px; }
+}
+
+@media (max-width: 480px) {
+  #app { padding: 18px 16px 50px; }
+  .step-title { font-size: 22px; }
+  .goal-headline { font-size: 22px; }
+  .pred-result-line { font-size: 23px; }
+  .loading-title { font-size: 18px; }
+
+  .quiz-header { padding: 10px 14px 8px; }
+  .logo { height: 42px; }
+
+  .gift-banner-big { padding: 13px 14px; font-size: 14px; }
+
+  .photo-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .before-after-row { gap: 8px; }
+  .ba-stat-label { font-size: 11px; }
+  .ba-stat-value { font-size: 13px; }
+
+  .value-stack-row { flex-wrap: wrap; }
+  .value-stack-row .feature-line { font-size: 13px; }
+  .value-stack-today-row { font-size: 14px; }
+  .value-stack-today-row .value-stack-today-price { font-size: 16px; }
+
+  .guarantee-badge-row { padding: 10px 12px; gap: 10px; }
+  .guarantee-badge-text { font-size: 11px; }
+
+  .upsell-steps { gap: 6px; font-size: 10px; flex-wrap: wrap; }
+  .upsell-step-dot { width: 22px; height: 22px; font-size: 11px; }
+
+  .chart-axis-labels { font-size: 10px; }
+  .chart-stat-box-body { font-size: 11px; }
+  .chart-top-value { font-size: 13px; }
+
+  .price-option { padding: 14px 14px; }
+  .price-per-day { font-size: 16px; }
+
+  .press-row { gap: 10px 14px; }
+  .press-logo { font-size: 11px; }
+
+  .trust-row { font-size: 11px; gap: 8px; }
+  .testimonial-card, .review-card { padding: 14px; }
+
+  .milestone-screen { padding: 30px 6px; }
+}
+
+@media (max-width: 360px) {
+  .step-title { font-size: 20px; }
+  .ba-photo-tag { font-size: 10px; padding: 2px 8px; }
+}
