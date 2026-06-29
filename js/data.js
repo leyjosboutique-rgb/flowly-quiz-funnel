@@ -249,8 +249,8 @@ const STEPS = [
     title: "How much water do you drink daily?",
     subtitle: "It's important to consume enough fluid when walking",
     options: [
-      { v: "coffee_tea", l: "I mainly drink coffee or tea" }, { v: "2glasses", l: "About 2 glasses" },
-      { v: "2to6", l: "2 to 6 glasses" }, { v: "6plus", l: "More than 6 glasses" },
+      { v: "coffee_tea", l: "I mainly drink coffee or tea", emoji: "☕" }, { v: "2glasses", l: "About 2 glasses", emoji: "🥛" },
+      { v: "2to6", l: "2 to 6 glasses", emoji: "💧" }, { v: "6plus", l: "More than 6 glasses", emoji: "🚰" },
     ] },
 
   { id: "q26", type: "single", section: "Lifestyle", progress: 0.86,
