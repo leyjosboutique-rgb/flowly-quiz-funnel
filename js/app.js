@@ -80,6 +80,7 @@ function render() {
   const step = STEPS[state.index];
   updateHeader(step);
   window.scrollTo(0, 0);
+  if (typeof trackStep === "function") trackStep(step);
   const renderers = {
     "age-select": renderAgeSelect,
     "single": renderChoice,
@@ -249,6 +250,7 @@ function renderLikeDislike(step) {
 
 /* ---------------- NUMBER INPUT (+ BMI / realistic-goal boxes) ---------------- */
 function renderNumberInput(step) {
+  let bmiTracked = false;
   app.innerHTML = `
     <div class="step">
       <h1 class="step-title">${step.title}</h1>
@@ -298,6 +300,7 @@ function renderNumberInput(step) {
       const bmi = (kg / (heightM * heightM)).toFixed(1);
       let cat = "normal weight";
       if (bmi >= 30) cat = "obese"; else if (bmi >= 25) cat = "overweight"; else if (bmi < 18.5) cat = "underweight";
+      if (typeof trackQuizEvent === "function" && !bmiTracked) { bmiTracked = true; trackQuizEvent("bmi", "bmi_calculated", { bmi_range: cat }); }
       slot.innerHTML = `
         <div class="feedback-box">
           <div class="fb-icon">&#129518;</div>

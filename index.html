@@ -12,6 +12,22 @@
 <link rel="preload" as="image" href="assets/images/IMG-02.jpg">
 <link rel="preload" as="image" href="assets/images/IMG-03.jpg">
 <link rel="preload" as="image" href="assets/images/IMG-04.jpg">
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2759452127747935');
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2759452127747935&ev=PageView&noscript=1"/>
+</noscript>
 </head>
 <body>
   <div id="confetti-canvas-wrap"></div>
@@ -38,6 +54,7 @@
   <script src="js/placeholders.js" defer></script>
   <script src="js/charts.js" defer></script>
   <script src="js/data.js" defer></script>
+  <script src="js/tracking.js" defer></script>
   <script src="js/app.js" defer></script>
 </body>
 </html>
