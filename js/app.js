@@ -470,8 +470,8 @@ function renderPrediction(step) {
 function renderBeforeAfterQuote(step) {
   const imgBlock = step.splitPhoto
     ? `<div class="before-after-row" style="margin:0; gap:0;">
-        <div class="ba-col" style="flex:1; line-height:0;">${renderPlaceholder("IMG-16-before", { w: 280, h: 360, natural: true, noRadius: true })}</div>
-        <div class="ba-col" style="flex:1; line-height:0; border-left:2px solid rgba(255,255,255,0.6);">${renderPlaceholder("IMG-16-after", { w: 280, h: 360, natural: true, noRadius: true })}</div>
+        <div class="ba-col" style="flex:1; line-height:0;">${renderPlaceholder(beforeAfterImg("before"), { w: 280, h: 360, natural: true, noRadius: true })}</div>
+        <div class="ba-col" style="flex:1; line-height:0; border-left:2px solid rgba(255,255,255,0.6);">${renderPlaceholder(beforeAfterImg("after"), { w: 280, h: 360, natural: true, noRadius: true })}</div>
       </div>`
     : renderPlaceholder(step.img, { w: 560, h: 360, natural: true, noRadius: true });
   app.innerHTML = `
