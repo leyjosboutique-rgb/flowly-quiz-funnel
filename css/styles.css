@@ -57,13 +57,11 @@ body {
   border-bottom: 1px solid transparent;
 }
 .logo {
-  font-family: "Fraunces", Georgia, serif;
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-dark);
-  letter-spacing: -0.3px;
+  height: 30px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
 }
-.logo-mark { color: var(--sage-dark); font-weight: 700; }
 .back-btn {
   position: absolute;
   left: 16px;
