@@ -812,7 +812,7 @@ function renderCheckout() {
           <div class="ba-col ba-photo-tagged">${renderPlaceholder("IMG-16-after", { w: 140, h: 200, zoom: 1.0, position: "top center" })}<span class="ba-photo-tag after">AFTER</span></div>
         </div>
         <div class="testimonial-name-row"><div><b>Martha S.</b><br><span style="font-size:12px;color:var(--text-muted);">Los Angeles, CA</span></div><div style="text-align:right;"><b>-40lbs</b><br><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div>
-        <p style="font-size:13px;">I used to think weight loss was impossible after years of strict diets and tough workouts. Then I tried Tai Chi walking. When I focused on gentle, steady movement, the results came quickly. I didn't just lose weight (40 lbs). I also slept better, felt calmer, and noticed positive changes in my body.</p>
+        <p style="font-size:14px; line-height:1.5;">I used to think weight loss was impossible after years of strict diets and tough workouts. Then I tried Tai Chi walking. When I focused on gentle, steady movement, the results came quickly. I didn't just lose weight (40 lbs). I also slept better, felt calmer, and noticed positive changes in my body.</p>
       </div>
       <div class="testimonial-card">
         <div class="before-after-row">
@@ -820,7 +820,7 @@ function renderCheckout() {
           <div class="ba-col ba-photo-tagged">${renderPlaceholder("IMG-17-after", { w: 140, h: 200, contain: true })}<span class="ba-photo-tag after">AFTER</span></div>
         </div>
         <div class="testimonial-name-row"><div><b>Suzy B.</b><br><span style="font-size:12px;color:var(--text-muted);">Seattle, WA</span></div><div style="text-align:right;"><b>-60lbs</b><br><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div>
-        <p style="font-size:13px;">I've tried many weight-loss programs, but this one is different. It focuses on gentle, balanced movement. Even if you're a beginner or haven't moved in ages, it makes weight loss feel natural. This approach finally led to significant weight loss for me. My energy is higher, and my joints feel better too.</p>
+        <p style="font-size:14px; line-height:1.5;">I've tried many weight-loss programs, but this one is different. It focuses on gentle, balanced movement. Even if you're a beginner or haven't moved in ages, it makes weight loss feel natural. This approach finally led to significant weight loss for me. My energy is higher, and my joints feel better too.</p>
       </div>
 
       <h2 class="step-title">Customer reviews</h2>
@@ -859,7 +859,7 @@ function renderCheckout() {
         <div style="font-size:30px;">&#128176;</div>
         <div>
           <b>100% Money Back Guarantee</b>
-          <p style="font-size:13px; margin:6px 0 0;">We have confidence in the quality of our service and the results it provides. If you do not achieve visible results within the first 30 days, you are eligible for a refund. Please note that you will need to demonstrate that you followed the program.</p>
+          <p style="font-size:14px; line-height:1.5; margin:6px 0 0;">We have confidence in the quality of our service and the results it provides. If you do not achieve visible results within the first 30 days, you are eligible for a refund. Please note that you will need to demonstrate that you followed the program.</p>
         </div>
       </div>
       <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:30px;">Copyright &copy; 2026 Flowly. All rights reserved.</p>
@@ -903,7 +903,7 @@ function renderReview(imgId, name, text) {
         <div class="name">${name}</div>
         <div style="margin-left:auto;" class="review-stars-badge">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
       </div>
-      <p style="font-size:13px;margin:0;">${text}</p>
+      <p style="font-size:14px; line-height:1.5;margin:0;">${text}</p>
     </div>`;
 }
 
