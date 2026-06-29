@@ -157,6 +157,10 @@ body {
   background: var(--gold); border-radius: 2px;
 }
 .step-image-wrap { margin-bottom: 18px; border-radius: var(--radius); overflow: hidden; }
+.illustration-wrap { max-width: 160px; }
+@media (max-width: 480px) {
+  .illustration-wrap { max-width: 190px; }
+}
 
 /* ---------- OPTIONS ---------- */
 .options-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 18px; }

@@ -148,7 +148,7 @@ function renderChoice(step) {
   const isBinary = !!step.binary;
   app.innerHTML = `
     <div class="step">
-      ${step.illustration ? `<div class="step-image-wrap" style="max-width:90px;margin:0 auto 14px;">${renderPlaceholder(step.illustration, { natural: true })}</div>` : ""}
+      ${step.illustration ? `<div class="step-image-wrap illustration-wrap" style="margin:0 auto 14px;">${renderPlaceholder(step.illustration, { natural: true })}</div>` : ""}
       <h1 class="step-title">${interpolate(step.title)}</h1>
       ${step.subtitle ? `<p class="step-subtitle">${step.subtitle}</p>` : (isMulti ? `<p class="step-subtitle">Choose all that apply</p>` : "")}
       <div class="options-list">
