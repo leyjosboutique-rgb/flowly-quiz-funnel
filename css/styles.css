@@ -57,10 +57,11 @@ body {
   border-bottom: 1px solid transparent;
 }
 .logo {
-  height: 62px;
+  height: 72px;
   width: auto;
   display: block;
   margin: 2px auto 0;
+  border-radius: 10px;
 }
 .back-btn {
   position: absolute;
