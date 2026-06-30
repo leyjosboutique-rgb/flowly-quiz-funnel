@@ -722,12 +722,14 @@ function getTransformationImageId() {
     "18-39": ["RESULT-40-1", "RESULT-40-2", "RESULT-40-3"],
     "50-59": ["RESULT-50-1", "RESULT-50-2", "RESULT-50-3"],
     "60-69": ["RESULT-60-1", "RESULT-60-2", "RESULT-60-3"],
-    "70+":   ["RESULT-70-1"],
+    "70-80": ["RESULT-70-1"],
   };
   const age = state.answers.age || "50-59";
   const options = ageMap[age] || ageMap["50-59"];
-  const bodyIdx = ["a", "b", "c", "d"].indexOf(state.answers.q3 || "b");
-  const goalIdx = ["a", "b", "c", "d"].indexOf(state.answers.q4 || "b");
+  const bodyVals = ["thin", "mid", "plump", "plus"];
+  const goalVals = ["slim", "toned", "curvy", "smaller"];
+  const bodyIdx = Math.max(0, bodyVals.indexOf(state.answers.q3 || "mid"));
+  const goalIdx = Math.max(0, goalVals.indexOf(state.answers.q4 || "toned"));
   return options[(bodyIdx + goalIdx) % options.length];
 }
 
