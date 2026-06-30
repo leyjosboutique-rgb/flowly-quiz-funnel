@@ -256,8 +256,8 @@ const STEPS = [
   { id: "q26", type: "single", section: "Lifestyle", progress: 0.86,
     title: "How is your mood most days?",
     options: [
-      { v: "low", l: "Low &mdash; I often feel down or irritable", emoji: "&#128267;" },
-      { v: "updown", l: "Up and down &mdash; it depends on the day", emoji: "&#128267;" },
+      { v: "low", l: "Low &mdash; I often feel down or irritable", emoji: "🪫" },
+      { v: "updown", l: "Up and down &mdash; it depends on the day", emoji: "🔋" },
       { v: "steady", l: "Steady &mdash; I usually feel okay", emoji: "&#128267;" },
     ] },
 
