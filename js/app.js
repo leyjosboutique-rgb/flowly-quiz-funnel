@@ -136,7 +136,10 @@ function renderAgeSelect(step) {
 
 /* ---------------- OPTION ICON HELPER ---------------- */
 function optionIconHtml(o) {
-  if (o.img) return renderPlaceholder(o.img, { w: 70, h: 70, noCenter: true });
+  if (o.img) {
+    const useContain = o.img.startsWith("IMG-Q5");
+    return renderPlaceholder(o.img, { w: 70, h: 70, noCenter: true, contain: useContain });
+  }
   if (o.emoji) return `<span class="option-icon-emoji-lg">${o.emoji}</span>`;
   return "";
 }
