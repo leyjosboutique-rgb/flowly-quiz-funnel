@@ -105,24 +105,34 @@ body {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: linear-gradient(90deg, #fdeceb, #fde0df, #fdeceb);
-  background-size: 200% 100%;
-  animation: urgencySheen 3s linear infinite;
-  border-bottom: 1px solid var(--red-urgency);
-  color: var(--text-dark);
+  background: #1c0a0a;
+  color: rgba(255,255,255,0.88);
   text-align: center;
   font-size: 13px;
   font-weight: 600;
-  padding: 9px 12px;
+  padding: 10px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
+  letter-spacing: .2px;
 }
-.timer-icon { display: inline-block; animation: tickPulse 1s ease-in-out infinite; }
-.timer-value { color: var(--red-urgency); font-weight: 800; }
-@keyframes urgencySheen { 0% { background-position: 0% 0; } 100% { background-position: 200% 0; } }
-@keyframes tickPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+.timer-icon { font-size: 15px; }
+.timer-value {
+  background: var(--red-urgency);
+  color: #fff;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 3px 12px;
+  border-radius: 20px;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+  animation: timerPulse 1s ease-in-out infinite;
+}
+@keyframes timerPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(224,71,63,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(224,71,63,0); }
+}
 
 /* ---------- GENERIC STEP LAYOUT ---------- */
 .step { animation: fadeIn .25s ease; }
@@ -450,19 +460,41 @@ body {
 
 /* ---------- CHECKOUT ---------- */
 .checkout-timer-bar {
-  background: linear-gradient(135deg, var(--red-urgency), #e0556a);
-  color: white;
-  text-align: center;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 12px;
-  border-radius: 10px;
-  animation: urgencyGlow 1.6s ease-in-out infinite;
+  background: linear-gradient(160deg, #1e0606 0%, #3a0d0d 100%);
+  border: 1px solid rgba(224,71,63,0.30);
+  color: #fff;
+  border-radius: 14px;
   margin-bottom: 18px;
+  padding: 16px 18px 14px;
+  text-align: center;
+  animation: urgencyGlow 1.8s ease-in-out infinite;
+}
+.ctb-top {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 6px;
+}
+.ctb-time {
+  font-size: 42px;
+  font-weight: 800;
+  color: #ff5252;
+  letter-spacing: 4px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  margin-bottom: 6px;
+  text-shadow: 0 0 20px rgba(255,82,82,0.4);
+}
+.ctb-bottom {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: .3px;
 }
 @keyframes urgencyGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(194,58,74,0.45); }
-  50% { box-shadow: 0 0 0 8px rgba(194,58,74,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(224,71,63,0.25); }
+  50% { box-shadow: 0 0 18px 4px rgba(224,71,63,0.15); }
 }
 .price-option {
   border: 1.5px solid var(--border);

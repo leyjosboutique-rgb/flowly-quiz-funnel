@@ -775,7 +775,11 @@ function renderCheckout() {
         ${renderPlaceholder(getTransformationImageId(), { natural: true })}
       </div>
 
-      <div class="checkout-timer-bar">&#9201; This offer ends in <span id="checkout-timer">10:00</span> min</div>
+      <div class="checkout-timer-bar">
+        <div class="ctb-top">&#128293; Limited-time introductory price</div>
+        <div class="ctb-time"><span id="checkout-timer">10:00</span></div>
+        <div class="ctb-bottom">Expires when the timer hits zero</div>
+      </div>
 
       <div id="price-options">
         ${plans.map(p => `
