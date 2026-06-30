@@ -455,30 +455,79 @@ body {
 .transformation-result-wrap { margin: 16px 0; border-radius: 12px; overflow: hidden; }
 .transformation-result-wrap img { width: 100%; height: auto; display: block; }
 
-/* ---------- CHECKOUT ---------- */
+/* ---------- CHECKOUT COMPETITOR STYLE ---------- */
+
+/* Feature box — simple list, no value prices */
+.co-feature-box { background: #e8f0fc; border: none; }
+.co-feature-line {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-size: 14px; font-weight: 500; color: var(--text-dark);
+  padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.co-feature-line:last-child { border-bottom: none; }
+
+/* Big emotional headline */
+.co-headline {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  text-align: center;
+  color: var(--text-dark);
+  margin: 22px 0 18px;
+}
+
+/* Inline timer — PINK full-width like competitor */
 .checkout-timer-bar {
-  background: #fffaf5;
-  border: 1px solid rgba(229,62,62,0.18);
-  border-radius: 10px;
+  background: #e8517a;
+  border-radius: 14px;
   margin-bottom: 18px;
-  padding: 11px 18px;
+  padding: 14px 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 7px;
-  font-size: 13px;
-  font-weight: 500;
-  color: #666;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
 }
-.ctb-icon { font-size: 14px; color: #999; }
-.ctb-label { /* text label beside the time */ }
+.ctb-icon { font-size: 16px; }
+.ctb-label { color: rgba(255,255,255,0.9); }
 .ctb-time {
-  color: #e53e3e;
+  color: #fff;
   font-weight: 800;
-  font-size: 15px;
+  font-size: 16px;
   letter-spacing: 1.5px;
   font-variant-numeric: tabular-nums;
 }
+
+/* 12-week note */
+.co-note {
+  font-size: 12px; line-height: 1.6;
+  margin: 4px 0 12px;
+  display: flex; align-items: flex-start; gap: 8px;
+}
+
+/* Guarantee underlined text link */
+.co-guarantee-link {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  text-decoration: underline;
+  color: var(--text-dark);
+  margin: 12px 0 16px;
+  cursor: default;
+}
+
+/* Dark forest green CTA */
+.co-cta-green {
+  background: #146c43 !important;
+  color: #fff !important;
+}
+.co-cta-green:hover { background: #0f5233 !important; }
+
 @keyframes urgencyGlow {
   0%, 100% { box-shadow: 0 0 0 0 rgba(224,71,63,0.25); }
   50% { box-shadow: 0 0 18px 4px rgba(224,71,63,0.15); }
@@ -501,13 +550,13 @@ body {
 .price-option.selected .radio::after { content: ''; position: absolute; inset: 3px; background: var(--sage-dark); border-radius: 50%; }
 .price-most-popular {
   position: absolute; top: -1px; left: -1px; right: -1px;
-  background: linear-gradient(90deg, var(--gold), #d4af5f, var(--gold));
-  background-size: 200% 100%; animation: urgencySheen 2.5s linear infinite;
+  background: #f97316;
   color: white; font-size: 11px; font-weight: 700;
   letter-spacing: 0.5px; padding: 6px; text-align: center; border-radius: 12px 12px 0 0;
 }
-.price-option.has-badge { border-color: var(--gold); border-width: 2px; box-shadow: 0 0 0 1px var(--gold-light); }
+.price-option.has-badge { border-color: #f97316; border-width: 2px; }
 .price-option.has-badge { padding-top: 30px; margin-top: 18px; }
+.price-option.has-badge.selected { border-color: #f97316; }
 .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 13px; margin-right: 6px; }
 .price-new { font-weight: 700; }
 .price-per-day { font-size: 18px; font-weight: 700; }
@@ -945,7 +994,8 @@ body {
 
   /* Timer mobile */
   .sticky-timer-bar { font-size: 12px; gap: 5px; padding: 8px 12px; }
-  .checkout-timer-bar { font-size: 12px; padding: 9px 14px; }
+  .checkout-timer-bar { font-size: 13px; padding: 12px 14px; }
+  .co-headline { font-size: 26px; }
 
   /* Checkout stepper mobile */
   .checkout-steps { max-width: 100%; }

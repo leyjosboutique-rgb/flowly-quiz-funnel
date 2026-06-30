@@ -761,38 +761,40 @@ function renderCheckout() {
 
   app.innerHTML = `
     <div class="step">
-      <div class="checkout-steps">
-        <div class="cs-item done"><div class="cs-circle">&#10003;</div><div class="cs-label">Quiz</div></div>
-        <div class="cs-connector done"></div>
-        <div class="cs-item done"><div class="cs-circle">&#10003;</div><div class="cs-label">Plan</div></div>
-        <div class="cs-connector"></div>
-        <div class="cs-item active"><div class="cs-circle">3</div><div class="cs-label">Payment</div></div>
-        <div class="cs-connector"></div>
-        <div class="cs-item"><div class="cs-circle">4</div><div class="cs-label">Access</div></div>
+
+      <!-- 1. FEATURE BOX -->
+      <div class="feature-box co-feature-box">
+        <h3 style="text-align:center;margin-top:0;">Your plan includes</h3>
+        <div class="co-feature-line">&#128221; Personalized Tai Chi walking workout plan</div>
+        <div class="co-feature-line">&#128340; 7–15 minute low-impact daily routines</div>
+        <div class="co-feature-line">&#129497; Beginner-friendly mobility &amp; balance exercises</div>
+        <div class="co-feature-line">&#129534; Joint-friendly movement plan</div>
+        <div class="co-feature-line">&#128202; Progress tracking</div>
+        <div class="co-feature-line">&#128153; 24/7 support group available</div>
+        <div class="co-feature-line">&#127858; Simple nutrition tips to support your results</div>
       </div>
 
-      <div style="text-align:center;"><span class="irresistible-badge">&#128293; Limited-time offer &mdash; price goes up soon</span></div>
-      <h1 class="step-title">Congratulations &mdash; your body can look very different in just 4 weeks</h1>
+      <!-- 2. BIG HEADLINE -->
+      <h1 class="co-headline">Start feeling stronger, lighter and with greater mobility in 4 weeks.</h1>
 
-      <div class="transformation-result-wrap">
-        ${renderPlaceholder(getTransformationImageId(), { natural: true })}
-      </div>
-
+      <!-- 3. INLINE TIMER (pink full-width) -->
       <div class="checkout-timer-bar">
         <span class="ctb-icon">&#9201;</span>
         <span class="ctb-label">This offer ends in</span>
-        <span class="ctb-time" id="checkout-timer">10:00</span>
+        <strong class="ctb-time" id="checkout-timer">10:00</strong>
+        <span class="ctb-label">min</span>
       </div>
 
+      <!-- 4. PLAN OPTIONS -->
       <div id="price-options">
         ${plans.map(p => `
           <div class="price-option ${p.badge ? "has-badge" : ""} ${p.id === state.selectedPlan ? "selected" : ""}" data-id="${p.id}">
             ${p.badge ? `<div class="price-most-popular">&#128077; MOST POPULAR</div>` : ""}
-            <div style="display:flex;align-items:center;">
+            <div style="display:flex;align-items:center;gap:12px;">
               <div class="radio"></div>
               <div>
-                <div style="font-weight:700;">${p.label}</div>
-                <div><span class="price-old">${p.oldPrice}</span><span class="price-new">${p.newPrice}</span></div>
+                <div style="font-weight:700;font-size:15px;">${p.label}</div>
+                <div style="font-size:13px;margin-top:2px;"><span class="price-old">${p.oldPrice}</span><span class="price-new">${p.newPrice}</span></div>
               </div>
             </div>
             <div style="text-align:right;">
@@ -801,41 +803,22 @@ function renderCheckout() {
             </div>
           </div>`).join("")}
       </div>
-      <p style="font-size:12px; line-height:1.5;">&#128202; People using the plan for <b>12 weeks</b> achieve <b>double the results</b> as for 4 weeks<br><span style="font-size:11px;color:var(--text-muted);">*According to a study by Flowly, 2024</span></p>
-      <button class="continue-btn pink" id="get-plan-btn">GET MY PLAN</button>
 
-      <div class="feature-box" style="background:#e8f0fc;">
-        <h3 style="text-align:center;margin-top:0;">Your plan includes</h3>
-        <div class="value-stack-row"><div class="feature-line">&#128221; Personalized Tai Chi walking workout plan</div><span class="value-stack-price">$49</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#128340; 7-15 minute low-impact daily routines</div><span class="value-stack-price">$19</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#129497; Beginner-friendly mobility and balance exercises</div><span class="value-stack-price">$15</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#129534; Joint-friendly movement plan</div><span class="value-stack-price">$12</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#128202; Progress tracking</div><span class="value-stack-price">$9</span></div>
-        <div class="value-stack-row bonus"><div class="feature-line">&#128153; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; 24/7 Support group</div><span class="value-stack-price">$29</span></div>
-        <div class="value-stack-row bonus"><div class="feature-line">&#127858; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; Nutrition guidance to support your results</div><span class="value-stack-price">$19</span></div>
-        <div class="value-stack-total-row">
-          <span>Total value</span>
-          <span class="value-stack-total-price">$152</span>
-        </div>
-        <div class="value-stack-today-row">
-          <span>Your price today</span>
-          <span class="value-stack-today-price" id="value-stack-today-price">Just $0.54/day</span>
-        </div>
-      </div>
+      <!-- 5. 12-WEEK NOTE -->
+      <p class="co-note">&#128202; People using the plan for <b>12 weeks</b> achieve <b>double the results</b> as for 4 weeks.<br><span style="font-size:11px;color:var(--text-muted);">*According to a study by Flowly, 2024</span></p>
 
-      <div class="guarantee-badge-row">
-        <div class="guarantee-badge"><span class="guarantee-badge-icon">&#128176;</span><span>30-Day<br>Money-Back</span></div>
-        <div class="guarantee-badge-text">If you don't see results in 30 days, get a full refund &mdash; no questions asked.</div>
-      </div>
-      <p style="text-align:center; font-size:12px; color:var(--text-muted); margin:14px 0 0;">&#128101; Join <b>163,432+</b> women already on their plan</p>
+      <!-- 6. GUARANTEE LINK -->
+      <p class="co-guarantee-link">&#128176; 30-DAY MONEY-BACK GUARANTEE</p>
 
-      <div class="press-row">
-        <span style="font-size:11px;color:var(--text-muted);width:100%;text-align:center;">TAI CHI WALKING FEATURED IN</span>
-        <span class="press-logo">BUSINESS INSIDER</span><span class="press-logo">The New York Times</span>
-        <span class="press-logo">Women'sHealth</span><span class="press-logo">SHAPE</span>
-      </div>
+      <!-- 7. PRIMARY CTA -->
+      <button class="continue-btn co-cta-green" id="get-plan-btn">GET MY PLAN</button>
+      <div class="trust-row" style="margin-top:10px;"><span>&#128274; No hidden fees</span><span>&#128274; Secure SSL</span><span>&#128274; Cancel Anytime</span></div>
+      <p class="fine-print" id="fine-print-billing"></p>
 
-      <h2 class="step-title">Success stories</h2>
+      <!-- SOCIAL PROOF BELOW CTA -->
+      <p style="text-align:center; font-size:12px; color:var(--text-muted); margin:18px 0 6px;">&#128101; Join <b>163,432+</b> women already on their plan</p>
+
+      <h2 class="step-title" style="margin-top:28px;">Success stories</h2>
       <div class="testimonial-card">
         <div class="before-after-row">
           <div class="ba-col ba-photo-tagged">${renderPlaceholder("IMG-16-before", { w: 140, h: 200, zoom: 1.0, position: "top center" })}<span class="ba-photo-tag before">before</span></div>
@@ -858,21 +841,13 @@ function renderCheckout() {
       ${renderReview("IMG-18b", "Sandra Jane", "No more stiff joints! With Flowly Tai Chi walking, I finally feel free. I believe I feel better than I did in my 20s. I know it sounds funny, but that's how I feel after losing those extra pounds!")}
       ${renderReview("IMG-18c", "AmeliaXC", "Tai Chi walking helped me lose 22lbs last month. I can't imagine stopping it. Not only did I lose weight, but my confidence is back. My friends say I've changed!")}
 
-      <h2 class="step-title">Get visible results<br><span class="accent">in 4 weeks</span></h2>
-      <div style="display:flex; justify-content:space-around; text-align:center; margin-bottom:20px;">
-        <div><div style="font-size:22px;">&#9989;</div><div style="font-size:12px;color:var(--text-muted);">Perfect for</div><div style="font-weight:700;">Women Over 55</div></div>
-        <div><div style="font-size:22px;">&#127919;</div><div style="font-size:12px;color:var(--text-muted);">Goal</div><div style="font-weight:700;">Lose 8kg</div></div>
-      </div>
-
-      <button class="continue-btn pink" id="submit-payment-btn">Start my transformation &#8594;</button>
-      <p style="text-align:center;font-size:12px;margin:14px 0;">Guaranteed <b>safe checkout</b> &mdash; powered by Hotmart</p>
-      <div class="trust-row"><span>&#128274; No hidden fees</span><span>&#128274; Secure SSL-protected</span><span>&#128274; Cancel Anytime</span></div>
-      <p class="fine-print" id="fine-print-billing"></p>
-      <div class="guarantee-box">
+      <!-- SECOND CTA -->
+      <button class="continue-btn co-cta-green" style="margin-top:28px;" id="submit-payment-btn">Start my transformation &#8594;</button>
+      <div class="guarantee-box" style="margin-top:20px;">
         <div style="font-size:30px;">&#128176;</div>
         <div>
           <b>100% Money Back Guarantee</b>
-          <p style="font-size:14px; line-height:1.5; margin:6px 0 0;">We have confidence in the quality of our service and the results it provides. If you do not achieve visible results within the first 30 days, you are eligible for a refund. Please note that you will need to demonstrate that you followed the program.</p>
+          <p style="font-size:14px; line-height:1.5; margin:6px 0 0;">If you do not achieve visible results within the first 30 days, you are eligible for a full refund &mdash; no questions asked.</p>
         </div>
       </div>
       <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:30px;">Copyright &copy; 2026 Flowly. All rights reserved.</p>
