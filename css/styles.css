@@ -452,8 +452,43 @@ body {
   border-radius: 2px;
 }
 .cs-connector.done { background: var(--sage); }
-.transformation-result-wrap { margin: 16px 0; border-radius: 12px; overflow: hidden; }
+.transformation-result-wrap {
+  margin: 18px 0 22px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.10);
+  border: 3px solid #fff;
+  outline: 1px solid rgba(0,0,0,0.08);
+  position: relative;
+}
 .transformation-result-wrap img { width: 100%; height: auto; display: block; }
+.trw-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px 8px;
+  background: var(--text-dark);
+}
+.trw-badge {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.trw-badge.before { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+.trw-badge.after  { background: #22c55e; color: #fff; }
+.trw-arrow { color: rgba(255,255,255,0.5); font-size: 18px; }
+.trw-caption {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 8px 0 0;
+  font-style: italic;
+}
 
 /* ---------- CHECKOUT COMPETITOR STYLE ---------- */
 
