@@ -1,125 +1,176 @@
 /* ===================================================================
-   META PIXEL + CONVERSION TRACKING
+   META PIXEL — CONVERSION TRACKING
    Pixel ID: 2759452127747935
+
+   FUNNEL DE CONVERSIÓN:
+   ┌─────────────────────────────────────────────────────────┐
+   │  ViewContent       → Quiz abierto                       │
+   │  QuizStarted       → Pregunta de edad respondida        │
+   │  Lead              → Email capturado                    │
+   │  CompleteReg.      → Nombre capturado (quiz completo)   │
+   │  InitiateCheckout  → Pantalla de checkout vista         │
+   │  AddToCart         → Plan seleccionado                  │
+   │  Purchase          → CTA clic → redirige a Hotmart      │
+   └─────────────────────────────────────────────────────────┘
 =================================================================== */
 
 const PIXEL_ID = "2759452127747935";
 
-function trackQuizEvent(screen, block, extraData = {}) {
-  const eventData = {
-    screen: screen,
-    block: block,
-    pixel_id: PIXEL_ID,
-    timestamp: new Date().toISOString(),
-    ...extraData,
-  };
+/* Precio real por plan — usado en todos los eventos de valor */
+const PLAN_VALUES = {
+  "1week":  { value: 9.00,  name: "Flowly 1-Week Plan",  content_id: "flowly_1w"  },
+  "4week":  { value: 15.00, name: "Flowly 4-Week Plan",  content_id: "flowly_4w"  },
+  "12week": { value: 25.00, name: "Flowly 12-Week Plan", content_id: "flowly_12w" },
+};
 
-  if (typeof fbq !== "undefined") {
-    switch (block) {
-      case "quiz_start":
-        fbq("track", "ViewContent", {
-          content_name: "Quiz Started",
-          content_category: "flowly_quiz",
-        });
-        break;
-
-      case "bmi_calculated":
-        fbq("trackCustom", "QuizBMI", {
-          screen: screen,
-          bmi_range: extraData.bmi_range || "unknown",
-        });
-        break;
-
-      case "prediction_1":
-        fbq("track", "AddToCart", {
-          content_name: "Quiz Prediction 1",
-          content_category: "flowly_quiz",
-          value: 9.99,
-          currency: "USD",
-        });
-        break;
-
-      case "email_capture":
-        fbq("track", "Lead", {
-          content_name: "Quiz Email Captured",
-          content_category: "flowly_quiz",
-          value: 9.99,
-          currency: "USD",
-        });
-        break;
-
-      case "goals_page":
-        fbq("track", "InitiateCheckout", {
-          content_name: "28-Day Flowly Plan",
-          content_category: "flowly_quiz",
-          value: 9.99,
-          currency: "USD",
-          num_items: 1,
-        });
-        break;
-
-      case "purchase":
-        fbq("track", "Purchase", {
-          content_name: "28-Day Flowly Plan",
-          value: extraData.value || 9.99,
-          currency: "USD",
-          num_items: 1,
-        });
-        break;
-
-      default:
-        fbq("trackCustom", "QuizProgress", {
-          screen: screen,
-          block: block,
-          ...extraData,
-        });
-    }
-  }
-
-  // localStorage backup
-  localStorage.setItem("flowly_last_screen", String(screen));
-  localStorage.setItem("flowly_last_block", block);
-  localStorage.setItem("flowly_updated_at", Date.now());
-
-  if (!localStorage.getItem("flowly_started_at")) {
-    localStorage.setItem("flowly_started_at", Date.now());
-  }
-
-  console.log("FLOWLY PIXEL " + PIXEL_ID + ":", eventData);
+/* ── helpers ──────────────────────────────────────────────────── */
+function _fbStd(event, params) {
+  if (typeof fbq === "undefined") return;
+  fbq("track", event, { currency: "USD", ...params });
+  _log(event, params);
+}
+function _fbCustom(event, params) {
+  if (typeof fbq === "undefined") return;
+  fbq("trackCustom", event, params);
+  _log(event, params);
+}
+function _log(event, params) {
+  console.log(`%c[Flowly Pixel]%c ${event}`, "color:#4CAF50;font-weight:700", "color:#333", params);
+  try {
+    const key  = "flowly_events";
+    const log  = JSON.parse(localStorage.getItem(key) || "[]");
+    log.push({ event, ...params, ts: Date.now() });
+    if (log.length > 60) log.splice(0, log.length - 60);
+    localStorage.setItem(key, JSON.stringify(log));
+    localStorage.setItem("flowly_last_event", event);
+    localStorage.setItem("flowly_last_event_ts", Date.now());
+  } catch (e) {}
+}
+function _plan() {
+  /* Lee el plan actualmente seleccionado desde state (global en app.js) */
+  const id = (typeof state !== "undefined" && state.selectedPlan) ? state.selectedPlan : "4week";
+  return PLAN_VALUES[id] || PLAN_VALUES["4week"];
 }
 
-function trackPurchase(planName, value) {
-  trackQuizEvent("checkout_complete", "purchase", {
-    value: value,
-    plan: planName,
+/* ── eventos públicos llamados desde app.js ───────────────────── */
+
+/**
+ * Llamar cuando el usuario hace clic en una tarjeta de plan.
+ * @param {string} planId  "1week" | "4week" | "12week"
+ */
+function trackPlanSelected(planId) {
+  const p = PLAN_VALUES[planId] || PLAN_VALUES["4week"];
+  _fbStd("AddToCart", {
+    content_name:  p.name,
+    content_ids:   [p.content_id],
+    content_type:  "product",
+    value:         p.value,
+    num_items:     1,
   });
+  _fbCustom("PlanSelected", { plan_id: planId, value: p.value });
 }
 
-/* Map a quiz step to its tracking screen/block, based on this app's
-   actual STEPS structure (section field + step id) rather than a fixed
-   Q-number list, since the quiz content doesn't line up 1:1 with the
-   original Q1-Q40 spec. */
-function trackStep(step) {
-  if (step.id === "age") { trackQuizEvent(0, "quiz_start"); return; }
-  if (step.id === "prediction1") { trackQuizEvent("prediction_1", "prediction_1"); return; }
-  if (step.id === "prediction2") { trackQuizEvent("prediction_2", "prediction_1"); return; }
-  if (step.id === "eligibility") { trackQuizEvent("eligibility", "eligibility_passed"); return; }
-  if (step.id === "loading2") { trackQuizEvent("loading", "plan_generating"); return; }
-  if (step.id === "email") { trackQuizEvent("email", "email_capture"); return; }
-  if (step.id === "name") { trackQuizEvent("name", "name_capture"); return; }
-  if (step.id === "goals") { trackQuizEvent("goals", "goals_page"); return; }
-  if (step.id === "checkout") { trackQuizEvent("checkout", "checkout_view"); return; }
-  if (step.id === "upsell") { trackQuizEvent("upsell", "upsell_view"); return; }
-  if (step.id === "thankyou") { trackQuizEvent("thankyou", "purchase", { value: 12.78 }); return; }
+/**
+ * Llamar justo ANTES de redirigir a Hotmart (mayor señal de intención).
+ * @param {string} planId
+ */
+function trackPurchaseIntent(planId) {
+  const p = PLAN_VALUES[planId] || PLAN_VALUES["4week"];
+  _fbStd("Purchase", {
+    content_name:  p.name,
+    content_ids:   [p.content_id],
+    content_type:  "product",
+    value:         p.value,
+    num_items:     1,
+  });
+  _fbCustom("CheckoutStarted", { plan_id: planId, value: p.value });
+}
 
-  const sectionBlock = {
-    "My Profile": "my_profile",
-    "Activity": "activity",
-    "Health & Safety": "health_safety",
-    "Lifestyle": "lifestyle",
-    "Almost there": "almost_there",
+/* ── trackStep — llamado automáticamente en cada render() ─────── */
+function trackStep(step) {
+
+  /* ── 1. INICIO DEL QUIZ ─────────────────────────────────── */
+  if (step.id === "age") {
+    _fbStd("ViewContent", {
+      content_name:     "Flowly Quiz — Tai Chi Walking for Weight Loss",
+      content_category: "quiz",
+    });
+    _fbCustom("QuizStarted");
+    if (!localStorage.getItem("flowly_started_at"))
+      localStorage.setItem("flowly_started_at", Date.now());
+    return;
+  }
+
+  /* ── 2. PREDICCIÓN (señal de alta intención) ────────────── */
+  if (step.id === "prediction1" || step.id === "prediction2") {
+    _fbCustom("PredictionViewed", { step: step.id });
+    return;
+  }
+
+  /* ── 3. ELEGIBILIDAD APROBADA ───────────────────────────── */
+  if (step.id === "eligibility") {
+    _fbCustom("EligibilityPassed");
+    return;
+  }
+
+  /* ── 4. CAPTURA DE EMAIL → Lead ─────────────────────────── */
+  if (step.id === "email") {
+    _fbStd("Lead", {
+      content_name:     "Flowly Email Lead",
+      content_category: "quiz",
+      value:            15.00,
+    });
+    return;
+  }
+
+  /* ── 5. CAPTURA DE NOMBRE → CompleteRegistration ────────── */
+  if (step.id === "name") {
+    _fbStd("CompleteRegistration", {
+      content_name: "Flowly Quiz Completed",
+      status:       true,
+      value:        15.00,
+    });
+    _fbCustom("QuizCompleted");
+    return;
+  }
+
+  /* ── 6. PÁGINA DE OBJETIVOS ─────────────────────────────── */
+  if (step.id === "goals") {
+    _fbCustom("GoalsViewed");
+    return;
+  }
+
+  /* ── 7. CHECKOUT → InitiateCheckout ─────────────────────── */
+  if (step.id === "checkout") {
+    const p = _plan();
+    _fbStd("InitiateCheckout", {
+      content_name:  "Flowly Plan Checkout",
+      content_ids:   [p.content_id],
+      content_type:  "product",
+      value:         p.value,
+      num_items:     1,
+    });
+    return;
+  }
+
+  /* ── 8. UPSELL ──────────────────────────────────────────── */
+  if (step.id === "upsell") {
+    _fbCustom("UpsellViewed");
+    return;
+  }
+
+  /* ── 9. PROGRESO POR SECCIÓN ────────────────────────────── */
+  const sections = {
+    "My Profile":    "SectionProfile",
+    "Activity":      "SectionActivity",
+    "Health & Safety": "SectionHealth",
+    "Lifestyle":     "SectionLifestyle",
+    "Almost there":  "SectionAlmostThere",
   };
-  if (step.section && sectionBlock[step.section]) {
-    trackQuizEvent(step.id, sectionBlock[step.section]);
+  if (step.section && sections[step.section]) {
+    _fbCustom("QuizProgress", {
+      section: sections[step.section],
+      step_id: step.id,
+    });
   }
 }

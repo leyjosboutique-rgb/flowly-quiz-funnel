@@ -887,6 +887,7 @@ function renderCheckout() {
   }
   function selectPlan(id) {
     state.selectedPlan = id;
+    if (typeof trackPlanSelected === "function") trackPlanSelected(id);
     document.querySelectorAll(".price-option").forEach(el => el.classList.toggle("selected", el.dataset.id === id));
     const plan = plans.find(p => p.id === id);
     const stackPriceEl = document.getElementById("value-stack-today-price");
@@ -897,11 +898,13 @@ function renderCheckout() {
   updateFinePrint(state.selectedPlan);
   document.getElementById("get-plan-btn").addEventListener("click", () => {
     stopCheckoutTimer();
+    if (typeof trackPurchaseIntent === "function") trackPurchaseIntent(state.selectedPlan);
     const url = HOTMART_LINKS[state.selectedPlan];
     if (url) { window.location.href = url; } else { next(); }
   });
   document.getElementById("submit-payment-btn").addEventListener("click", () => {
     stopCheckoutTimer();
+    if (typeof trackPurchaseIntent === "function") trackPurchaseIntent(state.selectedPlan);
     const url = HOTMART_LINKS[state.selectedPlan];
     if (url) { window.location.href = url; } else { next(); }
   });
