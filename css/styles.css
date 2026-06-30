@@ -57,7 +57,7 @@ body {
   border-bottom: 1px solid transparent;
 }
 .logo {
-  height: 52px;
+  height: 62px;
   width: auto;
   display: block;
   margin: 2px auto 0;
@@ -385,6 +385,22 @@ body {
 .goal-headline { font-size: 26px; font-weight: 700; text-align: center; margin-bottom: 6px; }
 .goal-headline .accent { color: var(--sage-dark); }
 .step-title .accent { color: var(--green-ok); }
+
+/* ---------- CHECKOUT STEPS ---------- */
+.checkout-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  flex-wrap: nowrap;
+}
+.checkout-step { color: var(--text-muted); white-space: nowrap; }
+.checkout-step.done { color: var(--sage); }
+.checkout-step.active { color: var(--text-dark); }
+.checkout-step-sep { color: var(--text-muted); font-size: 14px; }
 
 /* ---------- CHECKOUT ---------- */
 .checkout-timer-bar {
@@ -826,7 +842,7 @@ body {
   .loading-title { font-size: 18px; }
 
   .quiz-header { padding: 10px 14px 8px; }
-  .logo { height: 42px; }
+  .logo { height: 50px; }
 
   .gift-banner-big { padding: 13px 14px; font-size: 14px; }
 

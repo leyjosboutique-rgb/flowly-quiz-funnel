@@ -715,11 +715,10 @@ function beforeAfterImg(which) {
   return q4Map[state.answers.q4] || "IMG-15-after";
 }
 
-/* TODO: replace with the real Hotmart checkout URL for each plan. */
 const HOTMART_LINKS = {
-  "1week": "https://pay.hotmart.com/REPLACE-1WEEK",
-  "4week": "https://pay.hotmart.com/REPLACE-4WEEK",
-  "12week": "https://pay.hotmart.com/REPLACE-12WEEK",
+  "1week": "https://pay.hotmart.com/H106541452D?off=fqhbhw72&checkoutMode=10",
+  "4week": "https://pay.hotmart.com/H106541452D?off=39t62s03&checkoutMode=10",
+  "12week": "https://pay.hotmart.com/H106541452D?off=6mnsj6t6&checkoutMode=10",
 };
 
 function barSegments(filled) {
@@ -740,8 +739,19 @@ function renderCheckout() {
 
   app.innerHTML = `
     <div class="step">
+      <div class="checkout-steps">
+        <span class="checkout-step done">&#10003; Quiz</span>
+        <span class="checkout-step-sep">&#8250;</span>
+        <span class="checkout-step done">&#10003; Plan</span>
+        <span class="checkout-step-sep">&#8250;</span>
+        <span class="checkout-step active">Payment</span>
+        <span class="checkout-step-sep">&#8250;</span>
+        <span class="checkout-step">Access</span>
+      </div>
+
       <div style="text-align:center;"><span class="irresistible-badge">&#128293; Limited-time offer &mdash; price goes up soon</span></div>
-      <h1 class="step-title">Your personalized Tai Chi walking workout plan is ready</h1>
+      <h1 class="step-title">Congratulations &mdash; your body can look very different in just 4 weeks</h1>
+
       <div class="before-after-row ba-emphasis-after">
         <div class="ba-col ba-muted">
           <span class="ba-tag before">BEFORE</span>
@@ -758,28 +768,6 @@ function renderCheckout() {
           <div class="ba-stat-label">Energy levels</div><div class="ba-stat-value">High</div>
         </div>
       </div>
-
-      <div class="feature-box" style="background:#e8f0fc;">
-        <h3 style="text-align:center;margin-top:0;">Your plan includes</h3>
-        <div class="value-stack-row"><div class="feature-line">&#128221; Personalized Tai Chi walking workout plan</div><span class="value-stack-price">$49</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#128340; 7-15 minute low-impact daily routines</div><span class="value-stack-price">$19</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#129497; Beginner-friendly mobility and balance exercises</div><span class="value-stack-price">$15</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#129534; Joint-friendly movement plan</div><span class="value-stack-price">$12</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#128202; Progress tracking</div><span class="value-stack-price">$9</span></div>
-        <div class="value-stack-row bonus"><div class="feature-line">&#128153; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; 24/7 Support group</div><span class="value-stack-price">$29</span></div>
-        <div class="value-stack-row bonus"><div class="feature-line">&#127858; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; Nutrition guidance to support your results</div><span class="value-stack-price">$19</span></div>
-        <div class="value-stack-total-row">
-          <span>Total value</span>
-          <span class="value-stack-total-price">$152</span>
-        </div>
-        <div class="value-stack-today-row">
-          <span>Your price today</span>
-          <span class="value-stack-today-price" id="value-stack-today-price">Just $0.54/day</span>
-        </div>
-      </div>
-
-      <h2 class="step-title" style="font-size:20px;">Start feeling stronger, lighter, and more mobile in 4 weeks</h2>
-      <div class="checkout-timer-bar">&#9201; This offer ends in <span id="checkout-timer">10:00</span> min</div>
 
       <div id="price-options">
         ${plans.map(p => `
@@ -800,6 +788,26 @@ function renderCheckout() {
       </div>
       <p style="font-size:12px; line-height:1.5;">&#128202; People using the plan for <b>12 weeks</b> achieve <b>double the results</b> as for 4 weeks<br><span style="font-size:11px;color:var(--text-muted);">*According to a study by Flowly, 2024</span></p>
       <button class="continue-btn pink" id="get-plan-btn">GET MY PLAN</button>
+
+      <div class="feature-box" style="background:#e8f0fc;">
+        <h3 style="text-align:center;margin-top:0;">Your plan includes</h3>
+        <div class="value-stack-row"><div class="feature-line">&#128221; Personalized Tai Chi walking workout plan</div><span class="value-stack-price">$49</span></div>
+        <div class="value-stack-row"><div class="feature-line">&#128340; 7-15 minute low-impact daily routines</div><span class="value-stack-price">$19</span></div>
+        <div class="value-stack-row"><div class="feature-line">&#129497; Beginner-friendly mobility and balance exercises</div><span class="value-stack-price">$15</span></div>
+        <div class="value-stack-row"><div class="feature-line">&#129534; Joint-friendly movement plan</div><span class="value-stack-price">$12</span></div>
+        <div class="value-stack-row"><div class="feature-line">&#128202; Progress tracking</div><span class="value-stack-price">$9</span></div>
+        <div class="value-stack-row bonus"><div class="feature-line">&#128153; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; 24/7 Support group</div><span class="value-stack-price">$29</span></div>
+        <div class="value-stack-row bonus"><div class="feature-line">&#127858; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; Nutrition guidance to support your results</div><span class="value-stack-price">$19</span></div>
+        <div class="value-stack-total-row">
+          <span>Total value</span>
+          <span class="value-stack-total-price">$152</span>
+        </div>
+        <div class="value-stack-today-row">
+          <span>Your price today</span>
+          <span class="value-stack-today-price" id="value-stack-today-price">Just $0.54/day</span>
+        </div>
+      </div>
+
       <div class="guarantee-badge-row">
         <div class="guarantee-badge"><span class="guarantee-badge-icon">&#128176;</span><span>30-Day<br>Money-Back</span></div>
         <div class="guarantee-badge-text">If you don't see results in 30 days, get a full refund &mdash; no questions asked.</div>
@@ -819,7 +827,7 @@ function renderCheckout() {
           <div class="ba-col ba-photo-tagged">${renderPlaceholder("IMG-16-after", { w: 140, h: 200, zoom: 1.0, position: "top center" })}<span class="ba-photo-tag after">AFTER</span></div>
         </div>
         <div class="testimonial-name-row"><div><b>Martha S.</b><br><span style="font-size:12px;color:var(--text-muted);">Los Angeles, CA</span></div><div style="text-align:right;"><b>-40lbs</b><br><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div>
-        <p style="font-size:14px; line-height:1.5;">I used to think weight loss was impossible after years of strict diets and tough workouts. Then I tried Tai Chi walking. When I focused on gentle, steady movement, the results came quickly. I didn't just lose weight (40 lbs). I also slept better, felt calmer, and noticed positive changes in my body.</p>
+        <p style="font-size:14px; line-height:1.6;"><b>Tried:</b> strict diets and intense workouts for years &mdash; nothing stuck.<br><b>Changed:</b> switched to 15-min daily Tai Chi walking routines.<br><b>Result:</b> Lost 40 lbs, sleeps better, and feels calmer every day.</p>
       </div>
       <div class="testimonial-card">
         <div class="before-after-row">
@@ -827,7 +835,7 @@ function renderCheckout() {
           <div class="ba-col ba-photo-tagged">${renderPlaceholder("IMG-17-after", { w: 140, h: 200, contain: true })}<span class="ba-photo-tag after">AFTER</span></div>
         </div>
         <div class="testimonial-name-row"><div><b>Suzy B.</b><br><span style="font-size:12px;color:var(--text-muted);">Seattle, WA</span></div><div style="text-align:right;"><b>-60lbs</b><br><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div></div>
-        <p style="font-size:14px; line-height:1.5;">I've tried many weight-loss programs, but this one is different. It focuses on gentle, balanced movement. Even if you're a beginner or haven't moved in ages, it makes weight loss feel natural. This approach finally led to significant weight loss for me. My energy is higher, and my joints feel better too.</p>
+        <p style="font-size:14px; line-height:1.6;"><b>Tried:</b> every weight-loss program she could find &mdash; none felt sustainable.<br><b>Changed:</b> started gentle, balanced Tai Chi movement every morning.<br><b>Result:</b> Lost 60 lbs, higher energy, and joint pain is gone.</p>
       </div>
 
       <h2 class="step-title">Customer reviews</h2>
@@ -841,9 +849,7 @@ function renderCheckout() {
         <div><div style="font-size:22px;">&#127919;</div><div style="font-size:12px;color:var(--text-muted);">Goal</div><div style="font-weight:700;">Lose 8kg</div></div>
       </div>
 
-      <h2 class="step-title">Checkout</h2>
-      <div class="checkout-summary" id="checkout-summary"></div>
-      <button class="continue-btn pink" id="submit-payment-btn">Continue to secure checkout &#128274;</button>
+      <button class="continue-btn pink" id="submit-payment-btn">Start my transformation &#8594;</button>
       <p style="text-align:center;font-size:12px;margin:14px 0;">Guaranteed <b>safe checkout</b> &mdash; powered by Hotmart</p>
       <div class="trust-row"><span>&#128274; No hidden fees</span><span>&#128274; Secure SSL-protected</span><span>&#128274; Cancel Anytime</span></div>
       <p class="fine-print" id="fine-print-billing"></p>
@@ -857,33 +863,26 @@ function renderCheckout() {
       <p style="text-align:center;font-size:11px;color:var(--text-muted);margin-top:30px;">Copyright &copy; 2026 Flowly. All rights reserved.</p>
     </div>`;
 
+  const billingMap = {
+    "1week": { price: 9.00, renew: 29.90 },
+    "4week": { price: 15.00, renew: 29.90 },
+    "12week": { price: 25.00, renew: 29.90 },
+  };
+  function updateFinePrint(id) {
+    const p = billingMap[id];
+    const el = document.getElementById("fine-print-billing");
+    if (el && p) el.textContent = `By purchasing, I agree to pay $${p.price.toFixed(2)} for my plan and that if I do not cancel before the end of the introductory plan, Flowly will automatically charge my payment method the regular price $${p.renew.toFixed(2)} every billing cycle thereafter until I cancel. You can cancel online by visiting the subscription page in your account on our website.`;
+  }
   function selectPlan(id) {
     state.selectedPlan = id;
     document.querySelectorAll(".price-option").forEach(el => el.classList.toggle("selected", el.dataset.id === id));
     const plan = plans.find(p => p.id === id);
     const stackPriceEl = document.getElementById("value-stack-today-price");
     if (plan && stackPriceEl) stackPriceEl.textContent = `Just ${plan.perDay}/day`;
-    updateCheckoutSummary();
-  }
-  function updateCheckoutSummary() {
-    const map = {
-      "1week": { plan: "1 week plan", old: 21.99, price: 9.00, fee: 1.50, renew: 29.90 },
-      "4week": { plan: "4 weeks plan", old: 49.95, price: 15.00, fee: 2.79, renew: 29.90 },
-      "12week": { plan: "12 weeks plan", old: 84.95, price: 25.00, fee: 3.90, renew: 29.90 },
-    };
-    const p = map[state.selectedPlan];
-    const total = (p.price + p.fee).toFixed(2);
-    const discountPct = Math.round((1 - p.price / p.old) * 100);
-    document.getElementById("checkout-summary").innerHTML = `
-      <div class="checkout-summary-row"><span>${p.plan}</span><span style="text-decoration:line-through;color:var(--text-muted);">$${p.old.toFixed(2)}</span></div>
-      <div class="checkout-summary-row discount"><span>Discount (-${discountPct}%)</span><span>-$${(p.old - p.price).toFixed(2)}</span></div>
-      <div class="checkout-summary-row"><span>Service fee</span><span>$${p.fee.toFixed(2)}</span></div>
-      <div class="checkout-summary-row total"><span>Total</span><span>$${total}</span></div>`;
-    document.getElementById("fine-print-billing").textContent =
-      `By purchasing, I agree to pay $${p.price.toFixed(2)} for my plan and that if I do not cancel before the end of the introductory plan, Flowly will automatically charge my payment method the regular price $${p.renew.toFixed(2)} every billing cycle thereafter until I cancel. You can cancel online by visiting subscription page in your account on website.`;
+    updateFinePrint(id);
   }
   document.querySelectorAll(".price-option").forEach(el => el.addEventListener("click", () => selectPlan(el.dataset.id)));
-  updateCheckoutSummary();
+  updateFinePrint(state.selectedPlan);
   document.getElementById("get-plan-btn").addEventListener("click", () => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }));
   document.getElementById("submit-payment-btn").addEventListener("click", () => {
     stopCheckoutTimer();
