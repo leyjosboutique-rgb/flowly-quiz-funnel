@@ -775,6 +775,8 @@ function renderCheckout() {
         ${renderPlaceholder(getTransformationImageId(), { natural: true })}
       </div>
 
+      <div class="checkout-timer-bar">&#9201; This offer ends in <span id="checkout-timer">10:00</span> min</div>
+
       <div id="price-options">
         ${plans.map(p => `
           <div class="price-option ${p.badge ? "has-badge" : ""} ${p.id === state.selectedPlan ? "selected" : ""}" data-id="${p.id}">
