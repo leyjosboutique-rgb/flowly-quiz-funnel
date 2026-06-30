@@ -746,6 +746,7 @@ function barSegments(filled) {
 /* ---------------- CHECKOUT ---------------- */
 let checkoutTimerInterval;
 function renderCheckout() {
+  state.selectedPlan = "4week";
   document.getElementById("sticky-timer-bar").classList.remove("hidden");
   startCheckoutTimer();
 
