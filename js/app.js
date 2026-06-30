@@ -888,7 +888,11 @@ function renderCheckout() {
   }
   document.querySelectorAll(".price-option").forEach(el => el.addEventListener("click", () => selectPlan(el.dataset.id)));
   updateFinePrint(state.selectedPlan);
-  document.getElementById("get-plan-btn").addEventListener("click", () => window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }));
+  document.getElementById("get-plan-btn").addEventListener("click", () => {
+    stopCheckoutTimer();
+    const url = HOTMART_LINKS[state.selectedPlan];
+    if (url) { window.location.href = url; } else { next(); }
+  });
   document.getElementById("submit-payment-btn").addEventListener("click", () => {
     stopCheckoutTimer();
     const url = HOTMART_LINKS[state.selectedPlan];
