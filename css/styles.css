@@ -386,23 +386,66 @@ body {
 .goal-headline .accent { color: var(--sage-dark); }
 .step-title .accent { color: var(--green-ok); }
 
-/* ---------- CHECKOUT STEPS ---------- */
+/* ---------- CHECKOUT STEPS (premium stepper) ---------- */
 .checkout-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 auto 22px;
+  max-width: 340px;
+}
+.cs-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.cs-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 18px;
-  flex-wrap: nowrap;
+  font-weight: 700;
+  color: var(--text-muted);
 }
+.cs-item.done .cs-circle {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: #fff;
+}
+.cs-item.active .cs-circle {
+  background: var(--text-dark);
+  border-color: var(--text-dark);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(44,62,44,.12);
+}
+.cs-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  white-space: nowrap;
+  letter-spacing: .3px;
+}
+.cs-item.done .cs-label { color: var(--sage); }
+.cs-item.active .cs-label { color: var(--text-dark); font-weight: 700; }
+.cs-connector {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  margin-top: 14px;
+  min-width: 24px;
+  max-width: 72px;
+  border-radius: 2px;
+}
+.cs-connector.done { background: var(--sage); }
 .transformation-result-wrap { margin: 16px 0; border-radius: 12px; overflow: hidden; }
 .transformation-result-wrap img { width: 100%; height: auto; display: block; }
-.checkout-step { color: var(--text-muted); white-space: nowrap; }
-.checkout-step.done { color: var(--sage); }
-.checkout-step.active { color: var(--text-dark); }
-.checkout-step-sep { color: var(--text-muted); font-size: 14px; }
 
 /* ---------- CHECKOUT ---------- */
 .checkout-timer-bar {

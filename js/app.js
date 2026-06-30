@@ -758,13 +758,13 @@ function renderCheckout() {
   app.innerHTML = `
     <div class="step">
       <div class="checkout-steps">
-        <span class="checkout-step done">&#10003; Quiz</span>
-        <span class="checkout-step-sep">&#8250;</span>
-        <span class="checkout-step done">&#10003; Plan</span>
-        <span class="checkout-step-sep">&#8250;</span>
-        <span class="checkout-step active">Payment</span>
-        <span class="checkout-step-sep">&#8250;</span>
-        <span class="checkout-step">Access</span>
+        <div class="cs-item done"><div class="cs-circle">&#10003;</div><div class="cs-label">Quiz</div></div>
+        <div class="cs-connector done"></div>
+        <div class="cs-item done"><div class="cs-circle">&#10003;</div><div class="cs-label">Plan</div></div>
+        <div class="cs-connector"></div>
+        <div class="cs-item active"><div class="cs-circle">3</div><div class="cs-label">Payment</div></div>
+        <div class="cs-connector"></div>
+        <div class="cs-item"><div class="cs-circle">4</div><div class="cs-label">Access</div></div>
       </div>
 
       <div style="text-align:center;"><span class="irresistible-badge">&#128293; Limited-time offer &mdash; price goes up soon</span></div>
