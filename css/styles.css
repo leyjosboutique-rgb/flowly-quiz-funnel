@@ -100,34 +100,31 @@ body {
 }
 .hidden { display: none !important; }
 
-/* ---------- STICKY TIMER (urgency-charged) ---------- */
+/* ---------- STICKY TIMER ---------- */
 .sticky-timer-bar {
   position: sticky;
   top: 0;
   z-index: 60;
-  background: #1c0a0a;
-  color: rgba(255,255,255,0.88);
+  background: #fffaf5;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  color: #666;
   text-align: center;
   font-size: 13px;
-  font-weight: 600;
-  padding: 10px 16px;
+  font-weight: 500;
+  padding: 9px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  letter-spacing: .2px;
+  gap: 6px;
+  letter-spacing: .1px;
 }
-.timer-icon { font-size: 15px; }
+.timer-icon { font-size: 14px; color: #999; }
 .timer-value {
-  background: var(--red-urgency);
-  color: #fff;
+  color: #e53e3e;
   font-weight: 800;
   font-size: 14px;
-  padding: 3px 12px;
-  border-radius: 20px;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   font-variant-numeric: tabular-nums;
-  animation: timerPulse 1s ease-in-out infinite;
 }
 @keyframes timerPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(224,71,63,0.5); }
@@ -460,37 +457,27 @@ body {
 
 /* ---------- CHECKOUT ---------- */
 .checkout-timer-bar {
-  background: linear-gradient(160deg, #1e0606 0%, #3a0d0d 100%);
-  border: 1px solid rgba(224,71,63,0.30);
-  color: #fff;
-  border-radius: 14px;
+  background: #fffaf5;
+  border: 1px solid rgba(229,62,62,0.18);
+  border-radius: 10px;
   margin-bottom: 18px;
-  padding: 16px 18px 14px;
-  text-align: center;
-  animation: urgencyGlow 1.8s ease-in-out infinite;
+  padding: 11px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
 }
-.ctb-top {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: .8px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  margin-bottom: 6px;
-}
+.ctb-icon { font-size: 14px; color: #999; }
+.ctb-label { /* text label beside the time */ }
 .ctb-time {
-  font-size: 42px;
+  color: #e53e3e;
   font-weight: 800;
-  color: #ff5252;
-  letter-spacing: 4px;
+  font-size: 15px;
+  letter-spacing: 1.5px;
   font-variant-numeric: tabular-nums;
-  line-height: 1;
-  margin-bottom: 6px;
-  text-shadow: 0 0 20px rgba(255,82,82,0.4);
-}
-.ctb-bottom {
-  font-size: 11px;
-  color: rgba(255,255,255,0.45);
-  letter-spacing: .3px;
 }
 @keyframes urgencyGlow {
   0%, 100% { box-shadow: 0 0 0 0 rgba(224,71,63,0.25); }
@@ -957,10 +944,8 @@ body {
   .milestone-screen { padding: 30px 6px; }
 
   /* Timer mobile */
-  .ctb-time { font-size: 34px; letter-spacing: 2px; }
-  .ctb-top { font-size: 10px; }
-  .sticky-timer-bar { font-size: 12px; gap: 7px; padding: 9px 12px; }
-  .timer-value { font-size: 13px; padding: 2px 10px; }
+  .sticky-timer-bar { font-size: 12px; gap: 5px; padding: 8px 12px; }
+  .checkout-timer-bar { font-size: 12px; padding: 9px 14px; }
 
   /* Checkout stepper mobile */
   .checkout-steps { max-width: 100%; }
@@ -973,7 +958,7 @@ body {
   .ba-photo-tag { font-size: 10px; padding: 2px 8px; }
 
   /* Timer very small */
-  .ctb-time { font-size: 28px; letter-spacing: 1px; }
+  .ctb-time { font-size: 13px; }
   .cs-circle { width: 26px; height: 26px; font-size: 10px; }
   .cs-connector { margin-top: 12px; min-width: 10px; }
   .cs-label { font-size: 8px; }

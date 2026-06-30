@@ -779,9 +779,9 @@ function renderCheckout() {
       </div>
 
       <div class="checkout-timer-bar">
-        <div class="ctb-top">&#128293; Limited-time introductory price</div>
-        <div class="ctb-time"><span id="checkout-timer">10:00</span></div>
-        <div class="ctb-bottom">Expires when the timer hits zero</div>
+        <span class="ctb-icon">&#9201;</span>
+        <span class="ctb-label">This offer ends in</span>
+        <span class="ctb-time" id="checkout-timer">10:00</span>
       </div>
 
       <div id="price-options">
