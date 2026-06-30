@@ -60,6 +60,18 @@ const PLACEHOLDERS = {
   "IMG-Q22-hero": { w: 560, h: 300, label: "Foto grande: Tai Chi equilibrio/balance" },
   "IMG-Q23-hero": { w: 560, h: 300, label: "Foto grande: Tai Chi fuerza constante" },
   "IMG-fascia": { w: 560, h: 360, label: "Ilustración de fascia + mujer en pose de yoga" },
+
+  /* ---- TRANSFORMATIONS: age-matched before/after results ---- */
+  "RESULT-40-1": { w: 500, h: 340, label: "Amanda, 42 years — Lost 15 lbs in 10 weeks" },
+  "RESULT-40-2": { w: 500, h: 340, label: "Jessica, 45 years — Lost 18 lbs in 12 weeks" },
+  "RESULT-40-3": { w: 500, h: 340, label: "Megan, 48 years — Lost 22 lbs in 16 weeks" },
+  "RESULT-50-1": { w: 500, h: 340, label: "Susan, 51 years — Lost 15 lbs in 10 weeks" },
+  "RESULT-50-2": { w: 500, h: 340, label: "Carol, 55 years — Lost 16 lbs in 12 weeks" },
+  "RESULT-50-3": { w: 500, h: 340, label: "Martha, 58 years — Lost 18 lbs in 12 weeks" },
+  "RESULT-60-1": { w: 500, h: 340, label: "Patricia, 60 years — Lost 20 lbs in 12 weeks" },
+  "RESULT-60-2": { w: 500, h: 340, label: "Linda, 63 years — Lost 22 lbs in 16 weeks" },
+  "RESULT-60-3": { w: 500, h: 340, label: "Mary, 66 years — Lost 17 lbs in 14 weeks" },
+  "RESULT-70-1": { w: 500, h: 340, label: "Barbara, 68 years — Lost 14 lbs in 10 weeks" },
 };
 
 /* Real images already uploaded — id -> filename in assets/images/ */
@@ -105,6 +117,16 @@ const REAL_IMAGES = {
   "IMG-18a": "IMG-18a.jpg",
   "IMG-18b": "IMG-18b.jpg",
   "IMG-18c": "IMG-18c.jpg",
+  "RESULT-40-1": "amanda 42 years.png",
+  "RESULT-40-2": "Jessica 45 years.png",
+  "RESULT-40-3": "Megan 48 years.png",
+  "RESULT-50-1": "Susan 51 years.png",
+  "RESULT-50-2": "carol 55 years.png",
+  "RESULT-50-3": "Martha 58 years.png",
+  "RESULT-60-1": "Patricia 60 years.png",
+  "RESULT-60-2": "Linda 63 years.png",
+  "RESULT-60-3": "Mary 66 years.png",
+  "RESULT-70-1": "barbara 68 years.png",
   "IMG-Q5-legs": "IMG-Q5-legs.jpg",
   "IMG-Q5-belly": "IMG-Q5-belly.jpg",
   "IMG-Q5-arms": "IMG-Q5-arms.jpg",
@@ -131,7 +153,7 @@ const POSITION_OVERRIDES = {
 /* Bump this on every deploy that changes an existing image file so the
    cache-busting query param forces browsers/CDN to fetch the new bytes
    instead of serving the stale cached version of the same filename. */
-const ASSET_VERSION = "20260628i";
+const ASSET_VERSION = "20260629a";
 
 function renderPlaceholder(id, opts = {}) {
   const ph = PLACEHOLDERS[id];

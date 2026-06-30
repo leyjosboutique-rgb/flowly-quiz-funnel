@@ -715,6 +715,22 @@ function beforeAfterImg(which) {
   return q4Map[state.answers.q4] || "IMG-15-after";
 }
 
+/* Returns the age-matched, profile-varied transformation image ID for checkout. */
+function getTransformationImageId() {
+  const ageMap = {
+    "40-49": ["RESULT-40-1", "RESULT-40-2", "RESULT-40-3"],
+    "18-39": ["RESULT-40-1", "RESULT-40-2", "RESULT-40-3"],
+    "50-59": ["RESULT-50-1", "RESULT-50-2", "RESULT-50-3"],
+    "60-69": ["RESULT-60-1", "RESULT-60-2", "RESULT-60-3"],
+    "70+":   ["RESULT-70-1"],
+  };
+  const age = state.answers.age || "50-59";
+  const options = ageMap[age] || ageMap["50-59"];
+  const bodyIdx = ["a", "b", "c", "d"].indexOf(state.answers.q3 || "b");
+  const goalIdx = ["a", "b", "c", "d"].indexOf(state.answers.q4 || "b");
+  return options[(bodyIdx + goalIdx) % options.length];
+}
+
 const HOTMART_LINKS = {
   "1week": "https://pay.hotmart.com/H106541452D?off=fqhbhw72&checkoutMode=10",
   "4week": "https://pay.hotmart.com/H106541452D?off=39t62s03&checkoutMode=10",
@@ -752,21 +768,8 @@ function renderCheckout() {
       <div style="text-align:center;"><span class="irresistible-badge">&#128293; Limited-time offer &mdash; price goes up soon</span></div>
       <h1 class="step-title">Congratulations &mdash; your body can look very different in just 4 weeks</h1>
 
-      <div class="before-after-row ba-emphasis-after">
-        <div class="ba-col ba-muted">
-          <span class="ba-tag before">BEFORE</span>
-          ${renderPlaceholder(beforeAfterImg("before"), { w: 220, h: 270, zoom: 1.0 })}
-          <div class="ba-stat-label">Body fat</div><div class="ba-stat-value">High</div>
-          <div class="ba-bar-row">${barSegments(1)}</div>
-          <div class="ba-stat-label">Energy levels</div><div class="ba-stat-value">Low</div>
-        </div>
-        <div class="ba-col ba-highlight">
-          <span class="ba-tag after">AFTER</span>
-          ${renderPlaceholder(beforeAfterImg("after"), { w: 220, h: 270, zoom: 1.0 })}
-          <div class="ba-stat-label">Body fat</div><div class="ba-stat-value">Low</div>
-          <div class="ba-bar-row">${barSegments(3)}</div>
-          <div class="ba-stat-label">Energy levels</div><div class="ba-stat-value">High</div>
-        </div>
+      <div class="transformation-result-wrap">
+        ${renderPlaceholder(getTransformationImageId(), { natural: true })}
       </div>
 
       <div id="price-options">
