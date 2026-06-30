@@ -163,8 +163,9 @@ function renderPlaceholder(id, opts = {}) {
   if (REAL_IMAGES[id]) {
     const src = `assets/images/${REAL_IMAGES[id]}?v=${ASSET_VERSION}`;
     if (opts.contain) {
+      const bg = opts.bg || "#fff";
       return `
-        <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden; background:#fff; margin:0 auto; display:flex; align-items:center; justify-content:center;">
+        <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden; background:${bg}; margin:0 auto; display:flex; align-items:center; justify-content:center;">
           <img src="${src}" alt="${ph.label}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:contain; display:block;">
         </div>`;
     }
