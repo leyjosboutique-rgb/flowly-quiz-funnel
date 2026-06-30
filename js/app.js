@@ -764,11 +764,6 @@ function renderCheckout() {
 
       <!-- FOTO ANTES/DESPUÉS -->
       <div class="transformation-result-wrap">
-        <div class="trw-badge-row">
-          <span class="trw-badge before">BEFORE</span>
-          <span class="trw-arrow">&#8594;</span>
-          <span class="trw-badge after">AFTER</span>
-        </div>
         ${renderPlaceholder(getTransformationImageId(), { natural: true })}
         <p class="trw-caption">Real Flowly member — results may vary</p>
       </div>
