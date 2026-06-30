@@ -823,9 +823,12 @@ function renderCheckout() {
 
       <!-- PRENSA -->
       <div class="press-row">
-        <span style="font-size:11px;color:var(--text-muted);width:100%;text-align:center;">TAI CHI WALKING FEATURED IN</span>
-        <span class="press-logo">BUSINESS INSIDER</span><span class="press-logo">The New York Times</span>
-        <span class="press-logo">Women'sHealth</span><span class="press-logo">SHAPE</span>
+        <span class="press-eyebrow">TAI CHI WALKING FEATURED IN</span>
+        <span class="press-logo press-bi">BUSINESS<br>INSIDER</span>
+        <span class="press-logo press-nyt">The New York Times</span>
+        <span class="press-logo press-wh">Women's<b>Health</b></span>
+        <span class="press-logo press-mh">Men's<b>Health</b></span>
+        <span class="press-logo press-shape">SHAPE</span>
       </div>
 
       <!-- TESTIMONIOS -->

@@ -618,8 +618,16 @@ body {
 }
 .guarantee-badge-icon { font-size: 26px; }
 .guarantee-badge-text { font-size: 12px; color: var(--text-dark); }
-.press-row { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 16px; margin: 24px 0; opacity: .7; }
-.press-logo { font-weight: 700; font-size: 13px; font-family: Georgia, serif; }
+.press-row { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 20px 24px; margin: 24px 0; }
+.press-eyebrow { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); width: 100%; text-align: center; }
+.press-logo { color: #1a1a1a; line-height: 1.1; }
+.press-bi  { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 900; font-size: 12px; text-transform: uppercase; letter-spacing: -0.3px; text-align: center; }
+.press-nyt { font-family: "Fraunces", Georgia, serif; font-size: 15px; font-weight: 600; font-style: normal; }
+.press-wh  { font-family: "Plus Jakarta Sans", sans-serif; font-size: 14px; font-weight: 300; letter-spacing: -0.2px; }
+.press-wh b { font-weight: 800; }
+.press-mh  { font-family: "Plus Jakarta Sans", sans-serif; font-size: 14px; font-weight: 300; letter-spacing: -0.2px; }
+.press-mh b { font-weight: 800; }
+.press-shape { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 900; font-size: 20px; letter-spacing: 2px; text-transform: uppercase; }
 .testimonial-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow); }
 .testimonial-name-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
 .review-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
@@ -1015,8 +1023,11 @@ body {
   .price-option { padding: 14px 14px; }
   .price-per-day { font-size: 16px; }
 
-  .press-row { gap: 10px 14px; }
-  .press-logo { font-size: 11px; }
+  .press-row { gap: 10px 16px; }
+  .press-nyt { font-size: 13px; }
+  .press-shape { font-size: 17px; }
+  .press-bi { font-size: 10px; }
+  .press-wh, .press-mh { font-size: 12px; }
 
   .trust-row { font-size: 11px; gap: 8px; }
   .testimonial-card, .review-card { padding: 14px; }
