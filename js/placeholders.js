@@ -117,16 +117,16 @@ const REAL_IMAGES = {
   "IMG-18a": "IMG-18a.jpg",
   "IMG-18b": "IMG-18b.jpg",
   "IMG-18c": "IMG-18c.jpg",
-  "RESULT-40-1": "amanda 42 years.png",
-  "RESULT-40-2": "Jessica 45 years.png",
-  "RESULT-40-3": "Megan 48 years.png",
-  "RESULT-50-1": "Susan 51 years.png",
-  "RESULT-50-2": "carol 55 years.png",
-  "RESULT-50-3": "Martha 58 years.png",
-  "RESULT-60-1": "Patricia 60 years.png",
-  "RESULT-60-2": "Linda 63 years.png",
-  "RESULT-60-3": "Mary 66 years.png",
-  "RESULT-70-1": "barbara 68 years.png",
+  "RESULT-40-1": "amanda 42 years.jpg",
+  "RESULT-40-2": "Jessica 45 years.jpg",
+  "RESULT-40-3": "Megan 48 years.jpg",
+  "RESULT-50-1": "Susan 51 years.jpg",
+  "RESULT-50-2": "carol 55 years.jpg",
+  "RESULT-50-3": "Martha 58 years.jpg",
+  "RESULT-60-1": "Patricia 60 years.jpg",
+  "RESULT-60-2": "Linda 63 years.jpg",
+  "RESULT-60-3": "Mary 66 years.jpg",
+  "RESULT-70-1": "barbara 68 years.jpg",
   "IMG-Q5-legs": "IMG-Q5-legs.jpg",
   "IMG-Q5-belly": "IMG-Q5-belly.jpg",
   "IMG-Q5-arms": "IMG-Q5-arms.jpg",
@@ -153,7 +153,7 @@ const POSITION_OVERRIDES = {
 /* Bump this on every deploy that changes an existing image file so the
    cache-busting query param forces browsers/CDN to fetch the new bytes
    instead of serving the stale cached version of the same filename. */
-const ASSET_VERSION = "20260629a";
+const ASSET_VERSION = "20260630b";
 
 function renderPlaceholder(id, opts = {}) {
   const ph = PLACEHOLDERS[id];
@@ -165,13 +165,13 @@ function renderPlaceholder(id, opts = {}) {
     if (opts.contain) {
       return `
         <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:10px; overflow:hidden; background:#fff; margin:0 auto; display:flex; align-items:center; justify-content:center;">
-          <img src="${src}" alt="${ph.label}" style="width:100%; height:100%; object-fit:contain; display:block;">
+          <img src="${src}" alt="${ph.label}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:contain; display:block;">
         </div>`;
     }
     if (opts.natural) {
       const r = opts.noRadius ? "0" : "10px";
       const mw = opts.noRadius ? "100%" : `${w}px`;
-      return `<img src="${src}" alt="${ph.label}" style="width:100%; max-width:${mw}; height:auto; display:block; margin:0 auto; border-radius:${r};">`;
+      return `<img src="${src}" alt="${ph.label}" loading="lazy" decoding="async" style="width:100%; max-width:${mw}; height:auto; display:block; margin:0 auto; border-radius:${r};">`;
     }
     const zoom = opts.zoom || ZOOM_OVERRIDES[id] || 1.25;
     const position = opts.position || POSITION_OVERRIDES[id] || "top center";
@@ -179,7 +179,7 @@ function renderPlaceholder(id, opts = {}) {
     const bg = opts.shape === "arch" ? "var(--sage-light, #e9efe6)" : "#ffffff";
     return `
       <div style="aspect-ratio:${w}/${h}; max-width:${w}px; width:100%; height:auto; border-radius:${radius}; overflow:hidden; background:${bg};${opts.noCenter ? "" : " margin:0 auto;"}">
-        <img src="${src}" alt="${ph.label}" style="width:100%; height:100%; object-fit:cover; object-position:${position}; display:block; transform:scale(${zoom}); transform-origin:${position};">
+        <img src="${src}" alt="${ph.label}" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; object-position:${position}; display:block; transform:scale(${zoom}); transform-origin:${position};">
       </div>`;
   }
   const phMw = opts.noRadius ? "100%" : `${w}px`;
