@@ -762,6 +762,9 @@ function renderCheckout() {
   app.innerHTML = `
     <div class="step">
 
+      <div style="text-align:center;"><span class="irresistible-badge">&#128293; Limited-time offer &mdash; price goes up soon</span></div>
+      <h1 class="step-title">Congratulations &mdash; your body can look very different in just 4 weeks</h1>
+
       <!-- FOTO ANTES/DESPUÉS -->
       <div class="transformation-result-wrap">
         ${renderPlaceholder(getTransformationImageId(), { natural: true })}
@@ -854,6 +857,12 @@ function renderCheckout() {
       ${renderReview("IMG-18a", "Brenda Ross", "I never write reviews. NEVER! As a single mum, I struggled to find time for myself. Flowly made it easy to follow and helped me lose weight. You SAVED MY LIFE. I feel more confident, I'm loving myself again, and I feel unstoppable right now.")}
       ${renderReview("IMG-18b", "Sandra Jane", "No more stiff joints! With Flowly Tai Chi walking, I finally feel free. I believe I feel better than I did in my 20s. I know it sounds funny, but that's how I feel after losing those extra pounds!")}
       ${renderReview("IMG-18c", "AmeliaXC", "Tai Chi walking helped me lose 22lbs last month. I can't imagine stopping it. Not only did I lose weight, but my confidence is back. My friends say I've changed!")}
+
+      <h2 class="step-title">Get visible results<br><span class="accent">in 4 weeks</span></h2>
+      <div style="display:flex; justify-content:space-around; text-align:center; margin-bottom:20px;">
+        <div><div style="font-size:22px;">&#9989;</div><div style="font-size:12px;color:var(--text-muted);">Perfect for</div><div style="font-weight:700;">Women Over 55</div></div>
+        <div><div style="font-size:22px;">&#127919;</div><div style="font-size:12px;color:var(--text-muted);">Goal</div><div style="font-weight:700;">Lose 8 lbs</div></div>
+      </div>
 
       <!-- SEGUNDO CTA -->
       <button class="continue-btn co-cta-green" style="margin-top:28px;" id="submit-payment-btn">Start my transformation &#8594;</button>
