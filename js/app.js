@@ -779,12 +779,18 @@ function renderCheckout() {
         </div>
         <svg id="gauge-svg" viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:230px;display:block;margin:0 auto 0;">
           <g id="gauge-ticks"></g>
-          <path d="M 18 112 A 82 82 0 0 1 182 112" fill="none" stroke="#e5e7eb" stroke-width="5" stroke-linecap="round"/>
-          <path id="gauge-arc-fill" d="M 18 112 A 82 82 0 0 1 182 112" fill="none" stroke="#f0b429" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 258"/>
-          <line id="gauge-needle" x1="100" y1="112" x2="100" y2="35" stroke="#f0b429" stroke-width="3" stroke-linecap="round"/>
-          <circle id="gauge-dot" cx="100" cy="112" r="5" fill="#f0b429"/>
-          <text id="gauge-number" x="100" y="93" text-anchor="middle" font-size="40" font-weight="800" font-family="Plus Jakarta Sans,sans-serif" fill="#1a1a2e">10</text>
-          <text x="100" y="109" text-anchor="middle" font-size="11" font-weight="600" font-family="Plus Jakarta Sans,sans-serif" fill="#9ca3af" letter-spacing="2">MIN</text>
+          <!-- track (thin gray) -->
+          <path d="M 18 112 A 82 82 0 0 1 182 112" fill="none" stroke="#e5e7eb" stroke-width="4" stroke-linecap="round"/>
+          <!-- filled arc (thick, colored) -->
+          <path id="gauge-arc-fill" d="M 18 112 A 82 82 0 0 1 182 112" fill="none" stroke="#f0b429" stroke-width="9" stroke-linecap="round" stroke-dasharray="0 258" style="transition:stroke-dasharray .45s cubic-bezier(.4,0,.2,1),stroke .35s ease;"/>
+          <!-- needle -->
+          <line id="gauge-needle" x1="100" y1="112" x2="100" y2="32" stroke="#f0b429" stroke-width="4.5" stroke-linecap="round" style="transition:stroke .35s ease;"/>
+          <!-- center pivot -->
+          <circle cx="100" cy="112" r="8" fill="#fff" stroke="#e5e7eb" stroke-width="1.5"/>
+          <circle id="gauge-dot" cx="100" cy="112" r="5" fill="#f0b429" style="transition:fill .35s ease;"/>
+          <!-- number -->
+          <text id="gauge-number" x="100" y="93" text-anchor="middle" font-size="42" font-weight="800" font-family="Plus Jakarta Sans,sans-serif" fill="#1a1a2e">10</text>
+          <text x="100" y="109" text-anchor="middle" font-size="11" font-weight="700" font-family="Plus Jakarta Sans,sans-serif" fill="#9ca3af" letter-spacing="2.5">MIN</text>
         </svg>
         <p class="gauge-plan-label" id="gauge-plan-label">Your personalized Tai Chi Walking plan</p>
       </div>
