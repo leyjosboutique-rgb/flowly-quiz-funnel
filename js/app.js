@@ -138,7 +138,7 @@ function renderAgeSelect(step) {
 function optionIconHtml(o) {
   if (o.img) {
     const useContain = o.img.startsWith("IMG-Q5");
-    return renderPlaceholder(o.img, { w: 70, h: 70, noCenter: true, contain: useContain, bg: useContain ? "#1a1a1a" : undefined });
+    return renderPlaceholder(o.img, { w: 70, h: 70, noCenter: true, contain: useContain, bg: useContain ? "#fff" : undefined });
   }
   if (o.emoji) return `<span class="option-icon-emoji-lg">${o.emoji}</span>`;
   return "";
@@ -754,9 +754,9 @@ function renderCheckout() {
   startCheckoutTimer();
 
   const plans = [
-    { id: "1week", label: "1-week plan", oldPrice: "$21.99", newPrice: "$9.00", perDay: "$1.29" },
-    { id: "4week", label: "4-week plan", oldPrice: "$49.95", newPrice: "$15.00", perDay: "$0.54", badge: true },
-    { id: "12week", label: "12-week plan", oldPrice: "$84.95", newPrice: "$25.00", perDay: "$0.30" },
+    { id: "1week", label: "1-week plan", oldPrice: "$21.99", newPrice: "$9.90", perDay: "$1.41" },
+    { id: "4week", label: "4-week plan", oldPrice: "$49.95", newPrice: "$19.90", perDay: "$0.71", badge: true },
+    { id: "12week", label: "12-week plan", oldPrice: "$84.95", newPrice: "$29.90", perDay: "$0.36" },
   ];
 
   app.innerHTML = `
@@ -771,6 +771,24 @@ function renderCheckout() {
         <p class="trw-caption">Real Flowly member — results may vary</p>
       </div>
 
+      <!-- GAUGE WIDGET -->
+      <div class="gauge-card" id="gauge-card">
+        <div class="gauge-header">
+          <span class="gauge-title">Daily training duration</span>
+          <span class="gauge-badge-pink">Recommended</span>
+        </div>
+        <svg id="gauge-svg" viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:230px;display:block;margin:0 auto 0;">
+          <g id="gauge-ticks"></g>
+          <path d="M 18 112 A 82 82 0 0 1 182 112" fill="none" stroke="#e5e7eb" stroke-width="5" stroke-linecap="round"/>
+          <path id="gauge-arc-fill" d="M 18 112 A 82 82 0 0 1 182 112" fill="none" stroke="#f0b429" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 258"/>
+          <line id="gauge-needle" x1="100" y1="112" x2="100" y2="35" stroke="#f0b429" stroke-width="3" stroke-linecap="round"/>
+          <circle id="gauge-dot" cx="100" cy="112" r="5" fill="#f0b429"/>
+          <text id="gauge-number" x="100" y="93" text-anchor="middle" font-size="40" font-weight="800" font-family="Plus Jakarta Sans,sans-serif" fill="#1a1a2e">10</text>
+          <text x="100" y="109" text-anchor="middle" font-size="11" font-weight="600" font-family="Plus Jakarta Sans,sans-serif" fill="#9ca3af" letter-spacing="2">MIN</text>
+        </svg>
+        <p class="gauge-plan-label" id="gauge-plan-label">Your personalized Tai Chi Walking plan</p>
+      </div>
+
       <!-- FEATURE BOX CON VALUE STACK -->
       <div class="feature-box" style="background:#e8f0fc;">
         <h3 style="text-align:center;margin-top:0;">Your plan includes</h3>
@@ -782,7 +800,7 @@ function renderCheckout() {
         <div class="value-stack-row bonus"><div class="feature-line">&#128153; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; 24/7 Support group</div><span class="value-stack-price">$29</span></div>
         <div class="value-stack-row bonus"><div class="feature-line">&#127858; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; Nutrition guidance to support your results</div><span class="value-stack-price">$19</span></div>
         <div class="value-stack-total-row"><span>Total value</span><span class="value-stack-total-price">$152</span></div>
-        <div class="value-stack-today-row"><span>Your price today</span><span class="value-stack-today-price" id="value-stack-today-price">Just $0.54/day</span></div>
+        <div class="value-stack-today-row"><span>Your price today</span><span class="value-stack-today-price" id="value-stack-today-price">Just $0.71/day</span></div>
       </div>
 
       <!-- FRASE GRANDE -->
@@ -794,6 +812,28 @@ function renderCheckout() {
         <span class="ctb-label">This offer ends in</span>
         <strong class="ctb-time" id="checkout-timer">10:00</strong>
         <span class="ctb-label">min</span>
+      </div>
+
+      <!-- COUPON TICKET -->
+      <div class="coupon-ticket" id="coupon-ticket">
+        <div class="coupon-left">
+          <span class="coupon-pct" id="coupon-pct">60% OFF</span>
+        </div>
+        <div class="coupon-divider"></div>
+        <div class="coupon-right">
+          <p class="coupon-label">Reserved discount<br>just for you:</p>
+          <div class="coupon-timer-row">
+            <div class="coupon-time-box">
+              <span id="coupon-min">10</span>
+              <span class="coupon-unit">min</span>
+            </div>
+            <span class="coupon-sep">:</span>
+            <div class="coupon-time-box">
+              <span id="coupon-sec">00</span>
+              <span class="coupon-unit">seg</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- PLANES -->
@@ -880,15 +920,66 @@ function renderCheckout() {
     </div>`;
 
   const billingMap = {
-    "1week": { price: 9.00, renew: 29.90 },
-    "4week": { price: 15.00, renew: 29.90 },
-    "12week": { price: 25.00, renew: 29.90 },
+    "1week": { price: 9.90, renew: 49.90 },
+    "4week": { price: 19.90, renew: 49.90 },
+    "12week": { price: 29.90, renew: 49.90 },
   };
   function updateFinePrint(id) {
     const p = billingMap[id];
     const el = document.getElementById("fine-print-billing");
     if (el && p) el.textContent = `By purchasing, I agree to pay $${p.price.toFixed(2)} for my plan and that if I do not cancel before the end of the introductory plan, Flowly will automatically charge my payment method the regular price $${p.renew.toFixed(2)} every billing cycle thereafter until I cancel. You can cancel online by visiting the subscription page in your account on our website.`;
   }
+  /* ── Coupon ticket ─────────────────────────────────────────── */
+  const COUPON_DISCOUNT = { "1week": 55, "4week": 60, "12week": 65 };
+  function updateCoupon(planId) {
+    const el = document.getElementById("coupon-pct");
+    if (el) el.textContent = `${COUPON_DISCOUNT[planId] || 60}% OFF`;
+  }
+
+  /* ── Gauge speedometer ─────────────────────────────────────── */
+  const GAUGE_DATA = {
+    "1week":  { min: 7,  color: "#e8517a", label: "7"  },
+    "4week":  { min: 10, color: "#f0b429", label: "10" },
+    "12week": { min: 15, color: "#38a169", label: "15" },
+  };
+  const GAUGE_CX = 100, GAUGE_CY = 112, GAUGE_R = 82, GAUGE_SCALE_MAX = 20;
+  const GAUGE_ARC_LEN = Math.PI * GAUGE_R;
+
+  (function initGaugeTicks() {
+    const g = document.getElementById("gauge-ticks");
+    if (!g) return;
+    let html = "";
+    const numTicks = 12;
+    for (let i = 0; i <= numTicks; i++) {
+      const angleDeg = 180 - (i / numTicks) * 180;
+      const rad = angleDeg * Math.PI / 180;
+      const isMajor = i % 3 === 0;
+      const rOut = GAUGE_R + 3, rIn = GAUGE_R - (isMajor ? 10 : 6);
+      const x1 = (GAUGE_CX + rOut * Math.cos(rad)).toFixed(2);
+      const y1 = (GAUGE_CY - rOut * Math.sin(rad)).toFixed(2);
+      const x2 = (GAUGE_CX + rIn  * Math.cos(rad)).toFixed(2);
+      const y2 = (GAUGE_CY - rIn  * Math.sin(rad)).toFixed(2);
+      html += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${isMajor ? "#9ca3af" : "#d1d5db"}" stroke-width="${isMajor ? 2 : 1.5}" stroke-linecap="round"/>`;
+    }
+    g.innerHTML = html;
+  })();
+
+  function updateGauge(planId) {
+    const d = GAUGE_DATA[planId] || GAUGE_DATA["4week"];
+    const rotateDeg = -90 + (d.min / GAUGE_SCALE_MAX) * 180;
+    const filled = (d.min / GAUGE_SCALE_MAX) * GAUGE_ARC_LEN;
+    const needle = document.getElementById("gauge-needle");
+    const dot    = document.getElementById("gauge-dot");
+    const fill   = document.getElementById("gauge-arc-fill");
+    const num    = document.getElementById("gauge-number");
+    if (!needle) return;
+    needle.setAttribute("transform", `rotate(${rotateDeg}, ${GAUGE_CX}, ${GAUGE_CY})`);
+    needle.setAttribute("stroke", d.color);
+    if (dot)  dot.setAttribute("fill", d.color);
+    if (fill) { fill.setAttribute("stroke", d.color); fill.setAttribute("stroke-dasharray", `${filled.toFixed(1)} ${GAUGE_ARC_LEN.toFixed(1)}`); }
+    if (num)  num.textContent = d.label;
+  }
+
   function selectPlan(id) {
     state.selectedPlan = id;
     if (typeof trackPlanSelected === "function") trackPlanSelected(id);
@@ -897,9 +988,13 @@ function renderCheckout() {
     const stackPriceEl = document.getElementById("value-stack-today-price");
     if (plan && stackPriceEl) stackPriceEl.textContent = `Just ${plan.perDay}/day`;
     updateFinePrint(id);
+    updateGauge(id);
+    updateCoupon(id);
   }
   document.querySelectorAll(".price-option").forEach(el => el.addEventListener("click", () => selectPlan(el.dataset.id)));
   updateFinePrint(state.selectedPlan);
+  updateGauge(state.selectedPlan);
+  updateCoupon(state.selectedPlan);
   document.getElementById("get-plan-btn").addEventListener("click", () => {
     stopCheckoutTimer();
     if (typeof trackPurchaseIntent === "function") trackPurchaseIntent(state.selectedPlan);
@@ -935,6 +1030,10 @@ function startCheckoutTimer() {
     if (stickyEl) stickyEl.textContent = str;
     const inlineEl = document.getElementById("checkout-timer");
     if (inlineEl) inlineEl.textContent = str;
+    const cMin = document.getElementById("coupon-min");
+    const cSec = document.getElementById("coupon-sec");
+    if (cMin) cMin.textContent = String(m).padStart(2, "0");
+    if (cSec) cSec.textContent = String(s).padStart(2, "0");
     seconds--;
     if (seconds < 0) seconds = 10 * 60;
   }

@@ -18,9 +18,9 @@ const PIXEL_ID = "1466663398470516";
 
 /* Precio real por plan — usado en todos los eventos de valor */
 const PLAN_VALUES = {
-  "1week":  { value: 9.00,  name: "Flowly 1-Week Plan",  content_id: "flowly_1w"  },
-  "4week":  { value: 15.00, name: "Flowly 4-Week Plan",  content_id: "flowly_4w"  },
-  "12week": { value: 25.00, name: "Flowly 12-Week Plan", content_id: "flowly_12w" },
+  "1week":  { value: 9.90,  name: "Flowly 1-Week Plan",  content_id: "flowly_1w"  },
+  "4week":  { value: 19.90, name: "Flowly 4-Week Plan",  content_id: "flowly_4w"  },
+  "12week": { value: 29.90, name: "Flowly 12-Week Plan", content_id: "flowly_12w" },
 };
 
 /* ── helpers ──────────────────────────────────────────────────── */
@@ -118,7 +118,7 @@ function trackStep(step) {
     _fbStd("Lead", {
       content_name:     "Flowly Email Lead",
       content_category: "quiz",
-      value:            15.00,
+      value:            19.90,
     });
     return;
   }
@@ -128,7 +128,7 @@ function trackStep(step) {
     _fbStd("CompleteRegistration", {
       content_name: "Flowly Quiz Completed",
       status:       true,
-      value:        15.00,
+      value:        19.90,
     });
     _fbCustom("QuizCompleted");
     return;
