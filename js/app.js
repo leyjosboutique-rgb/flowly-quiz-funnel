@@ -778,13 +778,20 @@ function renderCheckout() {
           <span class="gauge-badge-pink">Recommended</span>
         </div>
         <svg id="gauge-svg" viewBox="0 0 200 125" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:230px;display:block;margin:0 auto 0;">
+          <defs>
+            <linearGradient id="gauge-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#e8517a"/>
+              <stop offset="50%"  stop-color="#f0b429"/>
+              <stop offset="100%" stop-color="#38a169"/>
+            </linearGradient>
+          </defs>
           <g id="gauge-ticks"></g>
           <!-- track (thin gray) -->
           <path d="M 18 112 A 82 82 0 0 1 182 112" fill="none" stroke="#e5e7eb" stroke-width="4" stroke-linecap="round"/>
-          <!-- filled arc (thick, colored) -->
-          <path id="gauge-arc-fill" d="M 18 112 A 82 82 0 0 1 182 112" fill="none" stroke="#f0b429" stroke-width="9" stroke-linecap="round" stroke-dasharray="0 258" style="transition:stroke-dasharray .45s cubic-bezier(.4,0,.2,1),stroke .35s ease;"/>
-          <!-- needle -->
-          <line id="gauge-needle" x1="100" y1="112" x2="100" y2="32" stroke="#f0b429" stroke-width="4.5" stroke-linecap="round" style="transition:stroke .35s ease;"/>
+          <!-- filled arc — gradiente continuo rosa→amarillo→verde -->
+          <path id="gauge-arc-fill" d="M 18 112 A 82 82 0 0 1 182 112" fill="none" stroke="url(#gauge-grad)" stroke-width="9" stroke-linecap="round" stroke-dasharray="0 258" style="transition:stroke-dasharray .45s cubic-bezier(.4,0,.2,1);"/>
+          <!-- needle (color interpolado por JS) -->
+          <line id="gauge-needle" x1="100" y1="112" x2="100" y2="32" stroke="#f0b429" stroke-width="4.5" stroke-linecap="round" style="transition:stroke .35s ease,transform .45s cubic-bezier(.4,0,.2,1);"/>
           <!-- center pivot -->
           <circle cx="100" cy="112" r="8" fill="#fff" stroke="#e5e7eb" stroke-width="1.5"/>
           <circle id="gauge-dot" cx="100" cy="112" r="5" fill="#f0b429" style="transition:fill .35s ease;"/>
@@ -944,12 +951,30 @@ function renderCheckout() {
 
   /* ── Gauge speedometer ─────────────────────────────────────── */
   const GAUGE_DATA = {
-    "1week":  { min: 7,  color: "#e8517a", label: "7"  },
-    "4week":  { min: 10, color: "#f0b429", label: "10" },
-    "12week": { min: 15, color: "#38a169", label: "15" },
+    "1week":  { min: 7  },
+    "4week":  { min: 10 },
+    "12week": { min: 15 },
   };
   const GAUGE_CX = 100, GAUGE_CY = 112, GAUGE_R = 82, GAUGE_SCALE_MAX = 20;
   const GAUGE_ARC_LEN = Math.PI * GAUGE_R;
+
+  /* Interpolación continua: rosa(0) → amarillo(0.5) → verde(1) */
+  function gaugeNeedleColor(v) {
+    const t = Math.min(v / GAUGE_SCALE_MAX, 1);
+    let r, g, b;
+    if (t <= 0.5) {
+      const lt = t / 0.5;
+      r = Math.round(232 + (240 - 232) * lt);
+      g = Math.round(81  + (180 - 81)  * lt);
+      b = Math.round(122 + (41  - 122) * lt);
+    } else {
+      const lt = (t - 0.5) / 0.5;
+      r = Math.round(240 + (56  - 240) * lt);
+      g = Math.round(180 + (161 - 180) * lt);
+      b = Math.round(41  + (105 - 41)  * lt);
+    }
+    return `rgb(${r},${g},${b})`;
+  }
 
   (function initGaugeTicks() {
     const g = document.getElementById("gauge-ticks");
@@ -974,16 +999,17 @@ function renderCheckout() {
     const d = GAUGE_DATA[planId] || GAUGE_DATA["4week"];
     const rotateDeg = -90 + (d.min / GAUGE_SCALE_MAX) * 180;
     const filled = (d.min / GAUGE_SCALE_MAX) * GAUGE_ARC_LEN;
+    const color  = gaugeNeedleColor(d.min);
     const needle = document.getElementById("gauge-needle");
     const dot    = document.getElementById("gauge-dot");
     const fill   = document.getElementById("gauge-arc-fill");
     const num    = document.getElementById("gauge-number");
     if (!needle) return;
     needle.setAttribute("transform", `rotate(${rotateDeg}, ${GAUGE_CX}, ${GAUGE_CY})`);
-    needle.setAttribute("stroke", d.color);
-    if (dot)  dot.setAttribute("fill", d.color);
-    if (fill) { fill.setAttribute("stroke", d.color); fill.setAttribute("stroke-dasharray", `${filled.toFixed(1)} ${GAUGE_ARC_LEN.toFixed(1)}`); }
-    if (num)  num.textContent = d.label;
+    needle.setAttribute("stroke", color);
+    if (dot)  dot.setAttribute("fill", color);
+    if (fill) fill.setAttribute("stroke-dasharray", `${filled.toFixed(1)} ${GAUGE_ARC_LEN.toFixed(1)}`);
+    if (num)  num.textContent = String(d.min);
   }
 
   function selectPlan(id) {
