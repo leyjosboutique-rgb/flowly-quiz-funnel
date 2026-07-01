@@ -1045,6 +1045,34 @@ body {
   .cs-connector { min-width: 16px; }
 }
 
+/* ---------- EMAIL AUTOCOMPLETE ---------- */
+.email-suggestions {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0; right: 0;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.10);
+  z-index: 100;
+  text-align: left;
+}
+.email-suggestions.open { display: block; }
+.email-sug-item {
+  padding: 13px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dark);
+  cursor: pointer;
+  border-bottom: 1px solid var(--border);
+  transition: background .12s;
+}
+.email-sug-item:last-child { border-bottom: none; }
+.email-sug-item:hover { background: var(--sage-light); }
+.email-sug-item strong { font-weight: 700; color: var(--sage-dark); }
+
 /* ---------- COUPON TICKET ---------- */
 .coupon-ticket {
   position: relative;

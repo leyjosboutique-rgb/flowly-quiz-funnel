@@ -631,20 +631,56 @@ function fireConfetti() {
 }
 
 /* ---------------- EMAIL CAPTURE ---------------- */
+const EMAIL_DOMAINS = ["gmail.com","yahoo.com","outlook.com","hotmail.com","icloud.com","aol.com","protonmail.com","hotmail.es","yahoo.es","live.com"];
+
 function renderEmailCapture(step) {
   app.innerHTML = `
     <div class="step" style="text-align:center;">
       <div class="discount-gift-banner" style="justify-content:center; background:var(--sage-light); color:var(--sage-dark);">&#10003; ${step.badge}</div>
       <h1 class="step-title">${step.title}</h1>
-      <div class="input-row">
-        <input type="email" class="text-input" id="email-input" placeholder="Your email address" style="text-align:center;">
+      <div class="input-row" style="position:relative;">
+        <input type="email" class="text-input" id="email-input" placeholder="Your email address" style="text-align:center;" autocomplete="off">
+        <div id="email-suggestions" class="email-suggestions"></div>
       </div>
       <button class="continue-btn" id="continue-btn" disabled>${step.cta}</button>
       <p class="fine-print">By submitting your email address, you may also receive email offers from Flowly about our services. You may unsubscribe at any time.<br>Your use of Flowly is bound by the Terms of Use and Privacy Policy.</p>
     </div>`;
+
   const input = document.getElementById("email-input");
-  const btn = document.getElementById("continue-btn");
-  input.addEventListener("input", () => { btn.disabled = !input.value.includes("@"); });
+  const btn   = document.getElementById("continue-btn");
+  const sug   = document.getElementById("email-suggestions");
+
+  function showSuggestions(val) {
+    const atIdx = val.indexOf("@");
+    if (atIdx === -1) { sug.innerHTML = ""; sug.classList.remove("open"); return; }
+    const local   = val.slice(0, atIdx);
+    const afterAt = val.slice(atIdx + 1).toLowerCase();
+    const matches = EMAIL_DOMAINS.filter(d => d.startsWith(afterAt));
+    /* Ocultar si ya está completo y hay un solo match exacto */
+    if (!matches.length || (matches.length === 1 && matches[0] === afterAt)) {
+      sug.innerHTML = ""; sug.classList.remove("open"); return;
+    }
+    sug.innerHTML = matches.map(d =>
+      `<div class="email-sug-item" data-email="${local}@${d}">${local}<strong>@${d}</strong></div>`
+    ).join("");
+    sug.classList.add("open");
+    sug.querySelectorAll(".email-sug-item").forEach(item => {
+      item.addEventListener("mousedown", e => {
+        e.preventDefault();
+        input.value = item.dataset.email;
+        btn.disabled = false;
+        sug.innerHTML = ""; sug.classList.remove("open");
+      });
+    });
+  }
+
+  input.addEventListener("input", () => {
+    btn.disabled = !input.value.includes("@") || !input.value.split("@")[1];
+    showSuggestions(input.value);
+  });
+  input.addEventListener("blur", () => {
+    setTimeout(() => { sug.innerHTML = ""; sug.classList.remove("open"); }, 150);
+  });
   btn.addEventListener("click", () => { setAnswer("email", input.value); next(); });
 }
 
