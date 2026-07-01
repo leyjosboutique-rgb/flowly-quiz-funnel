@@ -10,7 +10,7 @@
    │  CompleteReg.      → Nombre capturado (quiz completo)   │
    │  InitiateCheckout  → Pantalla de checkout vista         │
    │  AddToCart         → Plan seleccionado                  │
-   │  Purchase          → CTA clic → redirige a Hotmart      │
+   │  CheckoutCTAClicked→ CTA clic → redirige a Hotmart      │
    └─────────────────────────────────────────────────────────┘
 =================================================================== */
 
@@ -76,14 +76,14 @@ function trackPlanSelected(planId) {
  */
 function trackPurchaseIntent(planId) {
   const p = PLAN_VALUES[planId] || PLAN_VALUES["4week"];
-  _fbStd("Purchase", {
-    content_name:  p.name,
-    content_ids:   [p.content_id],
-    content_type:  "product",
-    value:         p.value,
-    num_items:     1,
+  _fbCustom("CheckoutCTAClicked", {
+    plan_id:      planId,
+    content_name: p.name,
+    content_ids:  [p.content_id],
+    value:        p.value,
+    currency:     "USD",
+    num_items:    1,
   });
-  _fbCustom("CheckoutStarted", { plan_id: planId, value: p.value });
 }
 
 /* ── trackStep — llamado automáticamente en cada render() ─────── */
