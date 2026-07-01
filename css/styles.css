@@ -1045,6 +1045,111 @@ body {
   .cs-connector { min-width: 16px; }
 }
 
+/* ---------- VALUE STACK — HORMOZI STYLE ---------- */
+.vs-card {
+  background: #fff;
+  border-radius: 18px;
+  border: 2px solid #e5e7eb;
+  overflow: hidden;
+  margin: 18px 0;
+  box-shadow: 0 6px 24px rgba(0,0,0,.08);
+}
+.vs-card-title {
+  background: var(--sage-dark);
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+  padding: 15px 20px;
+  letter-spacing: -0.2px;
+}
+.vs-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 11px 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.vs-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: #e8f5e9;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.vs-icon.bonus-icon { background: #fff3e0; }
+.vs-label {
+  flex: 1;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1a1a2e;
+  line-height: 1.35;
+}
+.vs-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: #d1d5db;
+  text-decoration: line-through;
+  white-space: nowrap;
+}
+.vs-val-bonus { color: #d1d5db; }
+.vs-bonus-divider {
+  background: linear-gradient(90deg, var(--sage-dark) 0%, #2d6a4f 100%);
+  color: #fff;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+  padding: 8px 12px;
+  text-transform: uppercase;
+}
+.vs-total-section {
+  background: #f8fafc;
+  border-top: 2px solid #e5e7eb;
+  padding: 14px 18px 6px;
+}
+.vs-total-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+.vs-total-crossed {
+  text-decoration: line-through;
+  color: #ef4444;
+  font-weight: 800;
+  font-size: 16px;
+}
+.vs-today-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 8px;
+}
+.vs-today-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+.vs-today-price {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--sage-dark);
+  letter-spacing: -0.5px;
+}
+
 /* ---------- EMAIL AUTOCOMPLETE ---------- */
 .email-suggestions {
   display: none;

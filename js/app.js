@@ -838,18 +838,55 @@ function renderCheckout() {
         <p class="gauge-plan-label" id="gauge-plan-label">Your personalized Tai Chi Walking plan</p>
       </div>
 
-      <!-- FEATURE BOX CON VALUE STACK -->
-      <div class="feature-box" style="background:#e8f0fc;">
-        <h3 style="text-align:center;margin-top:0;">Your plan includes</h3>
-        <div class="value-stack-row"><div class="feature-line">&#128221; Personalized Tai Chi walking workout plan</div><span class="value-stack-price">$49</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#128340; 7-15 minute low-impact daily routines</div><span class="value-stack-price">$19</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#129497; Beginner-friendly mobility and balance exercises</div><span class="value-stack-price">$15</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#129534; Joint-friendly movement plan</div><span class="value-stack-price">$12</span></div>
-        <div class="value-stack-row"><div class="feature-line">&#128202; Progress tracking</div><span class="value-stack-price">$9</span></div>
-        <div class="value-stack-row bonus"><div class="feature-line">&#128153; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; 24/7 Support group</div><span class="value-stack-price">$29</span></div>
-        <div class="value-stack-row bonus"><div class="feature-line">&#127858; <b style="white-space:nowrap;">FREE BONUS</b> &mdash; Nutrition guidance to support your results</div><span class="value-stack-price">$19</span></div>
-        <div class="value-stack-total-row"><span>Total value</span><span class="value-stack-total-price">$152</span></div>
-        <div class="value-stack-today-row"><span>Your price today</span><span class="value-stack-today-price" id="value-stack-today-price">Just $0.71/day</span></div>
+      <!-- FEATURE BOX — VALUE STACK HORMOZI STYLE -->
+      <div class="vs-card">
+        <div class="vs-card-title">Your plan includes</div>
+        <div class="vs-row">
+          <div class="vs-icon">&#128221;</div>
+          <div class="vs-label">Personalized Tai Chi walking workout plan</div>
+          <div class="vs-val">$49</div>
+        </div>
+        <div class="vs-row">
+          <div class="vs-icon">&#128340;</div>
+          <div class="vs-label">7-15 minute low-impact daily routines</div>
+          <div class="vs-val">$19</div>
+        </div>
+        <div class="vs-row">
+          <div class="vs-icon">&#129497;</div>
+          <div class="vs-label">Beginner-friendly mobility and balance exercises</div>
+          <div class="vs-val">$15</div>
+        </div>
+        <div class="vs-row">
+          <div class="vs-icon">&#129534;</div>
+          <div class="vs-label">Joint-friendly movement plan</div>
+          <div class="vs-val">$12</div>
+        </div>
+        <div class="vs-row" style="border-bottom:none;">
+          <div class="vs-icon">&#128202;</div>
+          <div class="vs-label">Progress tracking</div>
+          <div class="vs-val">$9</div>
+        </div>
+        <div class="vs-bonus-divider">&#127381; FREE BONUSES INCLUDED</div>
+        <div class="vs-row vs-bonus-row">
+          <div class="vs-icon bonus-icon">&#128153;</div>
+          <div class="vs-label"><b>FREE BONUS</b> &mdash; 24/7 Support group</div>
+          <div class="vs-val vs-val-bonus">$29</div>
+        </div>
+        <div class="vs-row vs-bonus-row" style="border-bottom:none;">
+          <div class="vs-icon bonus-icon">&#127858;</div>
+          <div class="vs-label"><b>FREE BONUS</b> &mdash; Nutrition guidance to support your results</div>
+          <div class="vs-val vs-val-bonus">$19</div>
+        </div>
+        <div class="vs-total-section">
+          <div class="vs-total-line">
+            <span>Total value</span>
+            <span class="vs-total-crossed">$152</span>
+          </div>
+          <div class="vs-today-line">
+            <span class="vs-today-label">Your price today</span>
+            <span class="vs-today-price" id="value-stack-today-price">Just $0.71/day</span>
+          </div>
+        </div>
       </div>
 
       <!-- FRASE GRANDE -->
